@@ -1,0 +1,81 @@
+<!-- @dsCard group="Components" name="Buttons" subtitle="Primary / secondary / tertiary / text / link / danger · 3 sizes · icon, loading, disabled" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeetoUI · Buttons</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Buttons</h1>
+    <p>Component: <code>Button</code> — props <code>style</code> (primary · secondary · tertiary · text · link · danger · danger-text),
+    <code>size</code> (small 28px · medium 32px · large 40px), <code>icon</code>, <code>iconPosition</code>, <code>loading</code>, <code>disabled</code>, <code>fullWidth</code>.
+    Font is 14px medium (16px for large); radius 5px. One primary button per view; pair with a text/tertiary “Cancel”.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Styles (medium, 32px)</h2>
+    <div class="sheet-row">
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-primary neeto-ui-btn--size-medium">Save changes</button><span class="spec__label">primary — main CTA</span></div>
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-secondary neeto-ui-btn--size-medium">Duplicate</button><span class="spec__label">secondary — gray-200 bg</span></div>
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-tertiary neeto-ui-btn--size-medium">Export</button><span class="spec__label">tertiary — white + gray-400 ring</span></div>
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-text neeto-ui-btn--size-medium">Cancel</button><span class="spec__label">text — no chrome</span></div>
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-link neeto-ui-btn--size-medium">View details</button><span class="spec__label">link — accent-800, no padding</span></div>
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-danger neeto-ui-btn--size-medium">Delete</button><span class="spec__label">danger — destructive CTA</span></div>
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-danger-text neeto-ui-btn--size-medium">Remove</button><span class="spec__label">danger-text</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Sizes</h2>
+    <div class="sheet-row">
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-primary">Small · 28px</button><span class="spec__label">small (default) — 14px text</span></div>
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-primary neeto-ui-btn--size-medium">Medium · 32px</button><span class="spec__label">medium — most common</span></div>
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-primary neeto-ui-btn--size-large">Large · 40px</button><span class="spec__label">large — 16px text, marketing/empty states</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Hover · disabled · loading</h2>
+    <div class="sheet-row">
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--size-medium" style="color:#fff;background-color:rgb(0,102,83)">Save changes</button><span class="spec__label">primary hover → primary-800</span></div>
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--size-medium" style="color:rgb(29,41,57);background-color:rgb(216,220,222)">Duplicate</button><span class="spec__label">secondary hover → gray-300</span></div>
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-primary neeto-ui-btn--size-medium disabled">Save changes</button><span class="spec__label">disabled — 50% opacity</span></div>
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-primary neeto-ui-btn--size-medium neeto-ui-btn--loading"><span>Saving…</span><span class="neeto-ui-btn__spinner"><span class="neeto-ui-spinner neeto-ui-spinner--light neeto-ui-spinner--size-small"></span></span></button><span class="spec__label">loading — label hidden, spinner centered</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>With icons</h2>
+    <div class="sheet-row">
+      <div class="spec">
+        <button class="neeto-ui-btn neeto-ui-btn--style-primary neeto-ui-btn--size-medium">New project<span class="neeto-ui-btn__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <span class="spec__label">icon right (default)</span>
+      </div>
+      <div class="spec">
+        <button class="neeto-ui-btn neeto-ui-btn--style-secondary neeto-ui-btn--size-medium neeto-ui-btn--icon-left">Back<span class="neeto-ui-btn__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7l-7 7 7 7"/></svg></span></button>
+        <span class="spec__label">iconPosition="left"</span>
+      </div>
+      <div class="spec">
+        <button class="neeto-ui-btn neeto-ui-btn--style-tertiary neeto-ui-btn--size-medium neeto-ui-btn--icon-only"><span class="neeto-ui-btn__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></span></button>
+        <span class="spec__label">icon-only — kebab/actions</span>
+      </div>
+      <div class="spec">
+        <button class="neeto-ui-btn neeto-ui-btn--style-secondary neeto-ui-btn--size-medium">Options<span class="neeto-ui-btn__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
+        <span class="spec__label">dropdown trigger pattern</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Full width</h2>
+    <div style="max-width:360px">
+      <button class="neeto-ui-btn neeto-ui-btn--style-primary neeto-ui-btn--size-large neeto-ui-btn--width-full">Continue</button>
+    </div>
+    <div class="sheet-note">Used in auth pages, panes and modals. In modal/pane footers, the primary action sits on the right, preceded by a text-style Cancel.</div>
+  </div>
+</body>
+</html>

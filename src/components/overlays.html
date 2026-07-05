@@ -1,0 +1,110 @@
+<!-- @dsCard group="Components" name="Modal, Alert & Pane" subtitle="Modal 3 sizes, destructive Alert, right-side Pane with footer" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeetoUI · Modal, Alert & Pane</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .demo-frame { position: relative; height: 420px; border-radius: 8px; overflow: hidden; border: 1px solid rgb(233,235,237); }
+  .demo-frame .neeto-ui-modal__backdrop, .demo-frame .neeto-ui-pane__backdrop { position: absolute; width: 100%; height: 100%; }
+  .demo-frame .neeto-ui-modal__wrapper { opacity: 1; transform: none; animation: none; }
+  .demo-frame .neeto-ui-pane__wrapper { transform: none; position: absolute; top: 0; right: 0; height: 100%; display: flex; flex-direction: column; }
+  .demo-frame .neeto-ui-pane__body { height: auto; flex-grow: 1; }
+  .frames { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .frames--single { grid-template-columns: 1fr; }
+  .demo-close-btn { position: static !important; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Modal, Alert &amp; Pane</h1>
+    <p><code>Modal</code> — centered dialog: white, radius 12px, sizes small 320px · medium 480px (default) · large 720px; dark blurred backdrop (<code>#1b1f23dd</code>).
+    <code>Alert</code> — a Modal preset for destructive confirmation.
+    <code>Pane</code> — right drawer: 480px (small) or 50vw (large), full height, header 78px, sticky footer 80px with shadow-md.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Modal (medium) &amp; Alert</h2>
+    <div class="frames">
+      <div class="demo-frame">
+        <div class="neeto-ui-modal__backdrop">
+          <div class="neeto-ui-modal__wrapper neeto-ui-modal__wrapper--medium">
+            <div class="neeto-ui-modal__close demo-close-btn-holder"><button class="neeto-ui-btn neeto-ui-btn--style-text neeto-ui-btn--icon-only"><span class="neeto-ui-btn__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span></button></div>
+            <div class="neeto-ui-modal__header">
+              <h2 class="neeto-ui-text-h3 neeto-ui-font-semibold" style="margin:0">Invite team members</h2>
+              <p class="neeto-ui-modal__header-desc neeto-ui-text-body2" style="margin-bottom:0">They'll get an email with a link to join this workspace.</p>
+            </div>
+            <div class="neeto-ui-modal__body">
+              <div class="neeto-ui-input__wrapper">
+                <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Email addresses</label></div>
+                <div class="neeto-ui-input neeto-ui-input--medium"><input placeholder="oliver@example.com, eve@example.com"></div>
+                <p class="neeto-ui-input__help-text">Separate multiple emails with commas.</p>
+              </div>
+            </div>
+            <div class="neeto-ui-modal__footer">
+              <button class="neeto-ui-btn neeto-ui-btn--style-text neeto-ui-btn--size-medium" style="margin-right:8px">Cancel</button>
+              <button class="neeto-ui-btn neeto-ui-btn--style-primary neeto-ui-btn--size-medium">Send invites</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-frame">
+        <div class="neeto-ui-modal__backdrop">
+          <div class="neeto-ui-modal__wrapper neeto-ui-modal__wrapper--medium">
+            <div class="neeto-ui-modal__header">
+              <h2 class="neeto-ui-text-h3 neeto-ui-font-semibold" style="margin:0">Delete this project?</h2>
+            </div>
+            <div class="neeto-ui-modal__body">
+              <p style="margin:0">This will permanently delete <b>Customer portal</b> and all 42 of its tickets. This action cannot be undone.</p>
+            </div>
+            <div class="neeto-ui-modal__footer">
+              <button class="neeto-ui-btn neeto-ui-btn--style-text neeto-ui-btn--size-medium" style="margin-right:8px">Cancel</button>
+              <button class="neeto-ui-btn neeto-ui-btn--style-danger neeto-ui-btn--size-medium">Delete project</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Pane (small · 480px)</h2>
+    <div class="frames frames--single">
+      <div class="demo-frame" style="height:480px;background:rgb(250,250,250)">
+        <div class="neeto-ui-pane__backdrop">
+          <div class="neeto-ui-pane__wrapper neeto-ui-pane__wrapper--small">
+            <div class="neeto-ui-pane__header" style="position:relative">
+              <h2 class="neeto-ui-text-h3 neeto-ui-font-semibold" style="margin:0">Ticket #4092</h2>
+              <div class="neeto-ui-pane__close"><button class="neeto-ui-btn neeto-ui-btn--style-text neeto-ui-btn--icon-only"><span class="neeto-ui-btn__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span></button></div>
+            </div>
+            <div class="neeto-ui-pane__body">
+              <div class="sheet-col" style="gap:20px">
+                <div class="neeto-ui-input__wrapper">
+                  <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Subject</label></div>
+                  <div class="neeto-ui-input neeto-ui-input--medium"><input value="Cannot export invoices"></div>
+                </div>
+                <div class="neeto-ui-input__wrapper">
+                  <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Description</label></div>
+                  <div class="neeto-ui-input neeto-ui-input--medium neeto-ui-input--textarea"><textarea rows="4">Exports fail with a timeout after ~30 seconds.</textarea></div>
+                </div>
+                <div class="sheet-row">
+                  <span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-danger">Urgent</span>
+                  <span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-secondary">billing</span>
+                </div>
+              </div>
+            </div>
+            <div class="neeto-ui-pane__footer" style="display:flex;justify-content:flex-end;gap:8px;align-items:center">
+              <button class="neeto-ui-btn neeto-ui-btn--style-text neeto-ui-btn--size-medium">Cancel</button>
+              <button class="neeto-ui-btn neeto-ui-btn--style-primary neeto-ui-btn--size-medium">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sheet-note">Use a Modal for focused single-step tasks and confirmations; a Pane for editing records with several fields or for detail views alongside a list.</div>
+  </div>
+</body>
+</html>

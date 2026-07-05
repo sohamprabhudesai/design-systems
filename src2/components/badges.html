@@ -1,0 +1,72 @@
+<!-- @dsCard group="Components" name="Badges" subtitle="6 shadcn variants + 8-color system with subtle pairs · 3 sizes · pill & rounded" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neeto-atoms · Badges</title>
+<style>/*__ATOMS__*/</style>
+<style>/*__SHEET__*/</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Badges</h1>
+    <p><code>Badge</code> — 20px pill, 12px medium text. Semantic variants (<code>default · secondary · destructive · outline · ghost · link</code>)
+    plus a <b>color system</b>: gray, blue, purple, amber, red, pink, green, teal — each with a <code>-subtle</code> pair (50-tint bg, 700 text).
+    Sizes <code>sm 16 · default 20 · lg 24</code>; shapes <code>pill</code> (default) and <code>rounded</code> (4px). Optional leading icon/dot and dismiss ×.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Semantic variants</h2>
+    <div class="sheet-row">
+      <span class="badge badge--default">Default</span>
+      <span class="badge badge--secondary">Secondary</span>
+      <span class="badge badge--destructive">Destructive</span>
+      <span class="badge badge--outline">Outline</span>
+      <span class="badge badge--ghost">Ghost</span>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Color system — solid</h2>
+    <div class="sheet-row">
+      <span class="badge badge--gray">Gray</span>
+      <span class="badge badge--blue">Blue</span>
+      <span class="badge badge--purple">Purple</span>
+      <span class="badge badge--amber">Amber</span>
+      <span class="badge badge--red">Red</span>
+      <span class="badge badge--pink">Pink</span>
+      <span class="badge badge--green">Green</span>
+      <span class="badge badge--teal">Teal</span>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Color system — subtle (status labels)</h2>
+    <div class="sheet-row">
+      <span class="badge badge--gray-subtle">Draft</span>
+      <span class="badge badge--blue-subtle">Open</span>
+      <span class="badge badge--purple-subtle">In review</span>
+      <span class="badge badge--amber-subtle">Waiting</span>
+      <span class="badge badge--red-subtle">Urgent</span>
+      <span class="badge badge--pink-subtle">Design</span>
+      <span class="badge badge--green-subtle">Resolved</span>
+      <span class="badge badge--teal-subtle">Beta</span>
+    </div>
+    <div class="sheet-note">Prefer <b>subtle</b> colors for statuses in tables and lists; solid colors for counts and emphasis. This replaces V1's Tag component.</div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Sizes · shapes · adornments</h2>
+    <div class="sheet-row">
+      <div class="spec"><span class="badge badge--green-subtle badge--sm">sm 16</span><span class="spec__label">size="sm"</span></div>
+      <div class="spec"><span class="badge badge--green-subtle">default 20</span><span class="spec__label">default</span></div>
+      <div class="spec"><span class="badge badge--green-subtle badge--lg">lg 24</span><span class="spec__label">size="lg"</span></div>
+      <div class="spec"><span class="badge badge--blue-subtle badge--rounded">rounded</span><span class="spec__label">shape="rounded" — 4px</span></div>
+      <div class="spec"><span class="badge badge--outline"><span style="width:8px;height:8px;border-radius:999px;background:var(--success-solid);display:inline-block"></span>Active</span><span class="spec__label">status dot</span></div>
+      <div class="spec"><span class="badge badge--gray">billing<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span class="spec__label">dismissible</span></div>
+      <div class="spec"><span class="badge badge--default">128</span><span class="spec__label">count</span></div>
+    </div>
+  </div>
+</body>
+</html>

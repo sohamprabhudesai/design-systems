@@ -1,0 +1,70 @@
+<!-- @dsCard group="Foundations" name="Radius, Elevation & Layout" subtitle="Border radii, shadows, breakpoints, layout constants" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeetoUI · Radius, Elevation & Layout</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .radius-box { width: 88px; height: 56px; background: rgb(246,247,248); border: 1px solid rgb(194,200,204); }
+  .shadow-box { width: 132px; height: 72px; background: #fff; border-radius: 8px; display:flex; align-items:center; justify-content:center; font-size: 11px; color: rgb(52,64,84); }
+  .const-table { border-collapse: collapse; font-size: 12.5px; }
+  .const-table td { padding: 7px 18px 7px 0; border-bottom: 1px solid rgb(246,247,248); color: rgb(52,64,84); }
+  .const-table td:first-child { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; color: rgb(16,24,40); }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Radius, Elevation &amp; Layout</h1>
+    <p>Spacing follows a 4px grid (0.25rem increments; 8/12/16/24px are the most common gaps). Default control radius is
+    5px (<code>--neeto-ui-rounded</code>); transitions are <code>all 0.3s linear</code>.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Border radius</h2>
+    <div class="sheet-row sheet-row--top">
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:0"></div><span class="spec__label">none · 0</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:3px"></div><span class="spec__label">sm · 3px — checkboxes</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:5px"></div><span class="spec__label">default · 5px — buttons, inputs</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:6px"></div><span class="spec__label">md · 6px — callouts, toasts</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:8px"></div><span class="spec__label">lg · 8px — cards</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:12px"></div><span class="spec__label">xl · 12px — modals</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:999px"></div><span class="spec__label">full · 999px — tags, avatars, pills</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Elevation</h2>
+    <div class="sheet-row sheet-row--top" style="gap:28px">
+      <div class="spec spec--center"><div class="shadow-box" style="box-shadow:rgba(0,0,0,0.1) 0 2px 1px -1px, rgba(0,0,0,0.07) 0 1px 1px 0, rgba(0,0,0,0.05) 0 1px 3px 0">shadow-xs</div><span class="spec__label">xs — subtle lift (cards)</span></div>
+      <div class="spec spec--center"><div class="shadow-box" style="box-shadow:rgba(0,0,0,0.2) 0 3px 3px -2px, rgba(0,0,0,0.14) 0 3px 4px 0, rgba(0,0,0,0.12) 0 1px 8px 0">shadow-sm</div><span class="spec__label">sm — raised elements</span></div>
+      <div class="spec spec--center"><div class="shadow-box" style="box-shadow:rgba(0,0,0,0.2) 0 3px 5px -1px, rgba(0,0,0,0.14) 0 6px 10px 0, rgba(0,0,0,0.12) 0 1px 18px 0">shadow-md</div><span class="spec__label">md — pane footer, sticky bars</span></div>
+      <div class="spec spec--center"><div class="shadow-box" style="box-shadow:rgba(0,0,0,0.2) 0 5px 5px -3px, rgba(0,0,0,0.14) 0 8px 10px 1px, rgba(0,0,0,0.12) 0 3px 14px 2px">shadow-lg</div><span class="spec__label">lg — dropdowns, popovers</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Focus ring</h2>
+    <div class="sheet-row">
+      <div class="spec"><button class="neeto-ui-btn neeto-ui-btn--style-primary" style="outline:3px solid rgba(0,128,104,0.5);outline-offset:1px">Focused button</button><span class="spec__label">3px solid rgba(primary-500, 50%), offset 1px</span></div>
+      <div class="spec"><div class="neeto-ui-input__wrapper" style="width:220px"><div class="neeto-ui-input neeto-ui-input--medium" style="border-color:rgb(0,128,104);box-shadow:0 0 0 3px rgba(0,128,104,0.15)"><input value="Focused input"></div></div><span class="spec__label">border primary-500 + 3px 15% halo</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Breakpoints &amp; layout constants</h2>
+    <table class="const-table">
+      <tr><td>mob-479 / tab-768 / tab-1024 / desk-1200</td><td>Responsive breakpoints (px)</td></tr>
+      <tr><td>--neeto-ui-main-header-height: 80px</td><td>App page header (94px with breadcrumbs)</td></tr>
+      <tr><td>--neeto-ui-sub-header-height: 37px</td><td>Filter/actions bar under header, 20px bottom margin</td></tr>
+      <tr><td>--neeto-ui-pane-header-height: 78px</td><td>Pane (drawer) header</td></tr>
+      <tr><td>--neeto-ui-pane-footer-height: 80px</td><td>Pane footer</td></tr>
+      <tr><td>--neeto-ui-table-header-height: 40px</td><td>Table header row</td></tr>
+      <tr><td>--neeto-ui-pagination-block-height: 88px</td><td>Pagination block under tables</td></tr>
+      <tr><td>--neeto-ui-modal-z-index: 99999</td><td>Overlay stack (toasts sit at 100000)</td></tr>
+    </table>
+  </div>
+</body>
+</html>

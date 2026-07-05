@@ -1,0 +1,113 @@
+<!-- @dsCard group="Components" name="Form Inputs" subtitle="Input, Textarea, Select · sizes, prefix/suffix, error, disabled, help text" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeetoUI · Form Inputs</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px 28px; max-width: 880px; }
+  /* Static rendering of the react-select single control using neeto tokens */
+  .demo-select { width: 100%; display:flex; align-items:center; justify-content:space-between; min-height: 30px; padding: 0 8px; border: 1px solid rgb(194,200,204); border-radius: 5px; background:#fff; font-size: 14px; color: rgb(16,24,40); }
+  .demo-select--placeholder { color: rgb(194,200,204); }
+  .demo-select__caret { color: rgb(135,146,157); display:flex; }
+  .demo-select--focus { border-color: rgb(0,128,104); box-shadow: 0 0 0 3px rgba(0,128,104,0.15); }
+  .demo-menu { margin-top: 6px; border: 1px solid rgb(194,200,204); border-radius: 5px; background: #fff; box-shadow: rgba(0,0,0,0.2) 0 5px 5px -3px, rgba(0,0,0,0.14) 0 8px 10px 1px, rgba(0,0,0,0.12) 0 3px 14px 2px; padding: 4px 0; font-size: 14px; }
+  .demo-menu div { padding: 8px 12px; min-height: 32px; display:flex; align-items:center; }
+  .demo-menu .is-active { background: rgb(0,128,104); color: #fff; }
+  .demo-menu .is-hover { background: rgb(233,235,237); }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Form Inputs</h1>
+    <p>Components: <code>Input</code>, <code>Textarea</code>, <code>Select</code>, <code>MultiEmailInput</code>. All share the same field anatomy:
+    <b>Label</b> (14px medium) · 8px gap · <b>control</b> (white bg, 1px gray-400 border, radius 5px, 14px text) · 8px gap ·
+    <b>help/error text</b> (12px). Sizes: small 26px · medium 30px (default) · large 38px. Focus = primary-500 border + 3px 15% halo.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Anatomy &amp; states</h2>
+    <div class="form-grid">
+      <div class="neeto-ui-input__wrapper">
+        <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Name</label></div>
+        <div class="neeto-ui-input neeto-ui-input--medium"><input placeholder="Enter project name"></div>
+        <p class="neeto-ui-input__help-text">Shown on the customer portal.</p>
+      </div>
+      <div class="neeto-ui-input__wrapper">
+        <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Name</label></div>
+        <div class="neeto-ui-input neeto-ui-input--medium" style="border-color:rgb(0,128,104);box-shadow:0 0 0 3px rgba(0,128,104,0.15)"><input value="Customer portal"></div>
+        <p class="neeto-ui-input__help-text">Focused state.</p>
+      </div>
+      <div class="neeto-ui-input__wrapper">
+        <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Email</label></div>
+        <div class="neeto-ui-input neeto-ui-input--medium neeto-ui-input--error"><input value="oliver@example"></div>
+        <p class="neeto-ui-input__error">Please enter a valid email address.</p>
+      </div>
+      <div class="neeto-ui-input__wrapper">
+        <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Workspace URL</label></div>
+        <div class="neeto-ui-input neeto-ui-input--medium neeto-ui-input--disabled"><input value="spinkart.neeto.com" disabled></div>
+        <p class="neeto-ui-input__help-text">Disabled — gray-100 background.</p>
+      </div>
+      <div class="neeto-ui-input__wrapper">
+        <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Bio</label><span class="neeto-ui-input__max-length">18/120</span></div>
+        <div class="neeto-ui-input neeto-ui-input--medium neeto-ui-input--textarea"><textarea rows="3">Building neetoDesk.</textarea></div>
+      </div>
+      <div class="neeto-ui-input__wrapper">
+        <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Required field <span class="neeto-ui-text-error">*</span></label></div>
+        <div class="neeto-ui-input neeto-ui-input--medium"><input placeholder="Placeholder in gray-400"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Prefix &amp; suffix</h2>
+    <div class="form-grid">
+      <div class="neeto-ui-input__wrapper">
+        <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Search</label></div>
+        <div class="neeto-ui-input neeto-ui-input--medium"><span class="neeto-ui-input__prefix"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><input placeholder="Search tickets"></div>
+      </div>
+      <div class="neeto-ui-input__wrapper">
+        <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Price</label></div>
+        <div class="neeto-ui-input neeto-ui-input--medium"><span class="neeto-ui-input__prefix">$</span><input value="49.00"><span class="neeto-ui-input__suffix">USD</span></div>
+      </div>
+      <div class="neeto-ui-input__wrapper">
+        <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Site</label></div>
+        <div class="neeto-ui-input neeto-ui-input--medium neeto-ui-input--block-add-on"><span class="neeto-ui-input__prefix">https://</span><input value="spinkart"><span class="neeto-ui-input__suffix">.neeto.com</span></div>
+        <p class="neeto-ui-input__help-text">Block add-on — gray-100 boxed affixes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Select (react-select based)</h2>
+    <div class="form-grid" style="align-items:start">
+      <div class="neeto-ui-input__wrapper">
+        <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Assignee</label></div>
+        <div class="demo-select demo-select--placeholder">Select an assignee <span class="demo-select__caret"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>
+      </div>
+      <div class="neeto-ui-input__wrapper">
+        <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Priority</label></div>
+        <div class="demo-select demo-select--focus">High <span class="demo-select__caret"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>
+        <div class="demo-menu" style="width:100%">
+          <div>Low</div>
+          <div class="is-hover">Medium</div>
+          <div class="is-active">High</div>
+          <div>Urgent</div>
+        </div>
+      </div>
+      <div class="neeto-ui-input__wrapper">
+        <div class="neeto-ui-input__label-wrapper"><label class="neeto-ui-label">Tags (multi)</label></div>
+        <div class="demo-select" style="gap:6px;justify-content:flex-start;flex-wrap:wrap;padding:4px 8px">
+          <span class="neeto-ui-tag neeto-ui-tag--type-solid neeto-ui-tag--style-secondary">billing <span class="neeto-ui-tag__close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span></span>
+          <span class="neeto-ui-tag neeto-ui-tag--type-solid neeto-ui-tag--style-secondary">bug <span class="neeto-ui-tag__close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span></span>
+          <span class="demo-select__caret" style="margin-left:auto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </div>
+        <p class="neeto-ui-input__help-text">Multi-select renders values as removable solid gray tags.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

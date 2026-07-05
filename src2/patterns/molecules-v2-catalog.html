@@ -1,0 +1,108 @@
+<!-- @dsCard group="Patterns" name="neeto-molecules v2 Catalog" subtitle="Layouts + ~75 v2 patterns built on neeto-atoms" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neeto-molecules v2 · Catalog</title>
+<style>/*__ATOMS__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .cat-card { border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 16px; background: var(--card); }
+  .cat-card h3 { font-size: 13px; font-weight: 600; margin: 0 0 8px; }
+  .cat-card ul { margin: 0; padding: 0; list-style: none; font-size: 12.5px; color: var(--muted-foreground); line-height: 1.75; }
+  .cat-card li b { color: var(--foreground); font-weight: 500; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>neeto-molecules v2 Catalog</h1>
+    <p>Product-level patterns from <code>@bigbinary/neeto-molecules/v2</code>, rebuilt on neeto-atoms. Import from the
+    <code>v2/</code> namespace only (the un-prefixed exports are legacy V1). Prefer these before designing anything custom.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Layouts (v2/Layouts)</h2>
+    <div class="cat-grid">
+      <div class="cat-card"><h3>Frame</h3><ul>
+        <li><b>Container</b> — h-dvh scroll column, children px-5 md:px-10</li>
+        <li><b>Sidebar</b> — 256px labeled nav on sidebar tokens, product switcher, profile</li>
+        <li><b>Header</b> — pt-10 pb-6 title row with actions</li>
+        <li><b>SubHeader</b> — toolbar row with count badges</li>
+        <li><b>NavigationHeader</b> — h-16 top nav, 15px links, bg-card</li>
+        <li><b>Scrollable</b> — inner scroll region</li>
+        <li><b>ConfigurePageSidebar</b> — settings section nav</li>
+      </ul></div>
+      <div class="cat-card"><h3>Views</h3><ul>
+        <li><b>BoardView</b> — kanban columns</li>
+        <li><b>CalendarView</b> — scheduling grid</li>
+        <li><b>DndTable</b> — drag-to-reorder rows</li>
+        <li><b>CardLayout / Columns</b> — grid scaffolds</li>
+        <li><b>AuditLogs / VersionHistory</b> — activity & diffs</li>
+        <li><b>Insights</b> — metric cards + charts (chart-1…5 tokens)</li>
+      </ul></div>
+      <div class="cat-card"><h3>Pages</h3><ul>
+        <li><b>LoginPage</b> — centered auth card</li>
+        <li><b>ErrorPage</b> — 404/500 + CTA</li>
+        <li><b>PageLoader</b> — centered spinner</li>
+        <li><b>Onboarding</b> — first-run checklist</li>
+        <li><b>Settings</b> — sectioned settings template</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Input &amp; editing</h2>
+    <div class="cat-grid">
+      <div class="cat-card"><h3>Editors</h3><ul>
+        <li><b>DocumentEditor</b> — rich text</li>
+        <li><b>Codeblock</b> — highlighted code + copy</li>
+        <li><b>InlineInput / Rename</b> — click-to-edit</li>
+        <li><b>SuffixedInput</b> — fixed-suffix input</li>
+        <li><b>OptionFields / DynamicVariables</b> — repeatable rows, {{vars}}</li>
+      </ul></div>
+      <div class="cat-card"><h3>Pickers</h3><ul>
+        <li><b>EmojiPicker / IconPicker / GoogleFontPicker</b></li>
+        <li><b>DateRangeFilter</b> — presets + custom</li>
+        <li><b>PhoneNumber / Currency</b> — formatted inputs</li>
+        <li><b>FileUpload</b> — drop zone</li>
+        <li><b>Search</b> — ⌘K command palette (atoms Command)</li>
+      </ul></div>
+      <div class="cat-card"><h3>Communication</h3><ul>
+        <li><b>EmailForm / SendToFields</b> — To/Cc/Bcc composer</li>
+        <li><b>EmailPreview / BrowserPreview / MobilePreviewHeader</b></li>
+        <li><b>ShareViaEmail / ShareViaLink</b></li>
+        <li><b>EmojiReactions / HelpPopover</b></li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Feedback &amp; operations</h2>
+    <div class="cat-grid">
+      <div class="cat-card"><h3>Modals</h3><ul>
+        <li><b>ConfirmationModal</b> — typed-confirm destructive</li>
+        <li><b>DeleteArchiveModal</b> — delete vs archive</li>
+        <li><b>FinderModal</b> — record finder</li>
+        <li><b>TimezoneMismatchModal / SubscriptionUpgradeRequestModal</b></li>
+      </ul></div>
+      <div class="cat-card"><h3>Status &amp; publishing</h3><ul>
+        <li><b>StatusDropdown</b> — status switcher</li>
+        <li><b>PublishBlock / PublishYourItem</b></li>
+        <li><b>CopyToClipboardButton</b></li>
+        <li><b>StickyRibbonsContainer / SubscriptionNotificationsContainer</b></li>
+        <li><b>ToggleFeatureCard / IntegrationCard</b></li>
+      </ul></div>
+      <div class="cat-card"><h3>Utilities</h3><ul>
+        <li><b>KeyboardShortcuts</b> — Kbd cheatsheet</li>
+        <li><b>Metadata / DateFormat / Currency</b></li>
+        <li><b>ImageWithFallback / MadeWith / NeetoWidget</b></li>
+        <li><b>IpRestriction / SessionEnvironment / BrowserSupport / DeviceIncompatibilityMessage</b></li>
+        <li><b>MoreDropdown / FloatingActionMenu / ButtonGroup / Breadcrumbs</b></li>
+      </ul></div>
+    </div>
+    <div class="sheet-note">Storybook: <code>neeto-molecules.neeto.com</code> → “v2/…” stories. npm: <code>@bigbinary/neeto-molecules@5.x</code>.</div>
+  </div>
+</body>
+</html>

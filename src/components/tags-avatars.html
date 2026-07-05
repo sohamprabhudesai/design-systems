@@ -1,0 +1,79 @@
+<!-- @dsCard group="Components" name="Tags, Avatars & Kbd" subtitle="Tag outline/solid × 6 styles, indicator & close · Avatar 4 sizes + status · Kbd" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeetoUI · Tags, Avatars & Kbd</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .avatar-fallback { display:flex; align-items:center; justify-content:center; border-radius:999px; color: rgb(29,41,57); font-weight:600; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Tags, Avatars &amp; Kbd</h1>
+    <p><code>Tag</code>: pill (radius full), 12px text, types <code>outline</code> / <code>solid</code>, styles primary · secondary · success · warning · danger · info, optional indicator dot and close icon.
+    <code>Avatar</code>: circular, sizes 24 / 32 / 40 / 64px, initials fallback on pastel bg, status dot online/idle/offline.
+    <code>Kbd</code>: 24px key caps on gray-200.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Tag — outline (default)</h2>
+    <div class="sheet-row">
+      <span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-primary">Primary</span>
+      <span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-secondary">Secondary</span>
+      <span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-success">Success</span>
+      <span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-warning">Warning</span>
+      <span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-danger">Danger</span>
+      <span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-info">Info</span>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Tag — solid</h2>
+    <div class="sheet-row">
+      <span class="neeto-ui-tag neeto-ui-tag--type-solid neeto-ui-tag--style-primary">Primary</span>
+      <span class="neeto-ui-tag neeto-ui-tag--type-solid neeto-ui-tag--style-secondary">Secondary</span>
+      <span class="neeto-ui-tag neeto-ui-tag--type-solid neeto-ui-tag--style-success">Success</span>
+      <span class="neeto-ui-tag neeto-ui-tag--type-solid neeto-ui-tag--style-warning">Warning</span>
+      <span class="neeto-ui-tag neeto-ui-tag--type-solid neeto-ui-tag--style-danger">Danger</span>
+      <span class="neeto-ui-tag neeto-ui-tag--type-solid neeto-ui-tag--style-info">Info</span>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Tag — indicator, close &amp; large</h2>
+    <div class="sheet-row">
+      <div class="spec"><span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-secondary"><span class="neeto-ui-tag__indicator neeto-ui-bg-success-500"></span>Active</span><span class="spec__label">status dot</span></div>
+      <div class="spec"><span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-secondary"><span class="neeto-ui-tag__indicator neeto-ui-bg-warning-500"></span>Pending</span><span class="spec__label">idle status</span></div>
+      <div class="spec"><span class="neeto-ui-tag neeto-ui-tag--type-solid neeto-ui-tag--style-secondary">design <span class="neeto-ui-tag__close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span></span><span class="spec__label">removable (onClose)</span></div>
+      <div class="spec"><span class="neeto-ui-tag neeto-ui-tag--size-large neeto-ui-tag--type-outline neeto-ui-tag--style-primary">Large tag</span><span class="spec__label">size="large" — 14px</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Avatar — sizes &amp; status</h2>
+    <div class="sheet-row">
+      <div class="spec spec--center"><span class="neeto-ui-avatar__container neeto-ui-avatar__container-round"><span class="avatar-fallback" style="width:24px;height:24px;background:rgb(236,244,255);font-size:9px">OS</span></span><span class="spec__label">small 24</span></div>
+      <div class="spec spec--center"><span class="neeto-ui-avatar__container neeto-ui-avatar__container-round neeto-ui-avatar__container--medium"><span class="avatar-fallback" style="width:32px;height:32px;background:rgb(253,226,241);font-size:11px">EB</span></span><span class="spec__label">medium 32</span></div>
+      <div class="spec spec--center"><span class="neeto-ui-avatar__container neeto-ui-avatar__container-round neeto-ui-avatar__container--large"><span class="avatar-fallback" style="width:40px;height:40px;background:rgb(211,249,232);font-size:13px">SK</span></span><span class="spec__label">large 40</span></div>
+      <div class="spec spec--center"><span class="neeto-ui-avatar__container neeto-ui-avatar__container-round neeto-ui-avatar__container--xlarge"><span class="avatar-fallback" style="width:64px;height:64px;background:rgb(238,235,255);font-size:20px">JD</span></span><span class="spec__label">xlarge 64</span></div>
+      <div class="spec spec--center"><span class="neeto-ui-avatar__container neeto-ui-avatar__container-round neeto-ui-avatar__container--large"><span class="avatar-fallback" style="width:40px;height:40px;background:rgb(254,243,197);font-size:13px">AL</span><span class="neeto-ui-avatar__status neeto-ui-avatar__status-large online"></span></span><span class="spec__label">online</span></div>
+      <div class="spec spec--center"><span class="neeto-ui-avatar__container neeto-ui-avatar__container-round neeto-ui-avatar__container--large"><span class="avatar-fallback" style="width:40px;height:40px;background:rgb(232,233,237);font-size:13px">MR</span><span class="neeto-ui-avatar__status neeto-ui-avatar__status-large idle"></span></span><span class="spec__label">idle</span></div>
+      <div class="spec spec--center"><span class="neeto-ui-avatar__container neeto-ui-avatar__container-round neeto-ui-avatar__container--large"><span class="avatar-fallback" style="width:40px;height:40px;background:rgb(255,229,229);font-size:13px">PT</span><span class="neeto-ui-avatar__status neeto-ui-avatar__status-large offline"></span></span><span class="spec__label">offline</span></div>
+    </div>
+    <div class="sheet-note">Initials fallback uses pastel backgrounds keyed to the user's name. Status dot has a 2px white ring.</div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Kbd — keyboard shortcuts</h2>
+    <div class="sheet-row">
+      <div class="spec"><span><kbd class="neeto-ui-kbd">⌘</kbd> <kbd class="neeto-ui-kbd">K</kbd></span><span class="spec__label">command palette</span></div>
+      <div class="spec"><span><kbd class="neeto-ui-kbd">Ctrl</kbd> <kbd class="neeto-ui-kbd">⇧</kbd> <kbd class="neeto-ui-kbd">P</kbd></span><span class="spec__label">multi-key combo</span></div>
+      <div class="spec"><span><kbd class="neeto-ui-kbd">?</kbd></span><span class="spec__label">help</span></div>
+    </div>
+  </div>
+</body>
+</html>

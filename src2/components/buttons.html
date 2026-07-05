@@ -1,0 +1,72 @@
+<!-- @dsCard group="Components" name="Buttons" subtitle="7 variants × 4 sizes · icon buttons · destructive-soft · light & dark" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neeto-atoms · Buttons</title>
+<style>/*__ATOMS__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .dark-strip { border-radius: var(--radius-xl); padding: 20px; background: oklch(0.145 0 0); }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Buttons</h1>
+    <p><code>Button</code> — variants <code>default · outline · secondary · ghost · destructive · destructive-soft · link</code>;
+    sizes <code>xs 24px · sm 28px · default 32px · lg 36px</code> (+ icon squares). 14px medium, radius 10px (8px for xs/sm).
+    The default button is <b>near-black</b>, not colored — color is reserved for destructive and status.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Variants (default size, 32px)</h2>
+    <div class="sheet-row">
+      <div class="spec"><button class="btn btn--default">Save changes</button><span class="spec__label">default — primary CTA</span></div>
+      <div class="spec"><button class="btn btn--outline">Export</button><span class="spec__label">outline — bordered</span></div>
+      <div class="spec"><button class="btn btn--secondary">Duplicate</button><span class="spec__label">secondary — muted fill</span></div>
+      <div class="spec"><button class="btn btn--ghost">Cancel</button><span class="spec__label">ghost — bare</span></div>
+      <div class="spec"><button class="btn btn--destructive">Delete</button><span class="spec__label">destructive</span></div>
+      <div class="spec"><button class="btn btn--destructive-soft">Remove</button><span class="spec__label">destructive-soft — 10% tint</span></div>
+      <div class="spec"><button class="btn btn--link">View details</button><span class="spec__label">link — underline offset 4</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Sizes</h2>
+    <div class="sheet-row">
+      <div class="spec"><button class="btn btn--default btn--xs">Extra small · 24</button><span class="spec__label">xs — 12px text, radius 8</span></div>
+      <div class="spec"><button class="btn btn--default btn--sm">Small · 28</button><span class="spec__label">sm — 12.8px text</span></div>
+      <div class="spec"><button class="btn btn--default">Default · 32</button><span class="spec__label">default</span></div>
+      <div class="spec"><button class="btn btn--default btn--lg">Large · 36</button><span class="spec__label">lg</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Icons · states</h2>
+    <div class="sheet-row">
+      <div class="spec"><button class="btn btn--default"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>New project</button><span class="spec__label">leading icon (16px)</span></div>
+      <div class="spec"><button class="btn btn--outline">Options<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><span class="spec__label">trailing chevron</span></div>
+      <div class="spec"><button class="btn btn--outline btn--icon"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button><span class="spec__label">icon (32×32) — kebab</span></div>
+      <div class="spec"><button class="btn btn--ghost btn--icon btn--sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button><span class="spec__label">icon-sm ghost — close</span></div>
+      <div class="spec"><button class="btn btn--default disabled">Save changes</button><span class="spec__label">disabled — 50%</span></div>
+      <div class="spec"><button class="btn btn--default"><span class="spinner" style="border-color:color-mix(in oklab,var(--primary-foreground) 30%,transparent);border-top-color:var(--primary-foreground)"></span>Saving…</button><span class="spec__label">loading — spinner replaces icon</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Dark mode</h2>
+    <div class="dark dark-strip">
+      <div class="sheet-row">
+        <button class="btn btn--default">Save changes</button>
+        <button class="btn btn--outline" style="background:color-mix(in oklab,var(--input) 30%,transparent);border-color:var(--input)">Export</button>
+        <button class="btn btn--secondary">Duplicate</button>
+        <button class="btn btn--ghost">Cancel</button>
+        <button class="btn btn--destructive">Delete</button>
+        <button class="btn btn--destructive-soft">Remove</button>
+      </div>
+    </div>
+    <div class="sheet-note">In dark mode the default button inverts (near-white bg, dark text); outline gets a subtle <code>input/30</code> fill. Pair one default button with ghost/outline neighbors — never two filled CTAs side by side.</div>
+  </div>
+</body>
+</html>

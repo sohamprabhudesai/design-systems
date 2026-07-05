@@ -1,0 +1,62 @@
+<!-- @dsCard group="Foundations" name="Typography" subtitle="Inter · h1–h6, body1–3, nano · weights & line heights" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeetoUI · Typography</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .type-row { display: grid; grid-template-columns: 190px 1fr; gap: 20px; align-items: baseline; padding: 10px 0; border-bottom: 1px dashed rgb(233,235,237); }
+  .type-row:last-child { border-bottom: 0; }
+  .type-meta { font-size: 10.5px; color: rgb(135,146,157); font-family: ui-monospace, "SF Mono", Menlo, monospace; line-height: 1.6; }
+  .type-meta b { display: block; color: rgb(52,64,84); font-size: 12px; font-family: inherit; }
+  .weight-chip { font-size: 16px; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Typography</h1>
+    <p>Font stack: <code>-apple-system, BlinkMacSystemFont, "Inter", Arial, "Segoe UI", Roboto…</code> — Inter on the web.
+    Body default is 14px / 400 / 1.3. Styles are used via the <code>Typography</code> component
+    (<code>style="h1…h6 | body1 | body2 | body3 | nano"</code>) or <code>neeto-ui-text-*</code> classes.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Type scale</h2>
+    <div class="type-row"><div class="type-meta"><b>h1 · 32px</b>.neeto-ui-text-h1<br>weight 700 · lh 1.25</div><div class="neeto-ui-text-h1 neeto-ui-font-bold neeto-ui-leading-tight">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>h2 · 24px</b>.neeto-ui-text-h2<br>weight 700 · lh 1.25</div><div class="neeto-ui-text-h2 neeto-ui-font-bold neeto-ui-leading-tight">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>h3 · 20px</b>.neeto-ui-text-h3<br>weight 600 · lh 1.25</div><div class="neeto-ui-text-h3 neeto-ui-font-semibold neeto-ui-leading-tight">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>h4 · 16px</b>.neeto-ui-text-h4<br>weight 600 · lh 1.25</div><div class="neeto-ui-text-h4 neeto-ui-font-semibold neeto-ui-leading-tight">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>h5 · 14px</b>.neeto-ui-text-h5<br>weight 600 · lh 1.25</div><div class="neeto-ui-text-h5 neeto-ui-font-semibold neeto-ui-leading-tight">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>h6 · 12px</b>.neeto-ui-text-h6<br>weight 600 · lh 1.25 · uppercase</div><div class="neeto-ui-text-h6 neeto-ui-font-semibold neeto-ui-leading-tight" style="text-transform:uppercase;letter-spacing:0.04em">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>body1 · 16px</b>.neeto-ui-text-body1<br>weight 400 · lh 1.5</div><div class="neeto-ui-text-body1 neeto-ui-leading-normal">Neeto builds delightfully simple products for growing teams — used for lead paragraphs and empty states.</div></div>
+    <div class="type-row"><div class="type-meta"><b>body2 · 14px</b>.neeto-ui-text-body2<br>weight 400 · lh 1.5 · default</div><div class="neeto-ui-text-body2 neeto-ui-leading-normal">The workhorse size. Table cells, form values, descriptions, menus and almost all product copy use body2.</div></div>
+    <div class="type-row"><div class="type-meta"><b>body3 · 12px</b>.neeto-ui-text-body3<br>weight 400 · lh 1.5</div><div class="neeto-ui-text-body3 neeto-ui-leading-normal">Help text, timestamps, metadata and captions — usually in gray-600 or gray-500.</div></div>
+    <div class="type-row"><div class="type-meta"><b>nano · 10px</b>.neeto-ui-text-nano<br>weight 400 · lh 1.1</div><div class="neeto-ui-text-nano">Overlines and dense metadata only.</div></div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Weights</h2>
+    <div class="sheet-row">
+      <div class="spec"><span class="weight-chip neeto-ui-font-normal">Regular 400</span><span class="spec__label">normal — body copy</span></div>
+      <div class="spec"><span class="weight-chip neeto-ui-font-medium">Medium 500</span><span class="spec__label">medium — buttons, labels</span></div>
+      <div class="spec"><span class="weight-chip neeto-ui-font-semibold">Semibold 600</span><span class="spec__label">semibold — h3–h6, tabs, table headers</span></div>
+      <div class="spec"><span class="weight-chip neeto-ui-font-bold">Bold 700</span><span class="spec__label">bold — h1, h2</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Line heights</h2>
+    <div class="sheet-row sheet-row--top">
+      <div class="spec"><code>leading-none 1</code><span class="spec__label">buttons, single-line UI</span></div>
+      <div class="spec"><code>leading-tight 1.25</code><span class="spec__label">headings</span></div>
+      <div class="spec"><code>leading-snug 1.375</code><span class="spec__label">dense copy</span></div>
+      <div class="spec"><code>leading-normal 1.5</code><span class="spec__label">paragraphs</span></div>
+      <div class="spec"><code>leading-relaxed 1.625 · loose 2</code><span class="spec__label">long-form only</span></div>
+    </div>
+    <div class="sheet-note">Text colors: default <code>gray-800</code>; secondary <code>gray-600</code>; muted <code>gray-500</code>; links <code>accent-800</code>; error <code>error-800</code>; success <code>success-800</code>; warning <code>warning-800</code>.</div>
+  </div>
+</body>
+</html>

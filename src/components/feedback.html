@@ -1,0 +1,53 @@
+<!-- @dsCard group="Components" name="Feedback & Empty States" subtitle="Spinner, ProgressBar, NoData with action block" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeetoUI · Feedback & Empty States</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .empty-illus { width: 120px; height: 90px; border-radius: 8px; background: rgb(246,247,248); display:flex; align-items:center; justify-content:center; color: rgb(194,200,204); }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Feedback &amp; Empty States</h1>
+    <p><code>Spinner</code> — 20px arc (16px small, white-on-dark variant). <code>ProgressBar</code> — 12px track, gray-200 on primary-600.
+    <code>NoData</code> — centered empty state: illustration → title (h4) → description (body2, gray-600) → action block with primary + tertiary buttons.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Spinner</h2>
+    <div class="sheet-row" style="gap:40px">
+      <div class="spec spec--center"><span class="neeto-ui-spinner"></span><span class="spec__label">default 20px · gray-600</span></div>
+      <div class="spec spec--center"><span class="neeto-ui-spinner neeto-ui-spinner--size-small"></span><span class="spec__label">small 16px</span></div>
+      <div class="spec spec--center"><span style="background:rgb(29,41,57);border-radius:6px;padding:12px;display:inline-flex"><span class="neeto-ui-spinner neeto-ui-spinner--light"></span></span><span class="spec__label">light — on dark surfaces</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Progress bar</h2>
+    <div class="sheet-col" style="max-width:420px;gap:20px">
+      <div class="spec" style="width:100%"><div class="neeto-ui-progress-bar__wrapper" style="border-radius:999px"><div class="neeto-ui-progress-bar" style="width:35%"></div></div><span class="spec__label">35% — indeterminate pulse while running</span></div>
+      <div class="spec" style="width:100%"><div class="neeto-ui-progress-bar__wrapper" style="border-radius:999px"><div class="neeto-ui-progress-bar" style="width:80%;animation:none"></div></div><span class="spec__label">80%</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>NoData — empty state</h2>
+    <div style="display:flex;justify-content:center;padding:24px;border:1px dashed rgb(233,235,237);border-radius:8px">
+      <div class="neeto-ui-no-data">
+        <div class="neeto-ui-no-data__image"><div class="empty-illus"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2h9"/><path d="M3 10h18M8 4v4"/><circle cx="18" cy="18" r="3"/><path d="M20.2 20.2L22 22"/></svg></div></div>
+        <h3 class="neeto-ui-text-h4 neeto-ui-font-semibold" style="margin:0">No tickets yet</h3>
+        <p class="neeto-ui-no-data__description neeto-ui-text-body2 neeto-ui-text-gray-600" style="margin:0">Tickets from your inbox, chat and portal will show up here.</p>
+        <div class="neeto-ui-no-data__action-block">
+          <button class="neeto-ui-btn neeto-ui-btn--style-primary neeto-ui-btn--size-medium">Create ticket</button>
+          <button class="neeto-ui-btn neeto-ui-btn--style-tertiary neeto-ui-btn--size-medium">Connect inbox</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

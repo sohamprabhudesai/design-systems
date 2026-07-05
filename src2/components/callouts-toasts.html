@@ -1,0 +1,44 @@
+<!-- @dsCard group="Components" name="Callouts & Toasts" subtitle="Callout 4 soft variants · Sonner light-card toasts with action" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neeto-atoms · Callouts & Toasts</title>
+<style>/*__ATOMS__*/</style>
+<style>/*__SHEET__*/</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Callouts &amp; Toasts</h1>
+    <p><code>Callout</code> — soft status surface (bg + border + foreground tokens), 16px icon, optional semibold title, radius 10px.
+    <code>Sonner</code> — toasts are <b>light cards</b> (background + border + shadow), not solid colors like V1; status shows via a small icon.
+    Bottom-right, 356px wide.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Callout</h2>
+    <div class="sheet-col" style="max-width:620px">
+      <div class="callout callout--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11v5"/></svg><div><div class="callout__title">Trial ends in 7 days</div><div class="callout__desc">Upgrade to keep your workflows running without interruption.</div></div></div>
+      <div class="callout callout--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><div><div class="callout__title">Integrations need attention</div><div class="callout__desc">Two of your integrations need re-authentication.</div></div></div>
+      <div class="callout callout--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><div><div class="callout__title">Payment failed</div><div class="callout__desc">Update your billing details to avoid suspension.</div></div></div>
+      <div class="callout callout--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg><div><div class="callout__title">Domain verified</div><div class="callout__desc">Your domain is verified and live.</div></div></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Sonner toasts</h2>
+    <div class="sheet-row sheet-row--top" style="gap:20px">
+      <div class="sheet-col" style="gap:12px">
+        <div class="sonner"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-solid)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg><div><div class="sonner__title">Ticket #4092 resolved</div><div class="sonner__desc">The customer has been notified.</div></div></div>
+        <div class="sonner"><svg viewBox="0 0 24 24" fill="none" stroke="var(--error-solid)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg><div style="flex-grow:1"><div class="sonner__title">Couldn't save changes</div><div class="sonner__desc">Check your connection and try again.</div></div><button class="btn btn--outline btn--xs">Retry</button></div>
+      </div>
+      <div class="sheet-col" style="gap:12px">
+        <div class="sonner"><svg viewBox="0 0 24 24" fill="none" stroke="var(--warning-solid)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><div><div class="sonner__title">Approaching plan limit</div><div class="sonner__desc">92% of monthly responses used.</div></div></div>
+        <div class="sonner"><div style="flex-grow:1"><div class="sonner__title">Event created</div><div class="sonner__desc">Monday, June 29 at 9:00 AM</div></div><button class="btn btn--secondary btn--xs">Undo</button></div>
+      </div>
+    </div>
+    <div class="sheet-note">Use Callout for persistent in-page context; Sonner for transient action feedback. Sonner supports an inline action button (xs size) — prefer "Undo" over confirmation dialogs for reversible actions.</div>
+  </div>
+</body>
+</html>

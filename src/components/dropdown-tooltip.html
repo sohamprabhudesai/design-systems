@@ -1,0 +1,86 @@
+<!-- @dsCard group="Components" name="Dropdown, Tooltip & Popover" subtitle="Menu with danger item & divider · dark tooltip · titled popover" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeetoUI · Dropdown, Tooltip & Popover</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .demo-dd { display: inline-block; border: 1px solid rgb(194,200,204); border-radius: 5px; box-shadow: rgba(0,0,0,0.2) 0 5px 5px -3px, rgba(0,0,0,0.14) 0 8px 10px 1px, rgba(0,0,0,0.12) 0 3px 14px 2px; }
+  .demo-tooltip { display:inline-block; background: rgb(29,41,57); color:#fff; font-size:12px; line-height:1.4; padding:6px 10px; border-radius:5px; max-width:220px; }
+  .demo-tooltip--light { background:#fff; color:rgb(16,24,40); border:1px solid rgb(233,235,237); box-shadow: rgba(0,0,0,0.1) 0 2px 1px -1px, rgba(0,0,0,0.07) 0 1px 1px 0, rgba(0,0,0,0.05) 0 1px 3px 0; }
+  .demo-arrow { width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:6px solid rgb(29,41,57); margin: 0 auto; }
+  .demo-popover { width: 300px; background:#fff; border:1px solid rgb(233,235,237); border-radius:6px; box-shadow: rgba(0,0,0,0.2) 0 5px 5px -3px, rgba(0,0,0,0.14) 0 8px 10px 1px, rgba(0,0,0,0.12) 0 3px 14px 2px; padding: 16px; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Dropdown, Tooltip &amp; Popover</h1>
+    <p><code>Dropdown</code> — button-triggered menu: white popup, radius 5px, shadow-lg, 1px gray-400 border; items 32px min-height, 14px text, hover gray-200, danger items in error-800.
+    <code>Tooltip</code> — dark (gray-700) 12px bubble. <code>Popover</code> — light card with title, body copy and an optional link/action.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Dropdown menu</h2>
+    <div class="sheet-row sheet-row--top" style="gap:48px">
+      <div class="spec">
+        <button class="neeto-ui-btn neeto-ui-btn--style-secondary neeto-ui-btn--size-medium">Actions<span class="neeto-ui-btn__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
+        <span class="spec__label">closed trigger (secondary + caret)</span>
+      </div>
+      <div class="spec">
+        <div class="demo-dd">
+          <div class="neeto-ui-dropdown__popup" style="min-width:200px">
+            <ul class="neeto-ui-dropdown__popup-menu" style="margin:0;list-style:none">
+              <li class="neeto-ui-dropdown__popup-menu-item"><button class="neeto-ui-dropdown__popup-menu-item-btn">Edit</button></li>
+              <li class="neeto-ui-dropdown__popup-menu-item"><button class="neeto-ui-dropdown__popup-menu-item-btn">Duplicate</button></li>
+              <li class="neeto-ui-dropdown__popup-menu-item"><button class="neeto-ui-dropdown__popup-menu-item-btn">Move to project…<span class="neeto-ui-dropdown__popup-menu-item-btn__suffix"><kbd class="neeto-ui-kbd" style="height:20px;min-width:20px;font-size:11px">M</kbd></span></button></li>
+              <li class="neeto-ui-dropdown__popup-menu-item"><button class="neeto-ui-dropdown__popup-menu-item-btn neeto-ui-dropdown__popup-menu-item-btn--disabled">Archive (no permission)</button></li>
+              <li><hr class="neeto-ui-dropdown__popup-divider"></li>
+              <li class="neeto-ui-dropdown__popup-menu-item"><button class="neeto-ui-dropdown__popup-menu-item-btn neeto-ui-dropdown__popup-menu-item-btn--style-danger">Delete</button></li>
+            </ul>
+          </div>
+        </div>
+        <span class="spec__label">open menu — divider before destructive item</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Tooltip</h2>
+    <div class="sheet-row" style="gap:48px">
+      <div class="spec">
+        <div>
+          <div class="demo-tooltip">Copy link</div>
+          <div class="demo-arrow"></div>
+        </div>
+        <span class="spec__label">dark (default) — short labels</span>
+      </div>
+      <div class="spec">
+        <div class="demo-tooltip">Auto-assign distributes new tickets evenly across online agents.</div>
+        <span class="spec__label">wraps at 220px, 12px/1.4</span>
+      </div>
+      <div class="spec">
+        <div class="demo-tooltip demo-tooltip--light">Light theme tooltip</div>
+        <span class="spec__label">theme="light"</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Popover</h2>
+    <div class="sheet-row sheet-row--top" style="gap:48px">
+      <div class="spec">
+        <div class="demo-popover">
+          <div class="neeto-ui-text-h5 neeto-ui-font-semibold" style="margin-bottom:6px">What are business hours?</div>
+          <p class="neeto-ui-text-body2 neeto-ui-text-gray-600" style="margin:0 0 10px">SLA timers only count time inside the schedule you set here. Holidays are excluded automatically.</p>
+          <button class="neeto-ui-btn neeto-ui-btn--style-link">Learn more</button>
+        </div>
+        <span class="spec__label">help popover — title + body + link</span>
+      </div>
+    </div>
+    <div class="sheet-note">Tooltip for ≤ 1 line of non-interactive hint text. Popover when content includes a title, longer copy or a link. Dropdown only for action menus.</div>
+  </div>
+</body>
+</html>

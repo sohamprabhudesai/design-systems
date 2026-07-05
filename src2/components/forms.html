@@ -1,0 +1,94 @@
+<!-- @dsCard group="Components" name="Forms & Selection" subtitle="Input, Textarea, Select, Checkbox, Radio, Switch, Slider — all states" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neeto-atoms · Forms & Selection</title>
+<style>/*__ATOMS__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 22px 28px; max-width: 860px; }
+  .demo-select { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 32px; width: 100%; border-radius: var(--radius-lg); border: 1px solid var(--input); padding: 0 10px; font-size: 14px; background: transparent; }
+  .demo-select .ph { color: var(--muted-foreground); }
+  .demo-select svg { width: 16px; height: 16px; color: var(--muted-foreground); flex-shrink: 0; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Forms &amp; Selection</h1>
+    <p>Field anatomy: <b>Label</b> (14px medium) · 8px · <b>control</b> (h-32, radius 10, border <code>--input</code>, transparent bg) · 8px ·
+    <b>description</b> (12.8px muted) or <b>error</b> (destructive). Focus adds ring-color border + 3px 50% ring. Invalid uses
+    <code>aria-invalid</code> styling automatically. Checked state for all controls is <b>primary</b> (near-black).</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Text fields</h2>
+    <div class="form-grid">
+      <div class="field"><label>Name</label><input class="input" placeholder="Enter project name"><p class="field-description">Shown on the customer portal.</p></div>
+      <div class="field"><label>Name</label><input class="input focus" value="Customer portal"><p class="field-description">Focused.</p></div>
+      <div class="field"><label>Email</label><input class="input invalid" value="oliver@example"><p class="field-error">Enter a valid email address.</p></div>
+      <div class="field"><label>Workspace</label><input class="input" value="spinkart.neeto.com" disabled><p class="field-description">Disabled — 50% + input/50 fill.</p></div>
+      <div class="field"><label>Bio</label><textarea class="input" rows="3">Building neetoDesk.</textarea></div>
+      <div class="field"><label>Website</label>
+        <div style="display:flex">
+          <span style="display:flex;align-items:center;padding:0 10px;border:1px solid var(--input);border-right:0;border-radius:var(--radius-lg) 0 0 var(--radius-lg);background:var(--muted);font-size:14px;color:var(--muted-foreground)">https://</span>
+          <input class="input" style="border-radius:0 var(--radius-lg) var(--radius-lg) 0" value="spinkart.com">
+        </div>
+        <p class="field-description">InputGroup — boxed add-on.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Select &amp; Combobox</h2>
+    <div class="form-grid" style="align-items:start">
+      <div class="field"><label>Assignee</label>
+        <div class="demo-select"><span class="ph">Select an assignee</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9l5-5 5 5M7 15l5 5 5-5"/></svg></div>
+      </div>
+      <div class="field"><label>Priority</label>
+        <div class="demo-select focus input" style="display:flex;height:32px;padding:0 10px;align-items:center;justify-content:space-between">High<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;color:var(--muted-foreground)"><path d="M7 9l5-5 5 5M7 15l5 5 5-5"/></svg></div>
+        <div class="popover menu" style="width:100%">
+          <div class="menu__item">Low</div>
+          <div class="menu__item hover">Medium</div>
+          <div class="menu__item" style="justify-content:space-between">High <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;color:var(--foreground)"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div class="menu__item">Urgent</div>
+        </div>
+      </div>
+      <div class="field"><label>Tags (multi)</label>
+        <div class="demo-select" style="height:auto;min-height:32px;padding:4px 10px 4px 4px;justify-content:flex-start;flex-wrap:wrap">
+          <span class="badge badge--secondary badge--rounded">billing<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+          <span class="badge badge--secondary badge--rounded">bug<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:auto"><path d="M7 9l5-5 5 5M7 15l5 5 5-5"/></svg>
+        </div>
+        <p class="field-description">Multi values render as rounded secondary badges.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Checkbox · Radio · Switch · Slider</h2>
+    <div class="sheet-row sheet-row--top" style="gap:56px">
+      <div class="sheet-col" style="gap:10px">
+        <label class="ctl-row"><input type="checkbox" class="checkbox"> Unchecked</label>
+        <label class="ctl-row"><input type="checkbox" class="checkbox" checked> Checked</label>
+        <label class="ctl-row" style="opacity:.6"><input type="checkbox" class="checkbox" checked disabled> Disabled</label>
+      </div>
+      <div class="sheet-col" style="gap:10px">
+        <label class="ctl-row"><input type="radio" name="r" class="radio" checked> Pro — $9/user</label>
+        <label class="ctl-row"><input type="radio" name="r" class="radio"> Free</label>
+        <label class="ctl-row" style="opacity:.6"><input type="radio" name="r" class="radio" disabled> Enterprise</label>
+      </div>
+      <div class="sheet-col" style="gap:10px">
+        <span class="ctl-row"><span class="switch--sm switch"></span> sm 24×14</span>
+        <span class="ctl-row"><span class="switch checked"></span> default 32×18</span>
+        <span class="ctl-row"><span class="switch--lg switch checked"></span> lg 44×24</span>
+      </div>
+      <div class="sheet-col" style="gap:18px;min-width:200px">
+        <div class="spec" style="width:100%"><div class="slider" style="width:100%"><div class="slider__range" style="width:60%"></div><div class="slider__thumb" style="left:60%"></div></div><span class="spec__label">Slider — 60</span></div>
+        <div class="spec" style="width:100%"><div class="progress" style="width:100%"><div class="progress__bar" style="width:75%"></div></div><span class="spec__label">Progress — 75%</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!-- @dsCard group="Foundations" name="Color Tokens" subtitle="Semantic OKLCH tokens · light & dark side by side" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neeto-atoms · Color Tokens</title>
+<style>/*__ATOMS__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .mode-panel { border-radius: var(--radius-xl); border: 1px solid var(--border); background: var(--background); color: var(--foreground); padding: 20px; }
+  .mode-panel h3 { margin: 0 0 14px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--muted-foreground); }
+  .tok { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-size: 12.5px; }
+  .tok__chip { width: 40px; height: 24px; border-radius: 6px; border: 1px solid var(--border); flex-shrink: 0; }
+  .tok__name { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; }
+  .tok__use { margin-left: auto; color: var(--muted-foreground); font-size: 11px; text-align: right; }
+  .semantic-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .sem-card { border-radius: var(--radius-lg); border: 1px solid; padding: 12px; font-size: 12.5px; }
+  .sem-card b { display: block; margin-bottom: 2px; }
+  .sem-card .solid { margin-top: 8px; border-radius: var(--radius-md); color: #fff; padding: 4px 8px; font-size: 11.5px; display: inline-block; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Color Tokens</h1>
+    <p>neeto-atoms uses <b>semantic OKLCH tokens</b> (shadcn convention) — never raw hex in designs. The primary action color is
+    <b>near-black</b> (<code>--primary: oklch(0.205 0 0)</code>), inverting to near-white in dark mode. Every token has a light and dark
+    value; components reference tokens only, so dark mode is automatic.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Core tokens — light vs dark</h2>
+    <div class="modes">
+      <div class="mode-panel">
+        <h3>Light</h3>
+        <div class="tok"><span class="tok__chip" style="background:oklch(1 0 0)"></span><span class="tok__name">background</span><span class="tok__use">page surface</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.145 0 0)"></span><span class="tok__name">foreground</span><span class="tok__use">default text</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.205 0 0)"></span><span class="tok__name">primary</span><span class="tok__use">CTAs, checked controls</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.97 0 0)"></span><span class="tok__name">secondary / muted / accent</span><span class="tok__use">subtle fills, hovers</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.556 0 0)"></span><span class="tok__name">muted-foreground</span><span class="tok__use">secondary text</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.922 0 0)"></span><span class="tok__name">border / input</span><span class="tok__use">1px lines, control borders</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.708 0 0)"></span><span class="tok__name">ring</span><span class="tok__use">focus ring (3px @ 50%)</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.577 0.245 27.325)"></span><span class="tok__name">destructive</span><span class="tok__use">delete actions</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.985 0 0)"></span><span class="tok__name">sidebar</span><span class="tok__use">app nav surface</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.94 0 0)"></span><span class="tok__name">sidebar-accent</span><span class="tok__use">active/hover nav item</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.975 0 0)"></span><span class="tok__name">row-selected</span><span class="tok__use">selected table rows</span></div>
+      </div>
+      <div class="mode-panel dark">
+        <h3>Dark</h3>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.145 0 0)"></span><span class="tok__name">background</span><span class="tok__use">page surface</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.985 0 0)"></span><span class="tok__name">foreground</span><span class="tok__use">default text</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.922 0 0)"></span><span class="tok__name">primary</span><span class="tok__use">inverts to near-white</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.269 0 0)"></span><span class="tok__name">secondary / muted / accent</span><span class="tok__use">subtle fills, hovers</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.708 0 0)"></span><span class="tok__name">muted-foreground</span><span class="tok__use">secondary text</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(1 0 0 / 10%)"></span><span class="tok__name">border · input 15%</span><span class="tok__use">white-alpha lines</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.556 0 0)"></span><span class="tok__name">ring</span><span class="tok__use">focus ring</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.704 0.191 22.216)"></span><span class="tok__name">destructive</span><span class="tok__use">brighter in dark</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.205 0 0)"></span><span class="tok__name">sidebar · card · popover</span><span class="tok__use">elevated surfaces</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.269 0 0)"></span><span class="tok__name">sidebar-accent</span><span class="tok__use">active/hover nav item</span></div>
+        <div class="tok"><span class="tok__chip" style="background:oklch(0.2 0 0)"></span><span class="tok__name">row-selected</span><span class="tok__use">selected table rows</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Semantic status sets — soft bg + border + foreground, plus solid</h2>
+    <div class="semantic-grid">
+      <div class="sem-card" style="background:var(--success);border-color:var(--success-border);color:var(--success-foreground)"><b>success</b>bg · border · fg<span class="solid" style="background:var(--success-solid)">success-solid</span></div>
+      <div class="sem-card" style="background:var(--error);border-color:var(--error-border);color:var(--error-foreground)"><b>error</b>bg · border · fg<span class="solid" style="background:var(--error-solid)">error-solid</span></div>
+      <div class="sem-card" style="background:var(--warning);border-color:var(--warning-border);color:var(--warning-foreground)"><b>warning</b>bg · border · fg<span class="solid" style="background:var(--warning-solid);color:oklch(0.145 0 0)">warning-solid</span></div>
+      <div class="sem-card" style="background:var(--info);border-color:var(--info-border);color:var(--info-foreground)"><b>info</b>bg · border · fg<span class="solid" style="background:var(--info-solid)">info-solid</span></div>
+    </div>
+    <div class="sheet-note">Each status has 5 tokens: <code>--{status}</code> (soft bg), <code>--{status}-border</code>, <code>--{status}-foreground</code> (text on soft bg), <code>--{status}-solid</code> and <code>--{status}-solid-foreground</code> (filled chips/toasts).</div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Charts &amp; avatars</h2>
+    <div class="sheet-row">
+      <div class="spec"><div style="display:flex;gap:6px">
+        <span style="width:36px;height:36px;border-radius:8px;background:oklch(0.809 0.105 251.813)"></span>
+        <span style="width:36px;height:36px;border-radius:8px;background:oklch(0.623 0.214 259.815)"></span>
+        <span style="width:36px;height:36px;border-radius:8px;background:oklch(0.546 0.245 262.881)"></span>
+        <span style="width:36px;height:36px;border-radius:8px;background:oklch(0.488 0.243 264.376)"></span>
+        <span style="width:36px;height:36px;border-radius:8px;background:oklch(0.424 0.199 265.638)"></span>
+      </div><span class="spec__label">chart-1 … chart-5 — blue ramp</span></div>
+      <div class="spec"><div style="display:flex;gap:6px">
+        <span style="width:32px;height:32px;border-radius:999px;background:oklch(60% 0.15 20);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600">OS</span>
+        <span style="width:32px;height:32px;border-radius:999px;background:oklch(60% 0.15 130);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600">EB</span>
+        <span style="width:32px;height:32px;border-radius:999px;background:oklch(60% 0.15 250);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600">SK</span>
+        <span style="width:32px;height:32px;border-radius:999px;background:oklch(60% 0.15 310);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600">MR</span>
+      </div><span class="spec__label">avatars — oklch(60% 0.15 hash(name)) with white text</span></div>
+    </div>
+  </div>
+</body>
+</html>

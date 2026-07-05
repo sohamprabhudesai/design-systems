@@ -1,0 +1,123 @@
+<!-- @dsCard group="Components" name="Table, Tabs, Cards & More" subtitle="DataTable, Tabs pill/line, Card, Breadcrumb, Empty, Skeleton, Kbd" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neeto-atoms · Table, Tabs, Cards & More</title>
+<style>/*__ATOMS__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .av { width: 24px; height: 24px; border-radius: 999px; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Table, Tabs, Cards &amp; More</h1>
+    <p><code>DataTable</code> — 40px header, <b>500-weight muted-foreground</b> headers (not uppercase, unlike V1), 1px row borders,
+    hover <code>muted/50</code>, selection via <code>row-selected</code> token. <code>Tabs</code> — pill list on muted (default) or line variant.
+    <code>Card</code> — radius 14px, border + shadow-sm.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>DataTable</h2>
+    <table class="tbl">
+      <thead><tr>
+        <th style="width:36px"><input type="checkbox" class="checkbox"></th>
+        <th>Customer</th><th>Subject</th><th>Status</th><th>Assignee</th><th style="text-align:right">Updated</th><th style="width:44px"></th>
+      </tr></thead>
+      <tbody>
+        <tr class="selected">
+          <td><input type="checkbox" class="checkbox" checked></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><span class="av" style="background:oklch(60% 0.15 20)">OS</span>Oliver Smith</div></td>
+          <td>Cannot export invoices</td>
+          <td><span class="badge badge--red-subtle">Urgent</span></td>
+          <td>Eve Barnes</td>
+          <td style="text-align:right;color:var(--muted-foreground)">2h ago</td>
+          <td><button class="btn btn--ghost btn--icon btn--sm"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="checkbox"></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><span class="av" style="background:oklch(60% 0.15 130)">AL</span>Anna Lee</div></td>
+          <td>Webhook retries not firing</td>
+          <td><span class="badge badge--amber-subtle">Waiting</span></td>
+          <td>Sam Kim</td>
+          <td style="text-align:right;color:var(--muted-foreground)">Yesterday</td>
+          <td><button class="btn btn--ghost btn--icon btn--sm"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></td>
+        </tr>
+        <tr class="hover">
+          <td><input type="checkbox" class="checkbox"></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><span class="av" style="background:oklch(60% 0.15 250)">MR</span>Maya Rao</div></td>
+          <td>Add SSO for Okta</td>
+          <td><span class="badge badge--blue-subtle">Open</span></td>
+          <td style="color:var(--muted-foreground)">Unassigned</td>
+          <td style="text-align:right;color:var(--muted-foreground)">2d ago</td>
+          <td><button class="btn btn--ghost btn--icon btn--sm"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="checkbox"></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><span class="av" style="background:oklch(60% 0.15 310)">JD</span>Jon Doe</div></td>
+          <td>Billing address not saved</td>
+          <td><span class="badge badge--green-subtle">Resolved</span></td>
+          <td>Eve Barnes</td>
+          <td style="text-align:right;color:var(--muted-foreground)">Jun 28</td>
+          <td><button class="btn btn--ghost btn--icon btn--sm"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-top:14px">
+      <span style="font-size:13px;color:var(--muted-foreground)">1 of 4 row(s) selected</span>
+      <div style="display:flex;gap:6px;align-items:center">
+        <button class="btn btn--outline btn--sm disabled">Previous</button>
+        <button class="btn btn--outline btn--sm">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Tabs — pill (default) &amp; line</h2>
+    <div class="sheet-row" style="gap:48px">
+      <div class="spec">
+        <div class="tabs-list">
+          <button class="tab-trigger active">Tickets</button>
+          <button class="tab-trigger">Customers</button>
+          <button class="tab-trigger">Automations</button>
+        </div>
+        <span class="spec__label">default — bg-muted container, active card w/ shadow</span>
+      </div>
+      <div class="spec">
+        <div class="tabs-list tabs-list--line" style="border-bottom:1px solid var(--border)">
+          <button class="tab-trigger active">Overview</button>
+          <button class="tab-trigger">Activity</button>
+          <button class="tab-trigger">Settings</button>
+        </div>
+        <span class="spec__label">variant="line" — 2px primary underline</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Card · Breadcrumb · Kbd · Skeleton</h2>
+    <div class="sheet-row sheet-row--top" style="gap:28px">
+      <div class="card" style="width:300px">
+        <div class="card__header"><h3 class="card__title">Weekly responses</h3><p class="card__desc">Jun 22 – Jun 28</p></div>
+        <div class="card__content" style="padding-top:16px">
+          <div style="font-size:28px;font-weight:600;letter-spacing:-0.02em">1,284 <span class="badge badge--green-subtle" style="vertical-align:4px">+12%</span></div>
+        </div>
+        <div class="card__footer"><button class="btn btn--outline btn--sm">View report</button></div>
+      </div>
+      <div class="sheet-col" style="gap:20px">
+        <div class="spec"><nav class="crumbs">Projects <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg> Customer portal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg> <span class="current">Settings</span></nav><span class="spec__label">Breadcrumb</span></div>
+        <div class="spec"><span><kbd class="kbd">⌘</kbd> <kbd class="kbd">K</kbd></span><span class="spec__label">Kbd — muted keys</span></div>
+        <div class="spec"><div style="display:flex;flex-direction:column;gap:8px;width:220px"><div class="skeleton" style="height:16px;width:70%"></div><div class="skeleton" style="height:16px"></div><div class="skeleton" style="height:16px;width:85%"></div></div><span class="spec__label">Skeleton — accent pulse</span></div>
+      </div>
+      <div class="empty" style="border:1px dashed var(--border);border-radius:var(--radius-xl);width:300px">
+        <div class="empty__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.5-6.9A2 2 0 0016.7 4H7.3a2 2 0 00-1.8 1.1z"/></svg></div>
+        <div class="empty__title">No tickets yet</div>
+        <div class="empty__desc">Tickets from your inbox, chat and portal will show up here.</div>
+        <div style="display:flex;gap:8px;margin-top:12px"><button class="btn btn--default btn--sm">Create ticket</button><button class="btn btn--outline btn--sm">Connect inbox</button></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

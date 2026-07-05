@@ -1,0 +1,102 @@
+<!-- @dsCard group="Foundations" name="Colors" subtitle="Gray, primary, accent, semantic and pastel palettes" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeetoUI · Colors</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .swatch { width: 132px; }
+  .swatch__chip { height: 56px; border-radius: 6px; border: 1px solid rgba(12,17,29,0.06); }
+  .swatch__name { font-size: 12px; font-weight: 600; margin-top: 8px; }
+  .swatch__val { font-size: 10.5px; color: rgb(135,146,157); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .swatch__use { font-size: 10.5px; color: rgb(52,64,84); margin-top: 2px; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Colors</h1>
+    <p>All colors are exposed as RGB-triplet CSS variables (<code>--neeto-ui-gray-800: 16, 24, 40</code>) and consumed as
+    <code>rgb(var(--neeto-ui-gray-800))</code>. Grays carry content and structure; primary (green) is reserved for primary
+    actions and selected states; accent (blue) for links and informational highlights.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Base</h2>
+    <div class="sheet-row sheet-row--top">
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(12,17,29)"></div><div class="swatch__name">black</div><div class="swatch__val">12, 17, 29 · #0C111D</div><div class="swatch__use">Headings, highest emphasis</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(255,255,255)"></div><div class="swatch__name">white</div><div class="swatch__val">255, 255, 255 · #FFFFFF</div><div class="swatch__use">Surfaces, cards, inputs</div></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Gray — content &amp; structure</h2>
+    <div class="sheet-row sheet-row--top">
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(16,24,40)"></div><div class="swatch__name">gray-800</div><div class="swatch__val">16, 24, 40 · #101828</div><div class="swatch__use">Body text, default text color</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(29,41,57)"></div><div class="swatch__name">gray-700</div><div class="swatch__val">29, 41, 57 · #1D2939</div><div class="swatch__use">Secondary button text, labels</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(52,64,84)"></div><div class="swatch__name">gray-600</div><div class="swatch__val">52, 64, 84 · #344054</div><div class="swatch__use">Secondary text, inactive tabs</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(135,146,157)"></div><div class="swatch__name">gray-500</div><div class="swatch__val">135, 146, 157 · #87929D</div><div class="swatch__use">Muted text, placeholders in labels</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(194,200,204)"></div><div class="swatch__name">gray-400</div><div class="swatch__val">194, 200, 204 · #C2C8CC</div><div class="swatch__use">Input &amp; control borders, placeholder text</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(216,220,222)"></div><div class="swatch__name">gray-300</div><div class="swatch__val">216, 220, 222 · #D8DCDE</div><div class="swatch__use">Dividers, switch track (off)</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(233,235,237)"></div><div class="swatch__name">gray-200</div><div class="swatch__val">233, 235, 237 · #E9EBED</div><div class="swatch__use">Secondary button bg, hover bg, borders</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(246,247,248)"></div><div class="swatch__name">gray-100</div><div class="swatch__val">246, 247, 248 · #F6F7F8</div><div class="swatch__use">Disabled input bg, subtle panels</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(250,250,250)"></div><div class="swatch__name">gray-50</div><div class="swatch__val">250, 250, 250 · #FAFAFA</div><div class="swatch__use">Page/canvas bg, modal footer</div></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Primary (green) — brand &amp; primary actions</h2>
+    <div class="sheet-row sheet-row--top">
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(0,102,83)"></div><div class="swatch__name">primary-800</div><div class="swatch__val">0, 102, 83 · #006653</div><div class="swatch__use">Primary button hover</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(0,122,100)"></div><div class="swatch__name">primary-600</div><div class="swatch__val">0, 122, 100 · #007A64</div><div class="swatch__use">Progress bar fill</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(0,128,104)"></div><div class="swatch__name">primary-500</div><div class="swatch__val">0, 128, 104 · #008068</div><div class="swatch__use">Primary buttons, checked controls, focus rings</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(225,243,238)"></div><div class="swatch__name">primary-100</div><div class="swatch__val">225, 243, 238 · #E1F3EE</div><div class="swatch__use">Primary tag bg</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(240,249,247)"></div><div class="swatch__name">primary-50</div><div class="swatch__val">240, 249, 247 · #F0F9F7</div><div class="swatch__use">Selected row / subtle brand tint</div></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Accent (blue) — links &amp; info</h2>
+    <div class="sheet-row sheet-row--top">
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(9,90,186)"></div><div class="swatch__name">accent-800</div><div class="swatch__val">9, 90, 186 · #095ABA</div><div class="swatch__use">Link button text</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(13,102,208)"></div><div class="swatch__name">accent-600</div><div class="swatch__val">13, 102, 208 · #0D66D0</div><div class="swatch__use">Info toast bg</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(20,115,230)"></div><div class="swatch__name">accent-500</div><div class="swatch__val">20, 115, 230 · #1473E6</div><div class="swatch__use">Active stepper stage, info accents</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(230,244,255)"></div><div class="swatch__name">accent-100</div><div class="swatch__val">230, 244, 255 · #E6F4FF</div><div class="swatch__use">Info tint surfaces</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(239,248,255)"></div><div class="swatch__name">accent-50</div><div class="swatch__val">239, 248, 255 · #EFF8FF</div><div class="swatch__use">Lightest info tint</div></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Semantic — success · error · warning · info</h2>
+    <div class="sheet-row sheet-row--top">
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(2,162,124)"></div><div class="swatch__name">success-500</div><div class="swatch__val">2, 162, 124 · #02A27C</div><div class="swatch__use">Success icons, online status</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(1,141,109)"></div><div class="swatch__name">success-600</div><div class="swatch__val">1, 141, 109 · #018D6D</div><div class="swatch__use">Success toast bg</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(235,255,250)"></div><div class="swatch__name">success-100</div><div class="swatch__val">235, 255, 250 · #EBFFFA</div><div class="swatch__use">Success callout/tag bg</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(215,55,63)"></div><div class="swatch__name">error-500</div><div class="swatch__val">215, 55, 63 · #D7373F</div><div class="swatch__use">Danger buttons, error borders</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(187,18,26)"></div><div class="swatch__name">error-800</div><div class="swatch__val">187, 18, 26 · #BB121A</div><div class="swatch__use">Danger hover, error text</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(254,236,240)"></div><div class="swatch__name">error-100</div><div class="swatch__val">254, 236, 240 · #FEECF0</div><div class="swatch__use">Error callout/tag bg</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(218,123,17)"></div><div class="swatch__name">warning-500</div><div class="swatch__val">218, 123, 17 · #DA7B11</div><div class="swatch__use">Warning icons, idle status</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(189,100,13)"></div><div class="swatch__name">warning-800</div><div class="swatch__val">189, 100, 13 · #BD640D</div><div class="swatch__use">Warning text</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(251,242,225)"></div><div class="swatch__name">warning-100</div><div class="swatch__val">251, 242, 225 · #FBF2E1</div><div class="swatch__use">Warning callout/tag bg</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(20,115,230)"></div><div class="swatch__name">info-500</div><div class="swatch__val">20, 115, 230 · #1473E6</div><div class="swatch__use">Info icons (same as accent)</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(226,242,255)"></div><div class="swatch__name">info-100</div><div class="swatch__val">226, 242, 255 · #E2F2FF</div><div class="swatch__use">Info callout/tag bg</div></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Pastels — avatars, labels &amp; illustrations</h2>
+    <div class="sheet-row sheet-row--top">
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(232,233,237)"></div><div class="swatch__name">pastel-silver</div><div class="swatch__val">232, 233, 237</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(255,229,229)"></div><div class="swatch__name">pastel-red</div><div class="swatch__val">255, 229, 229</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(254,243,197)"></div><div class="swatch__name">pastel-yellow</div><div class="swatch__val">254, 243, 197</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(211,249,232)"></div><div class="swatch__name">pastel-green</div><div class="swatch__val">211, 249, 232</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(236,244,255)"></div><div class="swatch__name">pastel-blue</div><div class="swatch__val">236, 244, 255</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(238,235,255)"></div><div class="swatch__name">pastel-purple</div><div class="swatch__val">238, 235, 255</div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:rgb(253,226,241)"></div><div class="swatch__name">pastel-pink</div><div class="swatch__val">253, 226, 241</div></div>
+    </div>
+    <div class="sheet-note">Utility classes exist for every color: <code>neeto-ui-bg-*</code>, <code>neeto-ui-text-*</code>, <code>neeto-ui-border-*</code> (e.g. <code>neeto-ui-bg-pastel-blue</code>).</div>
+  </div>
+</body>
+</html>

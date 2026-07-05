@@ -1,0 +1,70 @@
+<!-- @dsCard group="Foundations" name="Typography, Radius & Focus" subtitle="Geist · type scale · 6/8/10/14 radii · rings & shadows" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neeto-atoms · Typography, Radius & Focus</title>
+<style>/*__ATOMS__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .type-row { display: grid; grid-template-columns: 210px 1fr; gap: 20px; align-items: baseline; padding: 10px 0; border-bottom: 1px dashed var(--border); }
+  .type-row:last-child { border-bottom: 0; }
+  .type-meta { font-size: 10.5px; color: var(--muted-foreground); font-family: ui-monospace, "SF Mono", Menlo, monospace; line-height: 1.6; }
+  .type-meta b { display: block; color: var(--foreground); font-size: 12px; }
+  .radius-box { width: 88px; height: 56px; background: var(--muted); border: 1px solid var(--input); }
+  .shadow-box { width: 132px; height: 68px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--muted-foreground); }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Typography, Radius &amp; Focus</h1>
+    <p>Font: <b>Geist Variable</b> (embedded here), fallback system-ui. UI default is <b>14px / 400 / 1.45</b>.
+    Weight range is used narrowly: 400 body · 500 buttons, labels, active items · 600 headings. Tracking tightens slightly
+    (−0.02em) on headings 20px+.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Type scale (Tailwind steps)</h2>
+    <div class="type-row"><div class="type-meta"><b>text-3xl · 30px</b>weight 600 · lh 36px · −0.02em</div><div style="font-size:30px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>text-2xl · 24px</b>weight 600 · page titles (Header)</div><div style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>text-xl · 20px</b>weight 600 · section titles</div><div style="font-size:20px;font-weight:600;letter-spacing:-0.01em;line-height:1.3">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>text-lg · 18px</b>weight 600 · dialog titles</div><div style="font-size:18px;font-weight:600;line-height:1.3">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>text-base · 16px</b>weight 500/600 · card titles</div><div style="font-size:16px;font-weight:500;line-height:1.4">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>text-sm · 14px</b>weight 400 · DEFAULT — all UI copy</div><div style="font-size:14px;line-height:1.45">The workhorse size: buttons, inputs, table cells, menus, descriptions and nearly every string in the product.</div></div>
+    <div class="type-row"><div class="type-meta"><b>text-xs · 12px</b>weight 400/500 · badges, meta</div><div style="font-size:12px;line-height:1.45;color:var(--muted-foreground)">Timestamps, helper text, badge labels, keyboard shortcuts.</div></div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Radius — base 10px, derived steps</h2>
+    <div class="sheet-row sheet-row--top">
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:var(--radius-sm)"></div><span class="spec__label">sm · 6px — menu items</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:var(--radius-md)"></div><span class="spec__label">md · 8px — small buttons, popovers</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:var(--radius-lg)"></div><span class="spec__label">lg · 10px — buttons, inputs, dialogs</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:var(--radius-xl)"></div><span class="spec__label">xl · 14px — cards</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:999px"></div><span class="spec__label">full — badges, switches, avatars</span></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Focus rings &amp; states</h2>
+    <div class="sheet-row">
+      <div class="spec"><button class="btn btn--default focus">Focused</button><span class="spec__label">border-ring + 3px ring/50</span></div>
+      <div class="spec"><button class="btn btn--destructive focus">Delete</button><span class="spec__label">destructive ring @ 40%</span></div>
+      <div class="spec"><input class="input focus" style="width:180px" value="Focused input"><span class="spec__label">same ring recipe on inputs</span></div>
+      <div class="spec"><input class="input invalid" style="width:180px" value="Invalid value"><span class="spec__label">aria-invalid — destructive border + 20% ring</span></div>
+    </div>
+    <div class="sheet-note">Buttons nudge down 1px on press (<code>active:translate-y-px</code>). Disabled anything = 50% opacity. Transitions are fast (~150ms) — snappier than V1's 300ms.</div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Elevation — subtle, border-first</h2>
+    <div class="sheet-row sheet-row--top" style="gap:24px">
+      <div class="spec spec--center"><div class="shadow-box" style="box-shadow:0 1px 2px 0 rgb(0 0 0 / .05)">shadow-sm</div><span class="spec__label">cards, active tab</span></div>
+      <div class="spec spec--center"><div class="shadow-box" style="box-shadow:0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1)">shadow-md</div><span class="spec__label">popovers, menus</span></div>
+      <div class="spec spec--center"><div class="shadow-box" style="box-shadow:0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1)">shadow-lg</div><span class="spec__label">dialogs, sheets</span></div>
+    </div>
+    <div class="sheet-note">V2 leans on 1px borders and flat surfaces; shadows are lighter than V1. In dark mode, elevation comes from lighter surface tokens (card/popover at oklch 0.205), not shadows.</div>
+  </div>
+</body>
+</html>

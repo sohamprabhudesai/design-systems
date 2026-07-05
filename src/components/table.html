@@ -1,0 +1,113 @@
+<!-- @dsCard group="Components" name="Table" subtitle="Selectable rows, sorted column, tags, avatars, row actions, pagination" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeetoUI · Table</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  /* Static rendition of the antd-based neeto Table using neeto tokens */
+  input.neeto-ui-checkbox[type="checkbox"] {
+    appearance:none; -webkit-appearance:none; margin:0; width:16px; height:16px; background:#fff;
+    border:2px solid rgb(194,200,204); border-radius:3px; background-position:center; background-repeat:no-repeat;
+  }
+  input.neeto-ui-checkbox[type="checkbox"]:checked {
+    background-color:rgb(0,128,104); border-color:rgb(0,128,104);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+  }
+  .demo-table { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; }
+  .demo-table thead th {
+    height: 40px; padding: 0 16px; text-align: left; font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.02em; color: rgb(52,64,84);
+    background: rgb(250,250,250); border-bottom: 1px solid rgb(233,235,237); white-space: nowrap;
+  }
+  .demo-table tbody td { padding: 12px 16px; border-bottom: 1px solid rgb(246,247,248); color: rgb(16,24,40); vertical-align: middle; }
+  .demo-table tbody tr.is-hover { background: rgb(250,250,250); }
+  .demo-table tbody tr.is-selected { background: rgb(240,249,247); }
+  .demo-table .cell-user { display: flex; align-items: center; gap: 10px; }
+  .demo-table .cell-user small { display: block; color: rgb(135,146,157); font-size: 12px; }
+  .demo-table .sort-active { color: rgb(16,24,40); }
+  .demo-table .sort-caret { display: inline-block; vertical-align: 1px; margin-left: 4px; }
+  .avatar-fallback { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:999px; color:rgb(29,41,57); font-weight:600; font-size:11px; flex-shrink:0; }
+  .pg-block { display:flex; justify-content:flex-end; align-items:center; padding: 24px 0 0; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Table</h1>
+    <p><code>Table</code> (antd-based) — white surface; header row 40px on gray-50, 13px semibold uppercase gray-600; body rows with
+    16px horizontal padding and gray-100 row dividers; hover gray-50; selected rows primary-50 with a checked checkbox.
+    Row actions live in a trailing kebab column. Pagination sits bottom-right (88px block).</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Standard list view</h2>
+    <table class="demo-table">
+      <thead>
+        <tr>
+          <th style="width:44px"><input class="neeto-ui-checkbox" type="checkbox"></th>
+          <th class="sort-active">Customer<span class="sort-caret"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l-6-8h12z"/></svg></span></th>
+          <th>Subject</th>
+          <th>Status</th>
+          <th>Assignee</th>
+          <th>Updated</th>
+          <th style="width:56px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="is-selected">
+          <td><input class="neeto-ui-checkbox" type="checkbox" checked></td>
+          <td><div class="cell-user"><span class="avatar-fallback" style="background:rgb(236,244,255)">OS</span><div>Oliver Smith<small>oliver@spinkart.com</small></div></div></td>
+          <td>Cannot export invoices</td>
+          <td><span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-danger">Urgent</span></td>
+          <td>Eve Barnes</td>
+          <td class="neeto-ui-text-gray-600">2 hours ago</td>
+          <td><button class="neeto-ui-btn neeto-ui-btn--style-text neeto-ui-btn--icon-only"><span class="neeto-ui-btn__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></span></button></td>
+        </tr>
+        <tr>
+          <td><input class="neeto-ui-checkbox" type="checkbox"></td>
+          <td><div class="cell-user"><span class="avatar-fallback" style="background:rgb(253,226,241)">AL</span><div>Anna Lee<small>anna@corex.io</small></div></div></td>
+          <td>Webhook retries not firing</td>
+          <td><span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-warning">Waiting</span></td>
+          <td>Sam Kim</td>
+          <td class="neeto-ui-text-gray-600">Yesterday</td>
+          <td><button class="neeto-ui-btn neeto-ui-btn--style-text neeto-ui-btn--icon-only"><span class="neeto-ui-btn__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></span></button></td>
+        </tr>
+        <tr class="is-hover">
+          <td><input class="neeto-ui-checkbox" type="checkbox"></td>
+          <td><div class="cell-user"><span class="avatar-fallback" style="background:rgb(211,249,232)">MR</span><div>Maya Rao<small>maya@lumen.app</small></div></div></td>
+          <td>Add SSO for Okta <span class="neeto-ui-tag neeto-ui-tag--type-solid neeto-ui-tag--style-secondary" style="margin-left:6px">feature</span></td>
+          <td><span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-info">Open</span></td>
+          <td>Unassigned</td>
+          <td class="neeto-ui-text-gray-600">2 days ago</td>
+          <td><button class="neeto-ui-btn neeto-ui-btn--style-text neeto-ui-btn--icon-only"><span class="neeto-ui-btn__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></span></button></td>
+        </tr>
+        <tr>
+          <td><input class="neeto-ui-checkbox" type="checkbox"></td>
+          <td><div class="cell-user"><span class="avatar-fallback" style="background:rgb(254,243,197)">JD</span><div>Jon Doe<small>jon@acme.dev</small></div></div></td>
+          <td>Billing address not saved</td>
+          <td><span class="neeto-ui-tag neeto-ui-tag--type-outline neeto-ui-tag--style-success">Resolved</span></td>
+          <td>Eve Barnes</td>
+          <td class="neeto-ui-text-gray-600">Jun 28</td>
+          <td><button class="neeto-ui-btn neeto-ui-btn--style-text neeto-ui-btn--icon-only"><span class="neeto-ui-btn__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></span></button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pg-block">
+      <ul class="neeto-ui-pagination__wrapper" style="margin:0;padding:0">
+        <li class="neeto-ui-pagination__item disabled"><a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a></li>
+        <li class="neeto-ui-pagination__item active"><a>1</a></li>
+        <li class="neeto-ui-pagination__item"><a>2</a></li>
+        <li class="neeto-ui-pagination__item"><a>3</a></li>
+        <li class="neeto-ui-pagination__item neeto-ui-pagination__item--dots">…</li>
+        <li class="neeto-ui-pagination__item"><a>12</a></li>
+        <li class="neeto-ui-pagination__item"><a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a></li>
+      </ul>
+    </div>
+    <div class="sheet-note">Sorted column shows a caret next to its label. First data column often combines avatar + name + secondary email line. Keep numeric columns right-aligned via <code>data-text-align="right"</code>.</div>
+  </div>
+</body>
+</html>

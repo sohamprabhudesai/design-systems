@@ -1,0 +1,91 @@
+<!-- @dsCard group="Components" name="Tabs, Stepper & Accordion" subtitle="Underline tabs with counts · 4-step progress · bordered accordion" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeetoUI · Tabs, Stepper & Accordion</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .neeto-ui-tab { display: inline-flex; align-items: center; background: none; border: none; font-family: inherit; }
+  .tab-count { font-size: 11px; background: rgb(233,235,237); color: rgb(52,64,84); border-radius: 999px; padding: 2px 7px; margin-left: 6px; font-weight: 600; }
+  .acc-caret { transition: transform .2s; color: rgb(52,64,84); }
+  .acc-caret--open { transform: rotate(180deg); }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Tabs, Stepper &amp; Accordion</h1>
+    <p><code>Tab</code> — underline style: 14px semibold, inactive gray-600, active gray-800 with a 2px bottom bar on a gray-200 track.
+    <code>Stepper</code> — 28px circular stages: done = success-500 with check, active = accent-500 with white ring, upcoming = gray-200; dashed connectors turn solid green when done.
+    <code>Accordion</code> — 16px medium headers, gray-300 bottom borders, chevron toggles.</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Tabs</h2>
+    <div class="neeto-ui-tab__wrapper" style="display:flex">
+      <button class="neeto-ui-tab active">Tickets<span class="tab-count">128</span></button>
+      <button class="neeto-ui-tab">Customers<span class="tab-count">54</span></button>
+      <button class="neeto-ui-tab">Automations</button>
+      <button class="neeto-ui-tab">Settings</button>
+    </div>
+    <div class="sheet-note" style="margin-top:16px">Optional 16px leading icon per tab. Large size uses 20px text for page-level segmentation.</div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Stepper</h2>
+    <div class="neeto-ui-stepper__wrapper">
+      <div class="neeto-ui-stepper-item__wrapper neeto-ui-stepper-item__wrapper--done">
+        <div class="neeto-ui-stepper-item">
+          <div class="neeto-ui-stepper-item__stage"><span>1</span></div>
+          <div class="neeto-ui-stepper-item__label" data-text="Connect inbox">Connect inbox</div>
+        </div>
+      </div>
+      <div class="neeto-ui-stepper-item__wrapper neeto-ui-stepper-item__wrapper--done">
+        <div class="neeto-ui-stepper-item">
+          <div class="neeto-ui-stepper-item__stage"><span>2</span></div>
+          <div class="neeto-ui-stepper-item__label" data-text="Invite agents">Invite agents</div>
+        </div>
+      </div>
+      <div class="neeto-ui-stepper-item__wrapper neeto-ui-stepper-item__wrapper--active">
+        <div class="neeto-ui-stepper-item">
+          <div class="neeto-ui-stepper-item__stage"><span>3</span></div>
+          <div class="neeto-ui-stepper-item__label" data-text="Set business hours">Set business hours</div>
+        </div>
+      </div>
+      <div class="neeto-ui-stepper-item__wrapper">
+        <div class="neeto-ui-stepper-item">
+          <div class="neeto-ui-stepper-item__stage"><span>4</span></div>
+          <div class="neeto-ui-stepper-item__label" data-text="Go live">Go live</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Accordion</h2>
+    <div style="max-width:560px">
+      <div class="neeto-ui-accordion__wrapper">
+        <div class="neeto-ui-accordion__item" style="display:flex;justify-content:space-between;align-items:center">
+          <span class="neeto-ui-accordion__item-handle">How does the free trial work?</span>
+          <span class="neeto-ui-accordion__item-toggle-icon acc-caret acc-caret--open"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </div>
+        <div class="neeto-ui-accordion__drop neeto-ui-text-body2">Every workspace starts with a 14-day trial of the Pro plan. No credit card required — downgrade to Free anytime.</div>
+      </div>
+      <div class="neeto-ui-accordion__wrapper">
+        <div class="neeto-ui-accordion__item" style="display:flex;justify-content:space-between;align-items:center">
+          <span class="neeto-ui-accordion__item-handle">Can I change plans later?</span>
+          <span class="neeto-ui-accordion__item-toggle-icon acc-caret"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </div>
+      </div>
+      <div class="neeto-ui-accordion__wrapper neeto-ui-accordion__wrapper--last-item">
+        <div class="neeto-ui-accordion__item" style="display:flex;justify-content:space-between;align-items:center">
+          <span class="neeto-ui-accordion__item-handle">Do you offer discounts for nonprofits?</span>
+          <span class="neeto-ui-accordion__item-toggle-icon acc-caret"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

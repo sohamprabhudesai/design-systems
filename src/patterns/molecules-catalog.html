@@ -1,0 +1,115 @@
+<!-- @dsCard group="Patterns" name="neeto-molecules Catalog" subtitle="80+ higher-level patterns available above neetoUI" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neeto-molecules · Catalog</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .cat-card { border: 1px solid rgb(233,235,237); border-radius: 8px; padding: 14px 16px; background: #fff; }
+  .cat-card h3 { font-size: 13px; font-weight: 600; margin: 0 0 8px; color: rgb(16,24,40); }
+  .cat-card ul { margin: 0; padding: 0; list-style: none; font-size: 12.5px; color: rgb(52,64,84); line-height: 1.7; }
+  .cat-card li b { color: rgb(16,24,40); font-weight: 600; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>neeto-molecules Catalog</h1>
+    <p>Higher-level, product-ready patterns built on top of neetoUI (private package <code>@bigbinary/neeto-molecules</code>).
+    When designing a neeto product, prefer one of these before inventing a new pattern. Grouped by purpose:</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Layout &amp; navigation</h2>
+    <div class="cat-grid">
+      <div class="cat-card"><h3>App structure</h3><ul>
+        <li><b>Sidebar</b> — 64px icon rail with product switcher &amp; profile</li>
+        <li><b>Header / SubHeader</b> — page title bar + filter row</li>
+        <li><b>Container / Scrollable / TableWrapper</b> — content scaffolding</li>
+        <li><b>MenuBar</b> — secondary left menu for settings sections</li>
+        <li><b>NavigationHeader</b> — tabbed page navigation</li>
+        <li><b>Breadcrumbs</b> — gray-600 trail with “/” separators</li>
+        <li><b>ConfigurePageSidebar</b> — settings navigation column</li>
+      </ul></div>
+      <div class="cat-card"><h3>Views</h3><ul>
+        <li><b>BoardView</b> — kanban columns with drag targets</li>
+        <li><b>CalendarView</b> — month/week scheduling grid</li>
+        <li><b>DndTable</b> — table with draggable rows</li>
+        <li><b>CardLayout / Columns</b> — card grids and column splits</li>
+        <li><b>AuditLogs</b> — timestamped activity feed</li>
+        <li><b>VersionHistory</b> — diff list with restore</li>
+        <li><b>Insights</b> — metric tiles + charts dashboard</li>
+      </ul></div>
+      <div class="cat-card"><h3>Pages</h3><ul>
+        <li><b>LoginPage</b> — centered 400px auth card</li>
+        <li><b>ErrorPage</b> — 404/500 with illustration + CTA</li>
+        <li><b>PageLoader</b> — full-page centered spinner</li>
+        <li><b>Onboarding</b> — checklist/stepper first-run flow</li>
+        <li><b>Settings</b> — sectioned settings page template</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Input &amp; editing</h2>
+    <div class="cat-grid">
+      <div class="cat-card"><h3>Editors</h3><ul>
+        <li><b>DocumentEditor</b> — rich text editor (neeto-editor)</li>
+        <li><b>Codeblock</b> — syntax-highlighted code with copy</li>
+        <li><b>InlineInput / Rename</b> — click-to-edit titles</li>
+        <li><b>SuffixedInput</b> — input with fixed domain suffix</li>
+        <li><b>OptionFields</b> — repeatable option rows (choices)</li>
+        <li><b>DynamicVariables</b> — {{variable}} inserter</li>
+      </ul></div>
+      <div class="cat-card"><h3>Pickers</h3><ul>
+        <li><b>EmojiPicker / IconPicker</b> — searchable grids</li>
+        <li><b>GoogleFontPicker</b> — font preview list</li>
+        <li><b>DateRangeFilter</b> — presets + custom range</li>
+        <li><b>PhoneNumber / Currency</b> — formatted inputs</li>
+        <li><b>FileUpload</b> — drop zone with previews</li>
+        <li><b>Search</b> — global ⌘K search with results</li>
+      </ul></div>
+      <div class="cat-card"><h3>Communication</h3><ul>
+        <li><b>EmailForm / SendToFields</b> — To/Cc/Bcc composer</li>
+        <li><b>EmailPreview / BrowserPreview / MobilePreviewHeader</b> — device previews</li>
+        <li><b>ShareViaEmail / ShareViaLink</b> — share sheets</li>
+        <li><b>EmojiReactions</b> — reaction pills</li>
+        <li><b>HelpPopover</b> — “?” help bubble</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Feedback &amp; operations</h2>
+    <div class="cat-grid">
+      <div class="cat-card"><h3>Modals</h3><ul>
+        <li><b>ConfirmationModal</b> — typed-confirmation destructive dialog</li>
+        <li><b>DeleteArchiveModal</b> — delete vs archive choice</li>
+        <li><b>FinderModal</b> — ⌘K style record finder</li>
+        <li><b>TimezoneMismatchModal</b> — TZ conflict warning</li>
+      </ul></div>
+      <div class="cat-card"><h3>Status &amp; publishing</h3><ul>
+        <li><b>StatusDropdown</b> — colored status switcher button</li>
+        <li><b>PublishBlock / PublishYourItem</b> — publish CTA blocks</li>
+        <li><b>CopyToClipboardButton</b> — copy with success flash</li>
+        <li><b>StickyRibbonsContainer</b> — top announcement ribbons</li>
+        <li><b>SubscriptionNotificationsContainer</b> — plan nudges</li>
+        <li><b>ToggleFeatureCard</b> — feature card with Switch</li>
+        <li><b>IntegrationCard</b> — logo + connect state card</li>
+      </ul></div>
+      <div class="cat-card"><h3>Utilities</h3><ul>
+        <li><b>KeyboardShortcuts</b> — Kbd cheatsheet pane</li>
+        <li><b>Metadata / DateFormat</b> — consistent meta display</li>
+        <li><b>ImageWithFallback</b> — avatar/logo fallbacks</li>
+        <li><b>IpRestriction / SessionEnvironment / BrowserSupport</b> — security &amp; env notices</li>
+        <li><b>MadeWith</b> — “Made with neeto” badge</li>
+        <li><b>NeetoWidget</b> — embedded helpdesk widget</li>
+      </ul></div>
+    </div>
+    <div class="sheet-note">Full inventory: ~80 components + 7 layout primitives. Storybook: <code>neeto-molecules.neeto.com</code>.</div>
+  </div>
+</body>
+</html>

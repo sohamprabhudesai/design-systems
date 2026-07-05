@@ -1,0 +1,77 @@
+<!-- @dsCard group="Components" name="Selection Controls" subtitle="Checkbox, Radio, Switch — all states" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeetoUI · Selection Controls</title>
+<style>/*__NEETOUI__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  /* Native control shim replicating neetoUI normalize (appearance:none + SVG check) */
+  input.neeto-ui-checkbox[type="checkbox"], input.neeto-ui-radio[type="radio"] {
+    appearance: none; -webkit-appearance: none; margin: 0; background: #fff;
+    background-position: center; background-repeat: no-repeat; flex-shrink: 0;
+  }
+  input.neeto-ui-checkbox[type="checkbox"]:checked {
+    background-color: rgb(0,128,104); border-color: rgb(0,128,104);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+  }
+  input.neeto-ui-radio[type="radio"] { border-radius: 999px; }
+  input.neeto-ui-radio[type="radio"]:checked {
+    border-color: rgb(0,128,104);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23008068'%3E%3Ccircle cx='8' cy='8' r='4'/%3E%3C/svg%3E");
+  }
+  .ctl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px 28px; max-width: 760px; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>Selection Controls</h1>
+    <p>Components: <code>Checkbox</code>, <code>Radio</code>, <code>Switch</code>. Checked color is always <b>primary-500</b>;
+    unchecked borders are gray-400 (2px). Labels are 14px medium, 8px from the control (12px for Switch).</p>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Checkbox — 16px, radius 3px</h2>
+    <div class="ctl-grid">
+      <div class="neeto-ui-checkbox__wrapper"><div class="neeto-ui-checkbox__container"><input class="neeto-ui-checkbox" type="checkbox"><label class="neeto-ui-label">Unchecked</label></div></div>
+      <div class="neeto-ui-checkbox__wrapper"><div class="neeto-ui-checkbox__container"><input class="neeto-ui-checkbox" type="checkbox" checked><label class="neeto-ui-label">Checked</label></div></div>
+      <div class="neeto-ui-checkbox__wrapper"><div class="neeto-ui-checkbox__container"><input class="neeto-ui-checkbox" type="checkbox" disabled><label class="neeto-ui-label" style="opacity:.5">Disabled</label></div></div>
+      <div class="neeto-ui-checkbox__wrapper"><div class="neeto-ui-checkbox__container"><input class="neeto-ui-checkbox" type="checkbox" checked disabled><label class="neeto-ui-label" style="opacity:.5">Checked · disabled</label></div></div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Radio — 16px, horizontal by default, stacked variant</h2>
+    <div class="sheet-row sheet-row--top" style="gap:64px">
+      <div class="neeto-ui-radio__wrapper">
+        <label class="neeto-ui-label neeto-ui-radio__label neeto-ui-font-medium">Ticket visibility</label>
+        <div class="neeto-ui-radio__container">
+          <div class="neeto-ui-radio__item"><input class="neeto-ui-radio" type="radio" name="r1" checked><label class="neeto-ui-label">Public</label></div>
+          <div class="neeto-ui-radio__item"><input class="neeto-ui-radio" type="radio" name="r1"><label class="neeto-ui-label">Private</label></div>
+        </div>
+      </div>
+      <div class="neeto-ui-radio__wrapper">
+        <label class="neeto-ui-label neeto-ui-radio__label neeto-ui-font-medium">Plan</label>
+        <div class="neeto-ui-radio__container neeto-ui-radio__container--stacked">
+          <div class="neeto-ui-radio__item"><input class="neeto-ui-radio" type="radio" name="r2"><label class="neeto-ui-label">Free</label></div>
+          <div class="neeto-ui-radio__item"><input class="neeto-ui-radio" type="radio" name="r2" checked><label class="neeto-ui-label">Pro — $9/user</label></div>
+          <div class="neeto-ui-radio__item"><input class="neeto-ui-radio" type="radio" name="r2" disabled><label class="neeto-ui-label" style="opacity:.5">Enterprise (contact us)</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Switch — 44 × 24px track, 20px knob</h2>
+    <div class="ctl-grid">
+      <div class="neeto-ui-switch__wrapper"><div class="neeto-ui-switch__container"><span class="neeto-ui-switch__item"><span class="neeto-ui-switch"></span></span><label class="neeto-ui-label">Off</label></div></div>
+      <div class="neeto-ui-switch__wrapper"><div class="neeto-ui-switch__container"><span class="neeto-ui-switch__item neeto-ui-switch__item--checked"><span class="neeto-ui-switch neeto-ui-switch--checked"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span></span><label class="neeto-ui-label">On — check inside knob</label></div></div>
+      <div class="neeto-ui-switch__wrapper"><div class="neeto-ui-switch__container"><span class="neeto-ui-switch__item neeto-ui-switch__item--disabled"><span class="neeto-ui-switch"></span></span><label class="neeto-ui-label" style="opacity:.5">Disabled</label></div></div>
+      <div class="neeto-ui-switch__wrapper"><div class="neeto-ui-switch__container"><span class="neeto-ui-switch__item neeto-ui-switch__item--checked neeto-ui-switch__item--disabled"><span class="neeto-ui-switch neeto-ui-switch--checked"></span></span><label class="neeto-ui-label" style="opacity:.5">On · disabled</label></div></div>
+    </div>
+    <div class="sheet-note">Use Switch for instant on/off settings; Checkbox for form consent/multi-selection; Radio for 2–5 mutually exclusive options (else use Select).</div>
+  </div>
+</body>
+</html>
