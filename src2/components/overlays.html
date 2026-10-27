@@ -1,92 +1,135 @@
-<!-- @dsCard group="Components" name="Dialogs, Sheet & Menus" subtitle="Dialog, AlertDialog, Sheet drawer, DropdownMenu, Popover, Tooltip" -->
+<!-- @dsCard group="Components" name="Dialogs, Sheet &amp; Menus" subtitle="Dialog 384/512/768 with muted footer band · Alert danger/warning · Sheet · DropdownMenu default/compact · Popover · HelpIcon · Tooltip" -->
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>neeto-atoms · Dialogs, Sheet & Menus</title>
+<title>neeto-atoms · Dialogs, Sheet &amp; Menus</title>
 <style>/*__ATOMS__*/</style>
 <style>/*__SHEET__*/</style>
 <style>
-  .frames { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .frame { position: relative; height: 340px; }
-  .frame .dialog { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 400px; max-width: 90%; }
-  .sheet-frame { height: 380px; display: flex; justify-content: flex-end; }
-  .sheet-frame .sheet { width: 384px; }
+  .spec > .overlay-demo { align-self: stretch; }
+  .map-col { font-weight: 500; }
+  .map-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px 12px; align-items: center; }
+  .sheet-frame { position: relative; height: 560px; max-width: 900px; border-radius: var(--radius-xl); border: 1px solid var(--border); background: rgb(0 0 0 / .5); overflow: hidden; display: flex; justify-content: flex-end; }
+  .sheet-frame .sheet { max-width: 75%; }
 </style>
 </head>
 <body class="nui-sheet">
-  <div class="sheet-header">
-    <h1>Dialogs, Sheet &amp; Menus</h1>
-    <p><code>Dialog</code> — centered, max-w 512px, radius 10px, p-24, black/50 overlay. <code>AlertDialog</code> — destructive confirm; cannot be dismissed by clicking outside.
-    <code>Sheet</code> — right drawer 384px, border-l + shadow-lg. <code>DropdownMenu</code> — popover surface, 6px-radius items, ⌘ shortcuts, destructive item.
-    <code>Tooltip</code> — primary-colored bubble (near-black on light).</p>
-  </div>
+<div class="sheet-header">
+  <h1>Dialogs, Sheet &amp; Menus</h1>
+  <p>Overlay surfaces share one recipe: <code>--popover</code> background and a 1px <code>foreground/10</code> <b>ring instead of a border</b>. Dialog &amp; Alert are 14px-radius boxes with 24px titles and a <code>muted/50</code> footer band (384 / 512 / 768). Sheets are 384 / 512 / 672 with a left-aligned muted footer. Menus get <code>shadow-lg</code> and 36px rows; Tooltip is <code>--foreground</code>.</p>
+</div>
+<div class="sheet-section">
+<h2>Dialog — small 384 · medium 512 (default) · large 768</h2>
+<div class="sheet-col" style="gap:20px">
+<div class="spec" style="width:100%;max-width:900px"><div class="overlay-demo"><div class="dialog dialog--sm" role="dialog"><button class="btn btn--ghost btn--icon btn--sm dialog__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+<div class="dialog__header"><h2 class="dialog__title">Rename view</h2></div>
+<div class="dialog__body"><div class="field"><label>Name</label><input class="input" value="Unassigned — urgent"></div></div>
+<div class="dialog__footer"><button class="btn btn--outline">Cancel</button><button class="btn btn--default">Save</button></div></div></div><span class="spec__label">small — sm:max-w-sm</span></div>
+<div class="spec" style="width:100%;max-width:900px"><div class="overlay-demo"><div class="dialog " role="dialog"><button class="btn btn--ghost btn--icon btn--sm dialog__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+<div class="dialog__header"><h2 class="dialog__title">Invite teammates</h2><p class="dialog__desc">They'll get an email with a link to join Spinkart Support.</p></div>
+<div class="dialog__body"><div class="field"><label>Email addresses</label><input class="input" placeholder="eve@spinkart.com, sam@spinkart.com"></div><div class="field"><label>Role</label><div class="select"><span class="select__value">Agent</span><span class="select__icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div></div></div>
+<div class="dialog__footer"><button class="btn btn--outline">Cancel</button><button class="btn btn--default">Send invites</button></div></div></div><span class="spec__label">medium (default) — sm:max-w-lg</span></div>
+<div class="spec" style="width:100%;max-width:900px"><div class="overlay-demo"><div class="dialog dialog--lg" role="dialog"><button class="btn btn--ghost btn--icon btn--sm dialog__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+<div class="dialog__header"><h2 class="dialog__title">Import contacts</h2><p class="dialog__desc">Map the columns in <b>contacts.csv</b> to contact fields.</p></div>
+<div class="dialog__body"><div class="map-grid"><span class="map-col">Full name</span><span style="color:var(--muted-foreground)">→</span><div class="select"><span class="select__value">Name</span><span class="select__icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div><span class="map-col">Email</span><span style="color:var(--muted-foreground)">→</span><div class="select"><span class="select__value">Email</span><span class="select__icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div><span class="map-col">Company</span><span style="color:var(--muted-foreground)">→</span><div class="select"><span class="select__value">Organization</span><span class="select__icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div><span class="map-col">Phone</span><span style="color:var(--muted-foreground)">→</span><div class="select"><span class="select__value">Phone</span><span class="select__icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div></div></div>
+<div class="dialog__footer"><button class="btn btn--outline">Back</button><button class="btn btn--default">Import 1,248 contacts</button></div></div></div><span class="spec__label">large — sm:max-w-3xl</span></div>
+</div>
+<div class="sheet-note">Content: radius <b>14px</b>, padding 24, gap 20, <code>--popover</code> bg, <b>no border, no shadow</b> — only a 1px <code>foreground/10</code> ring. Overlay <code>black/50</code>, no blur. Close = ghost <code>icon-sm</code> (28px) at top/end 8px. Title <b>24px/600</b> (32px line), description 16px muted, header gap 12. Footer is a full-bleed <code>muted/50</code> band (<code>-mx-6 -mb-6 px-6 py-4</code>, no top border), buttons right-aligned, 8px apart; stacks reversed below 640px.</div>
+</div>
+<div class="sheet-section">
+<h2>Alert — danger (default) &amp; warning</h2>
+<div class="sheet-row sheet-row--top" style="gap:20px">
+<div class="spec"><div class="overlay-demo" style="width:600px"><div class="dialog " role="dialog"><button class="btn btn--ghost btn--icon btn--sm dialog__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+<div class="dialog__header"><h2 class="dialog__title">Delete 3 tickets?</h2><p class="dialog__desc">These tickets and their conversations will be permanently deleted. This can't be undone.</p></div>
 
-  <div class="sheet-section">
-    <h2>Dialog &amp; AlertDialog</h2>
-    <div class="frames">
-      <div class="overlay-demo frame">
-        <div class="dialog">
-          <div><h2 class="dialog__title">Invite team members</h2><p class="dialog__desc" style="margin-top:4px">They'll get an email with a link to join this workspace.</p></div>
-          <div class="field"><label>Email addresses</label><input class="input" placeholder="oliver@example.com, eve@example.com"></div>
-          <div class="dialog__footer"><button class="btn btn--outline">Cancel</button><button class="btn btn--default">Send invites</button></div>
-        </div>
-      </div>
-      <div class="overlay-demo frame">
-        <div class="dialog">
-          <div><h2 class="dialog__title">Delete this project?</h2><p class="dialog__desc" style="margin-top:4px">This permanently deletes <b style="color:var(--foreground)">Customer portal</b> and its 42 tickets. This action cannot be undone.</p></div>
-          <div class="dialog__footer"><button class="btn btn--outline">Cancel</button><button class="btn btn--destructive">Delete project</button></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="dialog__footer"><button class="btn btn--outline">Cancel</button><button class="btn btn--destructive">Delete</button></div></div></div><span class="spec__label">style="danger" — outline Cancel + destructive</span></div>
+<div class="spec"><div class="overlay-demo" style="width:600px"><div class="dialog " role="dialog"><button class="btn btn--ghost btn--icon btn--sm dialog__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+<div class="dialog__header"><h2 class="dialog__title">Disconnect Slack?</h2><p class="dialog__desc">New tickets will stop posting to #support until you reconnect.</p></div>
 
-  <div class="sheet-section">
-    <h2>Sheet (right drawer, 384px)</h2>
-    <div class="overlay-demo sheet-frame">
-      <div class="sheet">
-        <div style="padding:20px 24px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
-          <div><h2 class="dialog__title">Ticket #4092</h2><p class="dialog__desc" style="margin-top:2px">Opened 2 hours ago by Oliver Smith</p></div>
-          <button class="btn btn--ghost btn--icon btn--sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-        </div>
-        <div style="padding:0 24px;display:flex;flex-direction:column;gap:16px;flex-grow:1">
-          <div class="field"><label>Subject</label><input class="input" value="Cannot export invoices"></div>
-          <div class="field"><label>Status</label><div style="display:flex;gap:6px"><span class="badge badge--red-subtle">Urgent</span><span class="badge badge--blue-subtle">Open</span></div></div>
-        </div>
-        <div style="padding:20px 24px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid var(--border)">
-          <button class="btn btn--outline">Cancel</button><button class="btn btn--default">Save changes</button>
-        </div>
-      </div>
+<div class="dialog__footer"><button class="btn btn--outline">Cancel</button><button class="btn btn--default">Continue</button></div></div></div><span class="spec__label">style="warning" — outline Cancel + default (green)</span></div>
+</div>
+<div class="sheet-note"><code>Alert</code> reuses the Dialog content box (<code>role="alertdialog"</code>): same 384 / <b>512</b> / 768 widths, 24px title, 16px muted message, close button on, muted footer band. Default labels “Continue” / “Cancel”; submit shows a spinner while <code>isSubmitting</code>. Clicking outside closes it by default (<code>closeOnOutsideClick</code>).</div>
+</div>
+<div class="sheet-section">
+<h2>Sheet — small 384 (default) · large 512 · extraLarge 672</h2>
+<div class="sheet-frame">
+  <div class="sheet"><button class="btn btn--ghost btn--icon btn--sm sheet__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    <div class="sheet__header"><h2 class="sheet__title">Edit contact</h2><p class="sheet__desc">Changes sync to every open ticket from this contact.</p></div>
+    <div class="sheet__body">
+      <div class="field"><label>Name</label><input class="input" value="Oliver Smith"></div>
+      <div class="field"><label>Email</label><input class="input" value="oliver@example.com"></div>
+      <div class="field"><label>Organization</label><div class="select"><span class="select__value">Spinkart</span><span class="select__icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div></div>
+      <div class="field"><label>Notes</label><textarea class="input">VIP — escalate billing issues to Eve.</textarea></div>
     </div>
+    <div class="sheet__footer"><button class="btn btn--default">Save changes</button><button class="btn btn--outline">Cancel</button></div>
   </div>
+</div>
+<div class="sheet-note">Panel: <code>--popover</code>, <code>border-s</code>, <code>shadow-lg</code>, no radius, 75vw below 640px. Header <code>p-6</code> gap 12, title <b>24px/600</b>, description 14px muted. Body <code>px-6</code>; header / body / footer 16px apart. Footer = <code>muted/50</code> band, <code>px-6 py-4</code>, <b>buttons left-aligned</b>, no border. Close = ghost <code>icon-sm</code> at top/end <b>12px</b>.</div>
+</div>
+<div class="sheet-section">
+<h2>DropdownMenu</h2>
+<div class="sheet-row sheet-row--top" style="gap:40px">
+<div class="spec"><button class="btn btn--default has-icon-end">Actions<span class="btn__trail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><span class="spec__label">TriggerButton — default, trailing chevron</span></div>
+<div class="spec"><div class="menu" style="width:220px">
+  <div class="menu__group-label">Ticket</div>
+  <div class="menu__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="menu__label">Edit</span></div>
+  <div class="menu__item hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="menu__label">Duplicate</span><span class="menu__shortcut">⌘D</span></div>
+  <div class="menu__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg><span class="menu__label">Archive</span><span class="menu__shortcut">⌘E</span></div>
+  <div class="menu__item disabled"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="menu__label">Copy public link</span></div>
+  <div class="menu__sep"></div>
+  <div class="menu__item menu__item--destructive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg><span class="menu__label">Delete</span><span class="menu__shortcut">⌫</span></div>
+</div><span class="spec__label">default — 36px rows, px 12, gap 8</span></div>
+<div class="spec"><div class="menu menu--compact" style="width:200px">
+  <div class="menu__group-label">Columns</div>
+  <div class="menu__item menu__item--check">Subject<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu__indicator"><path d="M20 6 9 17l-5-5"/></svg></div>
+  <div class="menu__item menu__item--check">Requester<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu__indicator"><path d="M20 6 9 17l-5-5"/></svg></div>
+  <div class="menu__item menu__item--check hover">Priority</div>
+  <div class="menu__item menu__item--check">Updated<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu__indicator"><path d="M20 6 9 17l-5-5"/></svg></div>
+  <div class="menu__sep"></div>
+  <div class="menu__item active"><span class="menu__label">Reset to default</span></div>
+</div><span class="spec__label">compact — 28px rows · checkable · active</span></div>
+</div>
+<div class="sheet-note">Content: radius 10, <code>p-1</code>, <b>min-width 160</b>, <code>shadow-lg</code> + 1px <code>foreground/10</code> ring (no border). Items: 14px, radius 8, icons 16px inherit the item color; focus / hover <code>--accent</code>. Label 12px/500 muted <code>px-3 py-1</code>. Separator <code>-mx-1 my-1</code>. Shortcut 12px muted <code>tracking-widest</code>. Destructive: <code>text-destructive</code>, hover <code>destructive/10</code> (dark /20). Checkbox / radio items: <code>ps-3 pe-8</code>, indicator at the end. Opens <code>bottom-end</code>.</div>
+</div>
+<div class="sheet-section">
+<h2>Popover (hover card) · HelpIcon · Tooltip</h2>
+<div class="sheet-row sheet-row--top" style="gap:32px">
+<div class="spec"><div class="popover"><p class="popover__title">SLA policy</p><div>First response within 2 business hours for Pro customers.</div><button class="btn btn--link" style="align-self:flex-start">View policy</button></div><span class="spec__label">Popover — 256px, p-16, gap 8, ring, shadow-md</span></div>
+<div class="spec"><div class="popover popover--primary"><p class="popover__title">New: saved replies</p><div>Insert a saved reply with <b>/</b> in the composer.</div><button class="btn btn--outline btn--sm" style="align-self:flex-start;color:var(--foreground)">Got it</button></div><span class="spec__label">variant="primary" — green, ring-0, shadow-lg</span></div>
+<div class="spec"><div style="display:flex;flex-direction:column;gap:8px"><label class="label">Auto-close after<span class="help-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span></label><div class="popover"><p class="popover__title">Auto-close</p><p class="popover__desc">Tickets waiting on the customer close automatically after this many days.</p><button class="btn btn--link" style="align-self:flex-start;margin-top:4px">Learn more</button></div></div><span class="spec__label">HelpIcon — 16px, popover desc 15px, link default size</span></div>
+</div>
+<div class="sheet-row" style="gap:40px;margin-top:28px;align-items:flex-end">
+<div class="spec"><span class="tooltip">Assign to me</span><span class="spec__label">Tooltip — bg --foreground, text --background</span></div>
+<div class="spec"><span class="tooltip">Search<span class="kbd">⌘K</span></span><span class="spec__label">with Kbd — bg background/20, pe-6</span></div>
+<div class="spec"><span class="tooltip">Tickets that haven't had a reply from an agent within the SLA window are flagged as breached.</span><span class="spec__label">wraps at max-width 320px</span></div>
+</div>
+<div class="sheet-note">Popover title 15px/600 (body2). Tooltip: radius 8, 6px 12px, 12px text, 10px arrow (rotated, radius 2), side <code>top</code>, no delay. It is <b>not</b> primary-colored — it follows <code>--foreground</code>, so it is near-black in light and near-white in dark.</div>
+</div>
+<div class="sheet-section">
+<h2>Dark mode</h2>
+<div class="dark" style="background:var(--background);color:var(--foreground);border-radius:var(--radius-xl);border:1px solid var(--border);padding:24px">
+<div class="sheet-row sheet-row--top" style="gap:32px">
+<div class="overlay-demo" style="width:480px;padding:24px 16px"><div class="dialog dialog--sm" role="dialog"><button class="btn btn--ghost btn--icon btn--sm dialog__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+<div class="dialog__header"><h2 class="dialog__title">Delete 3 tickets?</h2><p class="dialog__desc">This can't be undone.</p></div>
 
-  <div class="sheet-section">
-    <h2>DropdownMenu · Popover · Tooltip</h2>
-    <div class="sheet-row sheet-row--top" style="gap:48px">
-      <div class="spec">
-        <div class="popover menu" style="width:220px">
-          <div class="menu__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4z"/></svg>Edit<span class="menu__shortcut">⌘E</span></div>
-          <div class="menu__item hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Duplicate<span class="menu__shortcut">⌘D</span></div>
-          <div class="menu__item" style="opacity:.5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/></svg>Archive</div>
-          <div class="menu__sep"></div>
-          <div class="menu__item menu__item--destructive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6"/></svg>Delete<span class="menu__shortcut">⌫</span></div>
-        </div>
-        <span class="spec__label">DropdownMenu — icons, shortcuts, destructive after separator</span>
-      </div>
-      <div class="spec">
-        <div class="popover" style="width:280px;padding:16px">
-          <div style="font-size:14px;font-weight:600;margin-bottom:4px">Business hours</div>
-          <p style="font-size:13px;color:var(--muted-foreground);margin:0 0 12px;line-height:1.5">SLA timers only count time inside this schedule. Holidays are excluded automatically.</p>
-          <button class="btn btn--outline btn--sm">Learn more</button>
-        </div>
-        <span class="spec__label">Popover — title + copy + action</span>
-      </div>
-      <div class="spec">
-        <span class="tooltip">Copy link</span>
-        <span class="spec__label">Tooltip — bg-primary, 12px</span>
-      </div>
-    </div>
-  </div>
+<div class="dialog__footer"><button class="btn btn--outline">Cancel</button><button class="btn btn--destructive">Delete</button></div></div></div>
+<div class="menu" style="width:220px">
+  <div class="menu__group-label">Ticket</div>
+  <div class="menu__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="menu__label">Edit</span></div>
+  <div class="menu__item hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="menu__label">Duplicate</span><span class="menu__shortcut">⌘D</span></div>
+  <div class="menu__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg><span class="menu__label">Archive</span><span class="menu__shortcut">⌘E</span></div>
+  <div class="menu__item disabled"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="menu__label">Copy public link</span></div>
+  <div class="menu__sep"></div>
+  <div class="menu__item menu__item--destructive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg><span class="menu__label">Delete</span><span class="menu__shortcut">⌫</span></div>
+</div>
+<div class="sheet-col" style="gap:28px">
+<div class="popover"><p class="popover__title">SLA policy</p><div>First response within 2 business hours.</div></div>
+<span class="tooltip">Search<span class="kbd">⌘K</span></span>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>

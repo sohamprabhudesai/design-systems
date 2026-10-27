@@ -1,4 +1,4 @@
-<!-- @dsCard group="Patterns" name="neeto-molecules v2 Catalog" subtitle="Layouts + ~75 v2 patterns built on neeto-atoms" -->
+<!-- @dsCard group="Patterns" name="neeto-molecules v2 Catalog" subtitle="All 83 v2 molecules (5.9.9), grouped · purpose + import path" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,101 +8,485 @@
 <style>/*__ATOMS__*/</style>
 <style>/*__SHEET__*/</style>
 <style>
-  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
-  .cat-card { border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 16px; background: var(--card); }
-  .cat-card h3 { font-size: 13px; font-weight: 600; margin: 0 0 8px; }
-  .cat-card ul { margin: 0; padding: 0; list-style: none; font-size: 12.5px; color: var(--muted-foreground); line-height: 1.75; }
-  .cat-card li b { color: var(--foreground); font-weight: 500; }
+  .cat { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 0 24px; }
+  .cat-item { display: grid; grid-template-columns: 1fr; gap: 2px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .cat-item__name { font-size: 14px; font-weight: 600; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .cat-item__desc { font-size: 13px; line-height: 1.5; color: var(--muted-foreground); }
+  .cat-item__desc code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; background: var(--muted); border-radius: 4px; padding: 0 4px; color: var(--foreground); }
+  .cat-item__desc b { color: var(--foreground); font-weight: 500; }
+  .cat-item__path { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px; color: var(--muted-foreground); }
+  .count-badge { margin-inline-start: 6px; vertical-align: 1px; }
+  .fixes { columns: 2 320px; column-gap: 32px; margin: 0; padding-inline-start: 18px; }
+  .fixes li { margin: 0 0 4px; break-inside: avoid; }
 </style>
 </head>
 <body class="nui-sheet">
   <div class="sheet-header">
     <h1>neeto-molecules v2 Catalog</h1>
-    <p>Product-level patterns from <code>@bigbinary/neeto-molecules/v2</code>, rebuilt on neeto-atoms. Import from the
-    <code>v2/</code> namespace only (the un-prefixed exports are legacy V1). Prefer these before designing anything custom.</p>
+    <p>Every entry in <code>dist/v2</code> of <code>@bigbinary/neeto-molecules@5.9.9</code> (<b>83</b> molecules), built on neeto-atoms 1.1.1.
+    Each molecule is its own entry point: <code>import X from "@bigbinary/neeto-molecules/v2/X"</code> (apps alias the package as
+    <code>neetomolecules</code>, e.g. <code>neetomolecules/v2/Container</code>). There is no <code>v2/Layouts</code> namespace; un-prefixed exports are legacy v1.</p>
   </div>
 
   <div class="sheet-section">
-    <h2>Layouts (v2/Layouts)</h2>
-    <div class="cat-grid">
-      <div class="cat-card"><h3>Frame</h3><ul>
-        <li><b>Container</b> — h-dvh scroll column, children px-5 md:px-10</li>
-        <li><b>Sidebar</b> — 256px labeled nav on sidebar tokens, product switcher, profile</li>
-        <li><b>Header</b> — pt-10 pb-6 title row with actions</li>
-        <li><b>SubHeader</b> — toolbar row with count badges</li>
-        <li><b>NavigationHeader</b> — h-16 top nav, 15px links, bg-card</li>
-        <li><b>Scrollable</b> — inner scroll region</li>
-        <li><b>ConfigurePageSidebar</b> — settings section nav</li>
-      </ul></div>
-      <div class="cat-card"><h3>Views</h3><ul>
-        <li><b>BoardView</b> — kanban columns</li>
-        <li><b>CalendarView</b> — scheduling grid</li>
-        <li><b>DndTable</b> — drag-to-reorder rows</li>
-        <li><b>CardLayout / Columns</b> — grid scaffolds</li>
-        <li><b>AuditLogs / VersionHistory</b> — activity & diffs</li>
-        <li><b>Insights</b> — metric cards + charts (chart-1…5 tokens)</li>
-      </ul></div>
-      <div class="cat-card"><h3>Pages</h3><ul>
-        <li><b>LoginPage</b> — centered auth card</li>
-        <li><b>ErrorPage</b> — 404/500 + CTA</li>
-        <li><b>PageLoader</b> — centered spinner</li>
-        <li><b>Onboarding</b> — first-run checklist</li>
-        <li><b>Settings</b> — sectioned settings template</li>
-      </ul></div>
+    <h2>Layout & frame<span class="badge badge--secondary badge--sm count-badge">17</span></h2>
+    <div class="cat">
+      <div class="cat-item">
+        <div class="cat-item__name">Container</div>
+        <div class="cat-item__desc">Page scroll column: <code>h-dvh</code>, <code>px-5 md:px-10</code>, no top padding (Header supplies it). <code>isHeaderFixed</code> moves padding onto children.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Container</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Sidebar</div>
+        <div class="cat-item__desc">Main app nav: 240px, drag-resizable 200–320px, offcanvas collapse (no icon rail), expandable sub-items with counts, “More” pinning, settings ConfigureView. No profile row.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Sidebar</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">ConfigurePageSidebar</div>
+        <div class="cat-item__desc">A second resizable shadcn sidebar for configure/settings sub-sections; can be embedded (static) in the page.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/ConfigurePageSidebar</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">MenuBar</div>
+        <div class="cat-item__desc">324px secondary list panel (Block / Item / SubTitle / Search / AddNew) for “views”-style navigation; active block has a 3px brand bar.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/MenuBar</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Header</div>
+        <div class="cat-item__desc">Page title row: 32px/600 title, breadcrumbs above, HelpPopover, MoreDropdown via <code>renderDropdown</code>, built-in 202px Search, actions; <code>size="nano"</code> = 24px. No subtitle.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Header</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">SubHeader</div>
+        <div class="cat-item__desc">Toolbar row under Header (mb-5): left/right slots; <code>SubHeader.RightBlock</code> = ghost Download / Columns3 / Filter icons with dividers. Counts are app-supplied text.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/SubHeader</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">NavigationHeader</div>
+        <div class="cat-item__desc">64px <code>bg-card</code> top bar for builder/editor screens: Home + Rename left, centered <code>h-10</code> Tabs links, PublishBlock right.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/NavigationHeader</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Breadcrumbs</div>
+        <div class="cat-item__desc">Breadcrumb trail on atoms Breadcrumb (<code>nav.mb-4</code>, 14px muted, 14px ChevronRight separators).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Breadcrumbs</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Scrollable</div>
+        <div class="cat-item__desc"><code>flex-grow overflow-y-auto</code> region sized against header vars (those vars are set only by v1 CSS).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Scrollable</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">TableWrapper</div>
+        <div class="cat-item__desc">Flex-grow wrapper giving a table a <code>min-h-0</code> scroll context, with optional bottom space for pagination.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/TableWrapper</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">CardLayout</div>
+        <div class="cat-item__desc">Centered <code>max-w-3xl</code> bordered <b>form card</b> with optional icon/title/description and a sticky muted action footer (Save / Cancel). Not a grid.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/CardLayout</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Settings</div>
+        <div class="cat-item__desc">Admin-panel landing: searchable categories of link cards (24px icon, h5 label, body2 description, hover glow + green heading) and integration cards.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Settings</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">FloatingActionMenu</div>
+        <div class="cat-item__desc">The profile area: fixed tab on the left screen edge (bottom-4) with avatar + help; menu holds profile, workspace/org switcher, product switcher, help links, theme.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/FloatingActionMenu</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">StickyRibbonsContainer</div>
+        <div class="cat-item__desc">Stacks full-width sticky ribbons at the top of the app.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/StickyRibbonsContainer</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">StickyRibbon</div>
+        <div class="cat-item__desc">One sticky top ribbon (NeetoTower notice, refresh-to-update, custom).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/StickyRibbon</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">SubscriptionNotificationsContainer</div>
+        <div class="cat-item__desc">Renders subscription / billing warning ribbons.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/SubscriptionNotificationsContainer</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">MobilePreviewHeader</div>
+        <div class="cat-item__desc">Header strip for mobile preview frames (message + className).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/MobilePreviewHeader</div>
+      </div>
+    </div>
+  </div>
+  <div class="sheet-section">
+    <h2>Pages & states<span class="badge badge--secondary badge--sm count-badge">7</span></h2>
+    <div class="cat">
+      <div class="cat-item">
+        <div class="cat-item__name">PageLoader</div>
+        <div class="cat-item__desc">Centered 36px brand <b>clip-path arc</b> (5px border) with optional h5 text — not a ring spinner.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/PageLoader</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">ErrorPage</div>
+        <div class="cat-item__desc">404 / 403 / 429 / 500: 96px muted icon circle, “ERROR 404” overline, 28px title, 16px description, <code>lg</code> CTA; side-by-side at ≥768px container.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/ErrorPage</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">LoginPage</div>
+        <div class="cat-item__desc">Dev/demo login card: “Login as Oliver” brand button, OR, email + password, secondary “Login” (max-w-lg, p-8/10).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/LoginPage</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Onboarding</div>
+        <div class="cat-item__desc">Full-page <b>stepper flow</b>: Welcome → app steps (atoms Stepper) → Community → Help → confetti “Congratulations!”. Not a checklist.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Onboarding</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">BrowserSupport</div>
+        <div class="cat-item__desc">Banner or page for unsupported browser versions.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/BrowserSupport</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">DeviceIncompatibilityMessage</div>
+        <div class="cat-item__desc">“Not supported on this device” message for mobile.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/DeviceIncompatibilityMessage</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">DownloadMobileAppCallout</div>
+        <div class="cat-item__desc">Callout prompting mobile users to download the app (with excluded paths).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/DownloadMobileAppCallout</div>
+      </div>
+    </div>
+  </div>
+  <div class="sheet-section">
+    <h2>Data display & views<span class="badge badge--secondary badge--sm count-badge">18</span></h2>
+    <div class="cat">
+      <div class="cat-item">
+        <div class="cat-item__name">DndTable</div>
+        <div class="cat-item__desc">Drag-to-reorder table rows (droppable rows, <code>onDrop</code>).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/DndTable</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Columns</div>
+        <div class="cat-item__desc">Table <b>column-visibility manager</b> dropdown: searchable checklist, drag to reorder, persisted per <code>tableKey</code>.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Columns</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">BoardView</div>
+        <div class="cat-item__desc">Kanban board with draggable sections and items (<code>renderSection</code>, <code>renderItem</code>).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/BoardView</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">CalendarView</div>
+        <div class="cat-item__desc">FullCalendar day/week/month; SubHeader toolbar with Today, prev/next, date picker and view switcher; brand-green events.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/CalendarView</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Metadata</div>
+        <div class="cat-item__desc">Titled key/value details panel for record sidebars (+Block / DetailsBlock).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Metadata</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">AuditLogs</div>
+        <div class="cat-item__desc">Audit log list page: Header plus a table of events.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/AuditLogs</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">VersionHistory</div>
+        <div class="cat-item__desc">Collapsible panel listing revisions.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/VersionHistory</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Engagements</div>
+        <div class="cat-item__desc">Comments plus activity timeline for a record.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Engagements</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Insights</div>
+        <div class="cat-item__desc">Form analytics summary: visits, starts, submissions, completion rate, avg. time, device/OS/browser splits, DateRangeFilter. <b>No charts.</b></div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Insights</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">DateFormat</div>
+        <div class="cat-item__desc">User-preference date formatting component + helpers.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/DateFormat</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">TimeFormat</div>
+        <div class="cat-item__desc">User-preference time formatting helpers.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/TimeFormat</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Currency</div>
+        <div class="cat-item__desc">Currency formatting and currency-select helpers.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Currency</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Codeblock</div>
+        <div class="cat-item__desc">Syntax-highlighted code block with copy.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Codeblock</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">EmailPreview</div>
+        <div class="cat-item__desc">Rendered email preview (to / from / subject / body).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/EmailPreview</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">BrowserPreview</div>
+        <div class="cat-item__desc">Fake browser-window chrome around preview content.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/BrowserPreview</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">ImageWithFallback</div>
+        <div class="cat-item__desc">Image that swaps to a fallback on error.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/ImageWithFallback</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">MadeWith</div>
+        <div class="cat-item__desc">“Made with neeto{Product}” attribution badge.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/MadeWith</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">EmojiReactions</div>
+        <div class="cat-item__desc">Reaction chips with counts and an add-reaction control.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/EmojiReactions</div>
+      </div>
+    </div>
+  </div>
+  <div class="sheet-section">
+    <h2>Forms & inputs<span class="badge badge--secondary badge--sm count-badge">21</span></h2>
+    <div class="cat">
+      <div class="cat-item">
+        <div class="cat-item__name">Search</div>
+        <div class="cat-item__desc">Debounced (300ms) atoms <code>Input type=search</code> with a Search prefix; optional <code>?search_term</code> URL sync. <b>Not ⌘K</b> — that is FinderModal.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Search</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">DateRangeFilter</div>
+        <div class="cat-item__desc">Preset Select (160px) plus a custom-range DatePicker (288px).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/DateRangeFilter</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Schedule</div>
+        <div class="cat-item__desc">Weekly availability viewer/editor: day cards; edit mode has lg Switch per day, start/end time Selects, add/copy periods.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Schedule</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">InlineInput</div>
+        <div class="cat-item__desc">Click-to-edit single-line input.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/InlineInput</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Rename</div>
+        <div class="cat-item__desc">Inline rename title with dropdown actions (used in NavigationHeader).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Rename</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">SuffixedInput</div>
+        <div class="cat-item__desc">Input with a fixed suffix (e.g. “.neetodesk.com”).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/SuffixedInput</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">PhoneNumber</div>
+        <div class="cat-item__desc">Country code + phone input and a display formatter.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/PhoneNumber</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">OptionFields</div>
+        <div class="cat-item__desc">Repeatable, reorderable option rows with bulk add (choice fields).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/OptionFields</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">DynamicVariables</div>
+        <div class="cat-item__desc">Insert-<code>{{variable}}</code> dropdown for templates.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/DynamicVariables</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">EmailForm</div>
+        <div class="cat-item__desc">Email composer (to/cc/bcc, subject, editor, attachments); ships with EmailFormProvider.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/EmailForm</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">SendToFields</div>
+        <div class="cat-item__desc">To / Cc / Bcc multi-email fields.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/SendToFields</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">FileUpload</div>
+        <div class="cat-item__desc">Drag-and-drop uploader with a progress list.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/FileUpload</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">EmojiPicker</div>
+        <div class="cat-item__desc">emoji-mart picker popover.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/EmojiPicker</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">IconPicker</div>
+        <div class="cat-item__desc">Searchable icon grid picker (filled / outline).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/IconPicker</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">GoogleFontPicker</div>
+        <div class="cat-item__desc">Google Fonts family picker.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/GoogleFontPicker</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">ResponsiveDevicePicker</div>
+        <div class="cat-item__desc">Desktop / tablet / mobile toggle for previews.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/ResponsiveDevicePicker</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">CopyToClipboardButton</div>
+        <div class="cat-item__desc">Button that copies a value and shows feedback.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/CopyToClipboardButton</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">ButtonGroup</div>
+        <div class="cat-item__desc">Segmented group of buttons.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/ButtonGroup</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">ToggleFeatureCard</div>
+        <div class="cat-item__desc">Card with title, description and a switch to enable a feature.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/ToggleFeatureCard</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">DocumentEditor</div>
+        <div class="cat-item__desc">Full-page document editor: sticky menubar, 42px/700 title, max-w-3xl body.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/DocumentEditor</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Builder</div>
+        <div class="cat-item__desc">Form/page builder shell: elements panel, body, properties panel.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Builder</div>
+      </div>
+    </div>
+  </div>
+  <div class="sheet-section">
+    <h2>Overlays & menus<span class="badge badge--secondary badge--sm count-badge">14</span></h2>
+    <div class="cat">
+      <div class="cat-item">
+        <div class="cat-item__name">MoreDropdown</div>
+        <div class="cat-item__desc">Ghost 32px “…” icon-button dropdown with items, dividers and submenus.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/MoreDropdown</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">HelpPopover</div>
+        <div class="cat-item__desc">16px CircleHelp trigger; hover popover with title, description and “View help article” link.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/HelpPopover</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">ConfirmationModal</div>
+        <div class="cat-item__desc">Type-to-confirm destructive dialog; submit disabled until the text matches.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/ConfirmationModal</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">DeleteArchiveModal</div>
+        <div class="cat-item__desc">Archive-or-delete dialog with an acknowledgement checkbox.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/DeleteArchiveModal</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">StatusDropdown</div>
+        <div class="cat-item__desc">Colored status chip (8px radius, 15px/500) opening a 256px status menu with a check on the selected item.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/StatusDropdown</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">FinderModal</div>
+        <div class="cat-item__desc"><b>⌘K</b> global finder / search modal with result groups.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/FinderModal</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">KeyboardShortcuts</div>
+        <div class="cat-item__desc">Keyboard-shortcut cheat-sheet side pane (<code>KeyboardShortcuts.Pane</code>).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/KeyboardShortcuts</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">TimezoneMismatchModal</div>
+        <div class="cat-item__desc">Prompts when the browser timezone differs from the profile.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/TimezoneMismatchModal</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">SubscriptionUpgradeRequestModal</div>
+        <div class="cat-item__desc">Lets a non-owner request an upgrade from the owner.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/SubscriptionUpgradeRequestModal</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">PublishBlock</div>
+        <div class="cat-item__desc">Draft label + View-draft / Reset buttons, divider, Publish + Preview; includes <code>PublishBlock.Alert</code>.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/PublishBlock</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">PublishYourItem</div>
+        <div class="cat-item__desc">“Publish your X” empty / CTA block.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/PublishYourItem</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">ShareViaLink</div>
+        <div class="cat-item__desc">Share page with a public link, toggles, embed and social options.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/ShareViaLink</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">ShareViaEmail</div>
+        <div class="cat-item__desc">Share-by-email form page with “back to share”.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/ShareViaEmail</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">ShareRecordingPane</div>
+        <div class="cat-item__desc">neetoRecord share pane (links, timestamps, embed, autoplay/mute).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/ShareRecordingPane</div>
+      </div>
+    </div>
+  </div>
+  <div class="sheet-section">
+    <h2>Product-specific / admin<span class="badge badge--secondary badge--sm count-badge">6</span></h2>
+    <div class="cat">
+      <div class="cat-item">
+        <div class="cat-item__name">IntegrationCard</div>
+        <div class="cat-item__desc">Integration tile: icon, title, description, connected state, actions.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/IntegrationCard</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">IpRestriction</div>
+        <div class="cat-item__desc">IP allow-list settings page.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/IpRestriction</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">SessionEnvironment</div>
+        <div class="cat-item__desc">Session / environment variables editor (key/value fields, copy).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/SessionEnvironment</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">Taxonomy</div>
+        <div class="cat-item__desc">Settings page to rename entity names (singular / plural table).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/Taxonomy</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">ProductEmbed</div>
+        <div class="cat-item__desc">Embed-code generator page (inline / popup / floating, size, selector).</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/ProductEmbed</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item__name">NeetoWidget</div>
+        <div class="cat-item__desc">neetoChat / Engage / Replay widget embed-code settings page.</div>
+        <div class="cat-item__path">@bigbinary/neeto-molecules/v2/NeetoWidget</div>
+      </div>
     </div>
   </div>
 
   <div class="sheet-section">
-    <h2>Input &amp; editing</h2>
-    <div class="cat-grid">
-      <div class="cat-card"><h3>Editors</h3><ul>
-        <li><b>DocumentEditor</b> — rich text</li>
-        <li><b>Codeblock</b> — highlighted code + copy</li>
-        <li><b>InlineInput / Rename</b> — click-to-edit</li>
-        <li><b>SuffixedInput</b> — fixed-suffix input</li>
-        <li><b>OptionFields / DynamicVariables</b> — repeatable rows, {{vars}}</li>
-      </ul></div>
-      <div class="cat-card"><h3>Pickers</h3><ul>
-        <li><b>EmojiPicker / IconPicker / GoogleFontPicker</b></li>
-        <li><b>DateRangeFilter</b> — presets + custom</li>
-        <li><b>PhoneNumber / Currency</b> — formatted inputs</li>
-        <li><b>FileUpload</b> — drop zone</li>
-        <li><b>Search</b> — ⌘K command palette (atoms Command)</li>
-      </ul></div>
-      <div class="cat-card"><h3>Communication</h3><ul>
-        <li><b>EmailForm / SendToFields</b> — To/Cc/Bcc composer</li>
-        <li><b>EmailPreview / BrowserPreview / MobilePreviewHeader</b></li>
-        <li><b>ShareViaEmail / ShareViaLink</b></li>
-        <li><b>EmojiReactions / HelpPopover</b></li>
-      </ul></div>
-    </div>
-  </div>
-
-  <div class="sheet-section">
-    <h2>Feedback &amp; operations</h2>
-    <div class="cat-grid">
-      <div class="cat-card"><h3>Modals</h3><ul>
-        <li><b>ConfirmationModal</b> — typed-confirm destructive</li>
-        <li><b>DeleteArchiveModal</b> — delete vs archive</li>
-        <li><b>FinderModal</b> — record finder</li>
-        <li><b>TimezoneMismatchModal / SubscriptionUpgradeRequestModal</b></li>
-      </ul></div>
-      <div class="cat-card"><h3>Status &amp; publishing</h3><ul>
-        <li><b>StatusDropdown</b> — status switcher</li>
-        <li><b>PublishBlock / PublishYourItem</b></li>
-        <li><b>CopyToClipboardButton</b></li>
-        <li><b>StickyRibbonsContainer / SubscriptionNotificationsContainer</b></li>
-        <li><b>ToggleFeatureCard / IntegrationCard</b></li>
-      </ul></div>
-      <div class="cat-card"><h3>Utilities</h3><ul>
-        <li><b>KeyboardShortcuts</b> — Kbd cheatsheet</li>
-        <li><b>Metadata / DateFormat / Currency</b></li>
-        <li><b>ImageWithFallback / MadeWith / NeetoWidget</b></li>
-        <li><b>IpRestriction / SessionEnvironment / BrowserSupport / DeviceIncompatibilityMessage</b></li>
-        <li><b>MoreDropdown / FloatingActionMenu / ButtonGroup / Breadcrumbs</b></li>
-      </ul></div>
-    </div>
-    <div class="sheet-note">Storybook: <code>neeto-molecules.neeto.com</code> → “v2/…” stories. npm: <code>@bigbinary/neeto-molecules@5.x</code>.</div>
+    <h2>Corrected since the previous catalog</h2>
+    <ul class="sheet-note fixes">
+      <li><b>Search</b> is a debounced search input, not a ⌘K palette — ⌘K is <b>FinderModal</b>.</li>
+      <li><b>CardLayout</b> is a centered form card with a sticky muted footer; <b>Columns</b> is a column-visibility dropdown. Neither is a grid scaffold.</li>
+      <li><b>Onboarding</b> is a full-page stepper flow, not a checklist.</li>
+      <li><b>Insights</b> is form analytics with no charts and no chart tokens.</li>
+      <li><b>Sidebar</b> is 240px (resizable); product switcher and profile live in <b>FloatingActionMenu</b>.</li>
+      <li><b>SubHeader</b> has no built-in counts or badges; <b>Header</b> owns the 32px title, breadcrumbs, HelpPopover and Search.</li>
+      <li><b>ErrorPage</b> covers 404/403/429/500; <b>PageLoader</b> is an arc, not a ring.</li>
+      <li>Added: Builder, DownloadMobileAppCallout, Engagements, MenuBar, ProductEmbed, ResponsiveDevicePicker, Schedule, ShareRecordingPane, StickyRibbon, TableWrapper, Taxonomy, TimeFormat.</li>
+      <li>Storybook URL removed — not verifiable from the published package.</li>
+    </ul>
   </div>
 </body>
 </html>

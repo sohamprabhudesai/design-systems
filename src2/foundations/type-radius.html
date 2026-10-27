@@ -1,4 +1,4 @@
-<!-- @dsCard group="Foundations" name="Typography, Radius & Focus" subtitle="Geist · type scale · 6/8/10/14 radii · rings & shadows" -->
+<!-- @dsCard group="Foundations" name="Typography, Radius & Focus" subtitle="Geist · Typography jumbo…nano · weights · 6/8/10/14/pill radii · focus ring · ring-not-border elevation · motion" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,63 +8,114 @@
 <style>/*__ATOMS__*/</style>
 <style>/*__SHEET__*/</style>
 <style>
-  .type-row { display: grid; grid-template-columns: 210px 1fr; gap: 20px; align-items: baseline; padding: 10px 0; border-bottom: 1px dashed var(--border); }
+  .type-row { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: baseline; padding: 10px 0; border-bottom: 1px dashed var(--border); }
   .type-row:last-child { border-bottom: 0; }
   .type-meta { font-size: 10.5px; color: var(--muted-foreground); font-family: ui-monospace, "SF Mono", Menlo, monospace; line-height: 1.6; }
   .type-meta b { display: block; color: var(--foreground); font-size: 12px; }
-  .radius-box { width: 88px; height: 56px; background: var(--muted); border: 1px solid var(--input); }
-  .shadow-box { width: 132px; height: 68px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--muted-foreground); }
+  .weights { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .weight { font-size: 20px; line-height: 1.3; }
+  .weight small { display: block; font-size: 10.5px; font-weight: 400; color: var(--muted-foreground); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .radius-box { width: 96px; height: 60px; background: var(--muted); box-shadow: var(--ring-fg10); }
+  .elev-box { width: 150px; height: 76px; background: var(--card); color: var(--muted-foreground); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; text-align: center; font-size: 11px; padding: 8px; }
+  .elev-box--border { border: 1px solid var(--border); }
+  .dark-panel { background: var(--background); color: var(--foreground); border-radius: var(--radius-xl); padding: 20px; box-shadow: var(--ring-fg10); }
+  .motion-demo { width: 160px; }
+  .motion-demo .btn { width: 100%; }
+  .wrap-wide { max-width: 60ch; }
 </style>
 </head>
 <body class="nui-sheet">
   <div class="sheet-header">
     <h1>Typography, Radius &amp; Focus</h1>
-    <p>Font: <b>Geist Variable</b> (embedded here), fallback system-ui. UI default is <b>14px / 400 / 1.45</b>.
-    Weight range is used narrowly: 400 body · 500 buttons, labels, active items · 600 headings. Tracking tightens slightly
-    (−0.02em) on headings 20px+.</p>
+    <p>Font: <b>Geist Variable</b> (<code>--font-sans</code>, embedded here), fallback <code>ui-sans-serif, system-ui</code>. Body default is
+    <b>14px / 20px / 400</b> (Tailwind <code>text-sm</code>); <code>-webkit-font-smoothing: antialiased</code> was removed upstream (#420).
+    Typography <code>color="primary"</code> is <b>foreground</b>, not brand green.</p>
   </div>
 
   <div class="sheet-section">
-    <h2>Type scale (Tailwind steps)</h2>
-    <div class="type-row"><div class="type-meta"><b>text-3xl · 30px</b>weight 600 · lh 36px · −0.02em</div><div style="font-size:30px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">Build better, ship faster</div></div>
-    <div class="type-row"><div class="type-meta"><b>text-2xl · 24px</b>weight 600 · page titles (Header)</div><div style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">Build better, ship faster</div></div>
-    <div class="type-row"><div class="type-meta"><b>text-xl · 20px</b>weight 600 · section titles</div><div style="font-size:20px;font-weight:600;letter-spacing:-0.01em;line-height:1.3">Build better, ship faster</div></div>
-    <div class="type-row"><div class="type-meta"><b>text-lg · 18px</b>weight 600 · dialog titles</div><div style="font-size:18px;font-weight:600;line-height:1.3">Build better, ship faster</div></div>
-    <div class="type-row"><div class="type-meta"><b>text-base · 16px</b>weight 500/600 · card titles</div><div style="font-size:16px;font-weight:500;line-height:1.4">Build better, ship faster</div></div>
-    <div class="type-row"><div class="type-meta"><b>text-sm · 14px</b>weight 400 · DEFAULT — all UI copy</div><div style="font-size:14px;line-height:1.45">The workhorse size: buttons, inputs, table cells, menus, descriptions and nearly every string in the product.</div></div>
-    <div class="type-row"><div class="type-meta"><b>text-xs · 12px</b>weight 400/500 · badges, meta</div><div style="font-size:12px;line-height:1.45;color:var(--muted-foreground)">Timestamps, helper text, badge labels, keyboard shortcuts.</div></div>
+    <h2>Typography variants (classes <code>.t-*</code>)</h2>
+    <div class="type-row"><div class="type-meta"><b>jumbo · 48px</b>600 · leading-none · tracking-tight · &lt;h1&gt;</div><div class="t-jumbo">Invoices</div></div>
+    <div class="type-row"><div class="type-meta"><b>h1 · 40px</b>600 · leading-tight (1.25) · tracking-tight</div><div class="t-h1">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>h2 · 32px</b>600 · leading-tight · tracking-tight</div><div class="t-h2">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>h3 · 28px</b>600 · leading-tight</div><div class="t-h3">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>h4 · 24px</b>600 · leading-tight · Dialog / Empty title</div><div class="t-h4">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>h5 · 20px</b>600 · leading-tight</div><div class="t-h5">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>h6 · 16px</b>600 · leading-tight</div><div class="t-h6">Build better, ship faster</div></div>
+    <div class="type-row"><div class="type-meta"><b>body1 · 16px</b>400 · leading-normal (1.5)</div><div class="t-body1 wrap-wide">Long-form copy and dialog descriptions use the larger body size.</div></div>
+    <div class="type-row"><div class="type-meta"><b>body2 · 15px</b>400 · leading-normal · Popover title (600)</div><div class="t-body2 wrap-wide">HelpIcon popover descriptions sit at 15px.</div></div>
+    <div class="type-row"><div class="type-meta"><b>body3 · 14px — DEFAULT</b>400 · leading-normal</div><div class="t-body3 wrap-wide">The workhorse: buttons, inputs, table cells, menus and nearly every UI string.</div></div>
+    <div class="type-row"><div class="type-meta"><b>caption · 12px</b>400 · 16px · &lt;span&gt;</div><div class="t-caption t-muted">Timestamps, helper meta, badge labels.</div></div>
+    <div class="type-row"><div class="type-meta"><b>nano · 10px</b>400 · 14px · &lt;span&gt;</div><div class="t-nano t-muted">Dense counters and micro labels.</div></div>
+    <div class="type-row"><div class="type-meta"><b>code · 14px</b>font-mono · text-sm</div><div class="t-code">npm i @bigbinary/neeto-atoms@1.1.1</div></div>
+    <div class="sheet-note">Colors: <code>default</code> → foreground, <code>muted</code> → <code>--muted-foreground</code> (now 0.44 / 0.76), <code>primary</code> → foreground, <code>destructive</code>, <code>inherit</code>. Links in descriptions underline at offset 4 and hover to <code>--link</code>. <code>lineClamp</code> 1 / 2 / 3.</div>
   </div>
 
   <div class="sheet-section">
-    <h2>Radius — base 10px, derived steps</h2>
+    <h2>Weights</h2>
+    <div class="weights">
+      <div class="weight" style="font-weight:100">Geist<small>thin · 100</small></div>
+      <div class="weight" style="font-weight:200">Geist<small>extralight · 200</small></div>
+      <div class="weight" style="font-weight:300">Geist<small>light · 300</small></div>
+      <div class="weight" style="font-weight:400">Geist<small>normal · 400 — body</small></div>
+      <div class="weight" style="font-weight:500">Geist<small>medium · 500 — buttons, labels, badges</small></div>
+      <div class="weight" style="font-weight:600">Geist<small>semibold · 600 — headings</small></div>
+      <div class="weight" style="font-weight:700">Geist<small>bold · 700</small></div>
+      <div class="weight" style="font-weight:800">Geist<small>extrabold · 800</small></div>
+      <div class="weight" style="font-weight:900">Geist<small>black · 900</small></div>
+    </div>
+    <div class="sheet-note">In practice the UI uses three: 400 copy, 500 controls and selected nav items, 600 headings and Callout titles.</div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Radius — <code>--radius: 0.625rem</code> (10px), derived steps</h2>
     <div class="sheet-row sheet-row--top">
-      <div class="spec spec--center"><div class="radius-box" style="border-radius:var(--radius-sm)"></div><span class="spec__label">sm · 6px — menu items</span></div>
-      <div class="spec spec--center"><div class="radius-box" style="border-radius:var(--radius-md)"></div><span class="spec__label">md · 8px — small buttons, popovers</span></div>
-      <div class="spec spec--center"><div class="radius-box" style="border-radius:var(--radius-lg)"></div><span class="spec__label">lg · 10px — buttons, inputs, dialogs</span></div>
-      <div class="spec spec--center"><div class="radius-box" style="border-radius:var(--radius-xl)"></div><span class="spec__label">xl · 14px — cards</span></div>
-      <div class="spec spec--center"><div class="radius-box" style="border-radius:999px"></div><span class="spec__label">full — badges, switches, avatars</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:var(--radius-sm)"></div><span class="spec__label">sm · 6px — Kbd, Badge rounded is 4px</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:var(--radius-md)"></div><span class="spec__label">md · 8px — xs/sm buttons, menu items, tab trigger, tooltip, toast</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:var(--radius-lg)"></div><span class="spec__label">lg · 10px — buttons, inputs, Callout, Menu, Popover</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:var(--radius-xl)"></div><span class="spec__label">xl · 14px — Card, Dialog, Alert, Empty</span></div>
+      <div class="spec spec--center"><div class="radius-box" style="border-radius:999px"></div><span class="spec__label">pill — Badge, Switch, Avatar, Progress</span></div>
     </div>
+    <div class="sheet-note"><code>--radius-sm = radius − 4</code>, <code>-md = radius − 2</code>, <code>-lg = radius</code>, <code>-xl = radius + 4</code>. Sheets are square; Checkbox is 4px.</div>
   </div>
 
   <div class="sheet-section">
-    <h2>Focus rings &amp; states</h2>
+    <h2>Focus ring recipe</h2>
     <div class="sheet-row">
-      <div class="spec"><button class="btn btn--default focus">Focused</button><span class="spec__label">border-ring + 3px ring/50</span></div>
-      <div class="spec"><button class="btn btn--destructive focus">Delete</button><span class="spec__label">destructive ring @ 40%</span></div>
-      <div class="spec"><input class="input focus" style="width:180px" value="Focused input"><span class="spec__label">same ring recipe on inputs</span></div>
-      <div class="spec"><input class="input invalid" style="width:180px" value="Invalid value"><span class="spec__label">aria-invalid — destructive border + 20% ring</span></div>
+      <div class="spec"><button class="btn btn--outline focus">Focused</button><span class="spec__label">border-ring + ring-3 ring/50</span></div>
+      <div class="spec"><button class="btn btn--neutral focus">Neutral</button><span class="spec__label">neutral-solid border + /40</span></div>
+      <div class="spec"><button class="btn btn--destructive focus">Delete</button><span class="spec__label">destructive border + /40</span></div>
+      <div class="spec"><div class="input focus" style="width:190px"><input value="Focused input"></div><span class="spec__label">InputGroup — same recipe</span></div>
+      <div class="spec"><div class="input invalid" style="width:190px"><input value="Invalid value"></div><span class="spec__label">aria-invalid — destructive + /20</span></div>
     </div>
-    <div class="sheet-note">Buttons nudge down 1px on press (<code>active:translate-y-px</code>). Disabled anything = 50% opacity. Transitions are fast (~150ms) — snappier than V1's 300ms.</div>
+    <div class="sheet-note"><code>focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50</code> → <code>border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent)</code>. Invalid in dark uses <code>destructive/50</code> border + <code>/40</code> ring. Base layer sets <code>outline-color: ring/50</code>.</div>
   </div>
 
   <div class="sheet-section">
-    <h2>Elevation — subtle, border-first</h2>
+    <h2>Elevation — 1px ring instead of borders</h2>
     <div class="sheet-row sheet-row--top" style="gap:24px">
-      <div class="spec spec--center"><div class="shadow-box" style="box-shadow:0 1px 2px 0 rgb(0 0 0 / .05)">shadow-sm</div><span class="spec__label">cards, active tab</span></div>
-      <div class="spec spec--center"><div class="shadow-box" style="box-shadow:0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1)">shadow-md</div><span class="spec__label">popovers, menus</span></div>
-      <div class="spec spec--center"><div class="shadow-box" style="box-shadow:0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1)">shadow-lg</div><span class="spec__label">dialogs, sheets</span></div>
+      <div class="spec spec--center"><div class="elev-box" style="box-shadow:var(--ring-fg10)">ring-1 foreground/10</div><span class="spec__label">Card, Dialog, Alert — no shadow</span></div>
+      <div class="spec spec--center"><div class="elev-box" style="border-radius:var(--radius-lg);box-shadow:var(--ring-fg10), var(--shadow-md)">ring + shadow-md</div><span class="spec__label">Popover (10px)</span></div>
+      <div class="spec spec--center"><div class="elev-box" style="border-radius:var(--radius-lg);box-shadow:var(--ring-fg10), var(--shadow-lg)">ring + shadow-lg</div><span class="spec__label">DropdownMenu (10px)</span></div>
+      <div class="spec spec--center"><div class="elev-box elev-box--border" style="border-radius:0;box-shadow:var(--shadow-lg)">border-s + shadow-lg</div><span class="spec__label">Sheet</span></div>
+      <div class="spec spec--center"><div class="elev-box" style="border-radius:var(--radius-md);box-shadow:var(--shadow-sm)">shadow-sm</div><span class="spec__label">active Tab, selected sidebar item</span></div>
     </div>
-    <div class="sheet-note">V2 leans on 1px borders and flat surfaces; shadows are lighter than V1. In dark mode, elevation comes from lighter surface tokens (card/popover at oklch 0.205), not shadows.</div>
+    <div class="sheet-note">Atoms now prefers <code>ring-1 ring-foreground/10</code> (<code>box-shadow: 0 0 0 1px color-mix(in oklab, var(--foreground) 10%, transparent)</code>, available here as <code>var(--ring-fg10)</code>) over a 1px border on Dialog, Card, Menu and Popover — it tints with foreground so it reads in both themes without a dark-mode override. Shadows are Tailwind v4 <code>shadow-xs/sm/md/lg</code>.</div>
+    <div class="dark dark-panel" style="margin-top:16px">
+      <div class="sheet-row sheet-row--top" style="gap:24px">
+        <div class="spec spec--center"><div class="elev-box" style="box-shadow:var(--ring-fg10)">Card · dark</div><span class="spec__label">ring = white/10 on 0.205 card</span></div>
+        <div class="spec spec--center"><div class="elev-box" style="border-radius:var(--radius-lg);box-shadow:var(--ring-fg10), var(--shadow-lg)">Menu · dark</div><span class="spec__label">elevation from the lighter surface</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Motion</h2>
+    <div class="sheet-row sheet-row--top" style="gap:24px">
+      <div class="spec motion-demo"><button class="btn btn--default">Press me</button><span class="spec__label">active:translate-y-px · transition-all 150ms</span></div>
+      <div class="spec"><svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><span class="spec__label">animate-spin 1s linear (Loader2)</span></div>
+      <div class="spec"><div class="skeleton" style="width:160px;height:16px"></div><span class="spec__label">animate-pulse 2s — Skeleton</span></div>
+    </div>
+    <div class="sheet-note">Controls transition color/shadow at Tailwind's 150ms ease. Dialog zoom + fade 100ms; Sheet slides 2.5rem + fades over 200ms, overlay opacity 150ms; Popover hover opens/closes after 200ms. Disabled anything = 50% opacity.</div>
   </div>
 </body>
 </html>

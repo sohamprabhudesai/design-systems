@@ -1,9 +1,12 @@
 /**
- * neeto-atoms design tokens (from @bigbinary/neeto-atoms dist/index.css).
- * Semantic OKLCH tokens; .dark class swaps the palette.
- * Font: "Geist Variable", ui-sans-serif, system-ui. UI default 14px/400/1.45.
+ * neeto-atoms design tokens — copied verbatim from @bigbinary/neeto-atoms@1.1.1 src/index.css.
+ * Semantic OKLCH tokens; `.dark` swaps the palette, `.light` opts a subtree back into light.
+ * primary = brand green (#480). Black survives only as --neutral-solid (the `neutral` button).
+ * Font: "Geist Variable". UI default 14px/400 (Tailwind text-sm, line-height 20px).
+ * Regenerate: python3 build/gen_tokens.py <neeto-atoms checkout> tokens-v2/tokens.css tokens-v2/tokens.json (reads origin/main).
  */
-:root {
+:root,
+.light {
   color-scheme: light;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -12,12 +15,22 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  /* Brand rebrand (#480, variant B): primary IS the brand green. Black lives on
+  as the `neutral` button variant via --neutral-solid below. */
+  --primary: var(--brand);
+  --primary-foreground: var(--brand-foreground);
+  /* Reserved solid neutral (black) button; stays neutral regardless of what
+  --primary becomes. Carries today's primary values. See issue #480. */
+  --neutral-solid: oklch(0.205 0 0);
+  --neutral-solid-foreground: oklch(0.985 0 0);
+  --brand: oklch(0.5349 0.1023 173.46);
+  --brand-foreground: oklch(1 0 0);
+  --brand-text: var(--brand);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: oklch(0.44 0 0);
+  --placeholder: oklch(0.6 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -42,6 +55,7 @@
   --info-border: oklch(0.9158 0.0473 245.12);
   --info-solid: oklch(0.5151 0.2399 257.85);
   --info-solid-foreground: oklch(1 0 0);
+  --link: oklch(0.4829 0.1672 257.26);
   --row-selected: oklch(0.975 0 0);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
@@ -51,19 +65,22 @@
   --chart-3: oklch(0.546 0.245 262.881);
   --chart-4: oklch(0.488 0.243 264.376);
   --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.985 0 0);
+  --sidebar: oklch(0.975 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-primary: var(--background); /* v2: selected item sits on a card-white box */
+  --sidebar-primary-foreground: var(--brand-text); /* v2: selected item text and icons */
   --sidebar-accent: oklch(0.94 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-border: var(--border);
   --sidebar-ring: oklch(0.708 0 0);
+  --avatar-l: 60%;
+  --avatar-c: 0.15;
+  --avatar-fg: oklch(1 0 0);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 .dark {
@@ -74,12 +91,20 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  /* Brand rebrand (#480, variant B): primary IS the brand green (dark theme). */
+  --primary: var(--brand);
+  --primary-foreground: var(--brand-foreground);
+  /* Reserved solid neutral button; inverts to light in dark mode for contrast. */
+  --neutral-solid: oklch(0.922 0 0);
+  --neutral-solid-foreground: oklch(0.205 0 0);
+  --brand: oklch(0.55 0.102 173.46);
+  --brand-foreground: oklch(1 0 0);
+  --brand-text: oklch(0.7 0.102 173.46);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
+  --muted-foreground: oklch(0.76 0 0);
+  --placeholder: oklch(0.68 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
@@ -96,16 +121,25 @@
   --info: oklch(0.2217 0.069 259.89);
   --info-foreground: oklch(0.717 0.1648 250.79);
   --info-border: oklch(0.341 0.121 254.74);
+  --link: oklch(0.71 0.12 253);
   --row-selected: oklch(0.2 0 0);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.809 0.105 251.813);
+  --chart-2: oklch(0.623 0.214 259.815);
+  --chart-3: oklch(0.546 0.245 262.881);
+  --chart-4: oklch(0.488 0.243 264.376);
+  --chart-5: oklch(0.424 0.199 265.638);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-primary: var(--sidebar-accent); /* v2: raised surface, mirrors the light card */
+  --sidebar-primary-foreground: var(--brand-text); /* v2: selected item text and icons */
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-border: var(--border);
   --sidebar-ring: oklch(0.556 0 0);
+  --avatar-l: 55%;
+  --avatar-c: 0.13;
+  --avatar-fg: oklch(1 0 0);
 }

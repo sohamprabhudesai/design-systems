@@ -1,0 +1,209 @@
+<!-- @dsCard group="neetoCal fit check" name="neetoCal · Booking page" subtitle="Public slot picker + confirmation under three themes via neetoCal's token remap · proposed extensions" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neetoCal fit check · Booking page</title>
+<style>/*__ATOMS__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  /* ---- neetoCal theme scope, as in app/javascript/stylesheets/abstracts/variables.css.
+     neetothemes v2 writes RGB triplets; the scope maps them onto atoms tokens.
+     It sets --primary directly (not --brand) and leaves status tokens untouched. ---- */
+  .x-theme-scope {
+    --foreground: rgb(var(--nc-card-text)); --card-foreground: var(--foreground); --popover-foreground: var(--foreground); --accent-foreground: var(--foreground);
+    --background: rgb(var(--nc-card-bg)); --card: var(--background); --popover: var(--background);
+    --muted-foreground: rgba(var(--nc-card-text), .65); --input: rgba(var(--nc-card-text), .2);
+    --border: rgba(var(--nc-card-text), .15); --muted: rgba(var(--nc-card-text), .025);
+    --primary: rgb(var(--nc-primary)); --primary-foreground: rgb(var(--nc-primary-text));
+    --accent: rgba(var(--nc-primary), .1); --ring: rgb(var(--nc-primary));
+    --secondary: rgb(var(--nc-secondary)); --secondary-foreground: rgb(var(--nc-secondary-text));
+    --link: rgb(var(--nc-link)); --info: rgb(var(--nc-link));
+    color: var(--foreground);
+  }
+  /* neetoCal's [data-slot=alert] patch: callout text follows the callout colour; the info
+     palette is derived from link × card-bg. warning/success/error are NOT derived. */
+  .x-theme-scope .callout {
+    --foreground: currentColor;
+    --info: color-mix(in srgb, rgb(var(--nc-link)) 12%, rgb(var(--nc-card-bg)));
+    --info-border: color-mix(in srgb, rgb(var(--nc-link)) 28%, rgb(var(--nc-card-bg)));
+    --info-foreground: rgb(var(--nc-link));
+  }
+  .theme-plain-green { --nc-primary: 0, 128, 104; --nc-primary-text: 255, 255, 255; --nc-secondary: 225, 243, 238; --nc-secondary-text: 16, 24, 40; --nc-bg: 246, 247, 248; --nc-card-bg: 255, 255, 255; --nc-card-text: 12, 17, 29; --nc-link: 9, 90, 186; }
+  .theme-indigo { --nc-primary: 79, 70, 229; --nc-primary-text: 255, 255, 255; --nc-secondary: 238, 242, 255; --nc-secondary-text: 49, 46, 129; --nc-bg: 241, 240, 251; --nc-card-bg: 255, 255, 255; --nc-card-text: 30, 27, 75; --nc-link: 79, 70, 229; }
+  .theme-night { --nc-primary: 250, 204, 21; --nc-primary-text: 24, 24, 27; --nc-secondary: 39, 39, 42; --nc-secondary-text: 250, 250, 250; --nc-bg: 9, 9, 11; --nc-card-bg: 24, 24, 27; --nc-card-text: 244, 244, 245; --nc-link: 147, 197, 253; }
+
+  /* booking shell (eui.css: container-wrapper / container / block / left / right) */
+  .x-eui-wrapper { background: rgb(var(--nc-bg)); padding: 25px; border-radius: var(--radius-xl); }
+  .x-eui-card { max-width: 1080px; margin: 0 auto; background: var(--background); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; }
+  .x-eui-cover { height: 120px; background: var(--primary); position: relative; }
+  .x-eui-logo { position: absolute; inset-inline-start: 32px; top: 100%; transform: translateY(-50%); width: 88px; height: 88px; border-radius: var(--radius-xl); background: var(--background); border: 1px solid var(--border); display: grid; place-items: center; font-weight: 700; font-size: 22px; color: var(--primary); }
+  .x-eui-block { display: flex; min-height: 520px; }
+  .x-eui-left { width: 40%; flex-shrink: 0; border-inline-end: 1px solid var(--border); padding: 64px 32px 32px; display: flex; flex-direction: column; gap: 24px; }
+  .x-eui-right { flex: 1; padding: 32px; display: flex; justify-content: center; gap: 16px; }
+  .x-detail { display: flex; align-items: center; gap: 8px; }
+  .x-detail svg { width: 20px; height: 20px; color: var(--muted-foreground); flex-shrink: 0; }
+  .x-cal { width: 336px; }
+  .x-cal__nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+  .x-cal__nav .btn { border-radius: 999px; }
+  .x-cal__label { font-weight: 600; font-size: 15px; }
+  .x-cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); justify-items: center; }
+  .x-cal__wd { font-size: 14px; font-weight: 500; text-transform: uppercase; padding: 16px 0; color: var(--muted-foreground); }
+
+  /* ---- Proposed DS extensions (NOT in atoms 1.1.1) — neetoCal builds these by hand today ---- */
+  /* availability day cell (calendar.css: 2.5rem circle, available/selected/disabled/today-dot) */
+  .x-day { position: relative; width: 40px; height: 40px; margin: 5px 3px; border-radius: 999px; display: grid; place-items: center; font-size: 14px; font-weight: 600; color: var(--muted-foreground); }
+  .x-day--available { background: var(--secondary); color: var(--secondary-foreground); cursor: pointer; }
+  .x-day--available:hover, .x-day--selected { background: var(--primary); color: var(--primary-foreground); }
+  .x-day--today::after { content: ""; position: absolute; bottom: 5px; width: 4px; height: 4px; border-radius: 999px; background: var(--primary); }
+  .x-day--selected.x-day--today::after { background: var(--primary-foreground); }
+  /* slot button (eui.css .primary-slot-time-btn: 2.5rem, .5rem radius, secondary → primary) */
+  .x-slots { width: 220px; display: flex; flex-direction: column; gap: 16px; }
+  .x-slots__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .x-slots__list { display: flex; flex-direction: column; gap: 8px; padding-inline-end: 8px; }
+  .x-slot { height: 40px; width: 100%; border: 0; border-radius: var(--radius-md); padding: 12px 6px; font: 500 14px/1 var(--font-sans); background: var(--secondary); color: var(--secondary-foreground); cursor: pointer; }
+  .x-slot:hover, .x-slot.hover { background: var(--primary); color: var(--primary-foreground); }
+  .x-slot.focus { box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary) 30%, transparent); }
+  .x-slot--count { height: auto; display: flex; flex-direction: column; gap: 4px; align-items: center; }
+  .x-slot--count small { font-size: 80%; font-weight: 400; opacity: .8; }
+  .x-slot:disabled { background: var(--muted); opacity: .6; cursor: not-allowed; }
+
+  /* confirmation (commons/BookingDetails) */
+  .x-confirm { max-width: 768px; margin: 0 auto; background: var(--background); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .x-confirm__cover { height: 96px; background: var(--primary); }
+  .x-confirm__top { display: flex; gap: 16px; padding: 32px 48px; border-bottom: 1px solid var(--border); }
+  .x-confirm__top > svg { width: 32px; height: 32px; color: var(--success-foreground); flex-shrink: 0; }
+  .x-confirm__rows { padding: 24px 48px; display: flex; flex-direction: column; gap: 24px; }
+  .x-confirm__row { display: flex; }
+  .x-confirm__row > :first-child { width: 176px; flex-shrink: 0; font-weight: 700; }
+  .x-confirm__bar { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; border-top: 1px solid var(--border); padding: 24px 48px; }
+  .theme-label { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 13px; color: var(--muted-foreground); }
+  .theme-chip { display: inline-flex; gap: 3px; }
+  .theme-chip i { width: 12px; height: 12px; border-radius: 3px; box-shadow: inset 0 0 0 1px rgb(0 0 0 / .15); }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>neetoCal · Booking page, rebuilt from the system</h1>
+    <p>Public pages run under <code>&lt;html class="neeto-cal-eui-css-var-scope light"&gt;</code>. neetothemes v2 writes 8 RGB triplets and neetoCal maps them onto ~18 atoms tokens, so every stock component on the page (buttons, link buttons, dropdowns, badges, callouts) picks up the host's theme automatically. The day cells and slot buttons are not stock atoms and are drawn with proposed <code>x-day</code> / <code>x-slot</code> classes taken from neetoCal's CSS.</p>
+  </div>
+
+  <!-- ========== slot picker, default theme ========== -->
+  <div class="sheet-section">
+    <h2>Slot picker · default theme "Plain green"</h2>
+    <p class="theme-label"><span class="theme-chip"><i style="background:#008068"></i><i style="background:#E1F3EE"></i><i style="background:#F6F7F8"></i><i style="background:#095ABA"></i></span>primary #008068 · secondary #E1F3EE · page #F6F7F8 · link #095ABA (matches the atoms brand in the admin)</p>
+    <div class="x-theme-scope theme-plain-green x-eui-wrapper">
+      <div class="x-eui-card">
+        <div class="x-eui-cover"><div class="x-eui-logo">S</div></div>
+        <div class="x-eui-block">
+          <div class="x-eui-left">
+            <div class="cell-row" style="display:flex;align-items:center;gap:8px"><span class="avatar" style="--avatar-h:207"><span class="avatar__fallback">OS</span></span><span class="t-body2 t-medium">Oliver Smith</span></div>
+            <h1 class="t-h2" style="margin:0">Product demo</h1>
+            <p class="t-body2" style="margin:0">A 30-minute walkthrough of Spinkart tailored to your team. Bring your questions.</p>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div class="x-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="t-body2 t-medium">30 min</span></div>
+              <div class="x-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg><span class="t-body2">Google Meet</span></div>
+              <div class="x-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><div class="select" style="width:auto;min-height:28px;padding:2px 8px;border-color:transparent"><span class="select__value">Asia/Kolkata (GMT+5:30)</span><span class="select__icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div></div>
+            </div>
+          </div>
+          <div class="x-eui-right">
+            <div class="x-cal">
+              <div class="x-cal__nav"><button class="btn btn--ghost btn--icon" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button><span class="x-cal__label">October 2026</span><button class="btn btn--ghost btn--icon" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button></div>
+              <div class="x-cal__grid">
+                <span class="x-cal__wd">Mon</span><span class="x-cal__wd">Tue</span><span class="x-cal__wd">Wed</span><span class="x-cal__wd">Thu</span><span class="x-cal__wd">Fri</span><span class="x-cal__wd">Sat</span><span class="x-cal__wd">Sun</span>
+                <span></span><span></span><span></span><span class="x-day">1</span><span class="x-day">2</span><span class="x-day">3</span><span class="x-day">4</span>
+                <span class="x-day">5</span><span class="x-day">6</span><span class="x-day">7</span><span class="x-day">8</span><span class="x-day">9</span><span class="x-day">10</span><span class="x-day">11</span>
+                <span class="x-day">12</span><span class="x-day">13</span><span class="x-day">14</span><span class="x-day">15</span><span class="x-day">16</span><span class="x-day">17</span><span class="x-day">18</span>
+                <span class="x-day">19</span><span class="x-day">20</span><span class="x-day">21</span><span class="x-day">22</span><span class="x-day">23</span><span class="x-day">24</span><span class="x-day">25</span>
+                <span class="x-day">26</span><span class="x-day x-day--available x-day--today x-day--selected">27</span><span class="x-day x-day--available">28</span><span class="x-day x-day--available">29</span><span class="x-day x-day--available">30</span><span class="x-day">31</span><span></span>
+              </div>
+            </div>
+            <div class="x-slots">
+              <div class="x-slots__head"><span class="t-h6">Tuesday, Oct 27</span><button class="btn btn--ghost btn--icon btn--sm" aria-label="Time format"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></div>
+              <div class="x-slots__list">
+                <button class="x-slot">10:00 AM</button><button class="x-slot hover">10:30 AM</button><button class="x-slot">11:00 AM</button>
+                <button class="x-slot">2:00 PM</button><button class="x-slot x-slot--count">3:30 PM<small>2 spots left</small></button><button class="x-slot" disabled>4:00 PM</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== two custom themes ========== -->
+  <div class="sheet-section">
+    <h2>Same components, host-chosen themes</h2>
+    <div class="split">
+      <div>
+        <p class="theme-label"><span class="theme-chip"><i style="background:#4F46E5"></i><i style="background:#EEF2FF"></i><i style="background:#F1F0FB"></i></span>"Indigo" — light card</p>
+        <div class="x-theme-scope theme-indigo x-eui-wrapper" style="padding:16px">
+          <div class="x-eui-card" style="padding:20px;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <div class="x-cal" style="width:auto"><div class="x-cal__grid">
+                <span class="x-day x-day--available">27</span><span class="x-day x-day--available x-day--selected">28</span><span class="x-day x-day--available x-day--today">29</span><span class="x-day">30</span></div></div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="x-slot" style="width:110px">10:00 AM</button><button class="x-slot hover" style="width:110px">10:30 AM</button></div>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn btn--default">Confirm</button><button class="btn btn--outline">Back</button><a class="btn btn--link">Read more</a><span class="badge badge--default">Paid</span></div>
+            <div class="callout callout--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><div class="callout__title">Info callout</div><div class="callout__desc">Derived from link × card colour, so it follows the theme.</div></div>
+            <div class="callout callout--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><div class="callout__title">Warning callout</div><div class="callout__desc">Not derived, so it stays atoms amber. Fine on a light card.</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="theme-label"><span class="theme-chip"><i style="background:#FACC15"></i><i style="background:#27272A"></i><i style="background:#18181B"></i></span>"Night" — dark card on a forced-light page</p>
+        <div class="x-theme-scope theme-night x-eui-wrapper" style="padding:16px">
+          <div class="x-eui-card" style="padding:20px;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <div class="x-cal" style="width:auto"><div class="x-cal__grid">
+                <span class="x-day x-day--available">27</span><span class="x-day x-day--available x-day--selected">28</span><span class="x-day x-day--available x-day--today">29</span><span class="x-day">30</span></div></div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="x-slot" style="width:110px">10:00 AM</button><button class="x-slot hover" style="width:110px">10:30 AM</button></div>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn btn--default">Confirm</button><button class="btn btn--outline">Back</button><a class="btn btn--link">Read more</a><span class="badge badge--default">Paid</span></div>
+            <div class="callout callout--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><div class="callout__title">Info callout</div><div class="callout__desc">Derived from link × card colour, so it adapts to the dark card.</div></div>
+            <div class="callout callout--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><div class="callout__title">Warning callout</div><div class="callout__desc">Not derived: a light-mode amber box on a dark card.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sheet-note">The remap works for everything that reads <code>--primary / --secondary / --background / --foreground / --border / --link</code>, and neetoCal's <code>[data-slot=alert]</code> patch (mirrored here) keeps callout text readable and derives the info palette from the theme. Two findings remain: <b>(1)</b> the scope sets <code>--primary</code>, not <code>--brand</code>, so any atoms part that reads <code>--brand</code> / <code>--brand-text</code> (the <code>brand</code> button, sidebar selection) would stay neeto-green on a themed page. <b>(2)</b> only <code>info</code> is derived. <code>warning / success / error</code> (and the subtle badges) keep atoms light-mode pastels, so on a dark-card theme like "Night" they render as light boxes. They stay readable but are off-theme. The fix is to derive all four status sets the way info already is.</div>
+  </div>
+
+  <!-- ========== confirmation ========== -->
+  <div class="sheet-section">
+    <h2>Booking confirmation — EUI/Booking → commons/BookingDetails</h2>
+    <div class="x-theme-scope theme-plain-green x-eui-wrapper">
+      <div class="x-confirm">
+        <div class="x-confirm__cover"></div>
+        <div class="x-confirm__top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div><h2 class="t-h4" style="margin:0 0 4px">Your meeting is scheduled</h2><p class="t-body2 t-muted" style="margin:0">A calendar invitation has been sent to priya@acme.io.</p></div></div>
+        <div class="x-confirm__rows">
+          <div class="x-confirm__row t-body2"><span>What</span><span>Product demo between Oliver Smith and Priya Raman</span></div>
+          <div class="x-confirm__row t-body2"><span>When</span><span>Tuesday, October 27, 2026 · 10:00 – 10:30 AM (Asia/Kolkata)</span></div>
+          <div class="x-confirm__row t-body2"><span>Where</span><span style="display:flex;align-items:center;gap:6px"><a class="btn btn--link">meet.google.com/xyz-abcd-efg</a><button class="btn btn--ghost btn--icon btn--xs" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button></span></div>
+        </div>
+        <div class="x-confirm__bar"><span class="t-h6" style="font-weight:700">Add to calendar</span><button class="btn btn--outline">Google</button><button class="btn btn--outline">Outlook</button><button class="btn btn--outline has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>.ics</button></div>
+        <div class="x-confirm__bar"><span class="t-h6" style="font-weight:700">Need to make a change?</span><button class="btn btn--outline">Reschedule</button><button class="btn btn--destructive-soft">Cancel</button></div>
+      </div>
+    </div>
+    <div class="sheet-note">The confirmation page is all stock pieces (Typography, link Button + CopyToClipboardButton, outline Buttons, Tabs) inside a bespoke container: 16px radius, cover band, a 176px label column. Only the container and cover are app CSS.</div>
+  </div>
+
+  <!-- ========== gaps ========== -->
+  <div class="sheet-section">
+    <h2>Booking-side gaps — what the system would need to own</h2>
+    <table class="tbl">
+      <thead><tr><th>Piece</th><th>Today in neetoCal</th><th>Proposal</th></tr></thead>
+      <tbody>
+        <tr><td>Theme scope</td><td><code>variables.css</code> maps 8 neetothemes triplets → 18 tokens; status colours left alone</td><td>A documented <b>Theme scope</b> contract in the DS: inputs → tokens, including <code>--brand*</code> and derived status tints</td></tr>
+        <tr><td>Availability day cell</td><td>FullCalendar dayGrid restyled by <code>calendar.css</code></td><td><code>Calendar</code> modifiers for available / unavailable / today-dot, or a booking-calendar molecule</td></tr>
+        <tr><td>Slot button + list</td><td>native <code>.primary-slot-time-btn</code> in <code>eui.css</code></td><td><code>SlotButton</code> (default, with-count, disabled) on secondary → primary</td></tr>
+        <tr><td>Two-pane booking shell</td><td><code>eui.css</code> (1,022 lines); <code>neeto-cal-eui-*</code> names are kept because Pro customers' custom CSS targets them</td><td>Keep in-app; the DS documents the slots (cover, logo, left details, right picker) and leaves the class names to neetoCal</td></tr>
+        <tr><td>Time zone picker</td><td><code>neeto-time-zones</code> 0.8.26 (no v2), own <code>--neeto-time-zones-*</code> vars remapped by hand</td><td>Port to atoms <code>Select</code>, or have it read atoms tokens</td></tr>
+        <tr><td>Embeds, AI intro-page builder, payment providers</td><td>embed.js; <code>--intro-page-*</code> + hard-coded #008068/Inter; Stripe/Razorpay appearance objects</td><td>Out of DS scope, but they should derive from tokens, not hex</td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

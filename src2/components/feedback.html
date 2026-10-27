@@ -1,0 +1,127 @@
+<!-- @dsCard group="Components" name="Feedback &amp; identity" subtitle="Avatar 24/32/40/64 seeded fallbacks, status &amp; group · Accordion · Stepper · Progress 4px · Spinner · PageLoader · Skeleton · Kbd · Empty state" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neeto-atoms · Feedback &amp; identity</title>
+<style>/*__ATOMS__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .skel-list { width: 360px; display: flex; flex-direction: column; gap: 16px; }
+  .skel-row { display: flex; align-items: center; gap: 12px; }
+</style>
+</head>
+<body class="nui-sheet">
+<div class="sheet-header">
+  <h1>Feedback &amp; identity</h1>
+  <p>Identity and status primitives. Avatars fall back to initials on a <b>seeded hue</b> (<code>cyrb53(seed) % 360</code>); everything that signals progress — Stepper, Progress, PageLoader — is <b>primary = brand green</b>. Spinner is lucide <code>Loader2</code> in <code>currentColor</code>. Empty states use a 24px title and default + outline buttons.</p>
+</div>
+<div class="sheet-section">
+<h2>Avatar</h2>
+<div class="sheet-row" style="gap:32px;align-items:flex-end">
+<div class="spec"><span class="avatar avatar--sm" style="--avatar-h:277"><span class="avatar__fallback">OS</span></span><span class="spec__label">sm 24 · 12px</span></div>
+<div class="spec"><span class="avatar" style="--avatar-h:277"><span class="avatar__fallback">OS</span></span><span class="spec__label">default 32 · 14px</span></div>
+<div class="spec"><span class="avatar avatar--lg" style="--avatar-h:277"><span class="avatar__fallback">OS</span></span><span class="spec__label">lg 40</span></div>
+<div class="spec"><span class="avatar avatar--xl" style="--avatar-h:277"><span class="avatar__fallback">OS</span></span><span class="spec__label">xl 64 · 18px</span></div>
+<div class="spec"><span class="avatar"><span class="avatar__fallback">?</span></span><span class="spec__label">no seed — --muted fallback</span></div>
+</div>
+<div class="sheet-row" style="gap:32px;align-items:flex-end;margin-top:24px">
+<div class="spec"><div class="sheet-row" style="gap:10px"><span class="avatar avatar--lg" style="--avatar-h:277"><span class="avatar__fallback">OS</span></span><span class="avatar avatar--lg" style="--avatar-h:207"><span class="avatar__fallback">EP</span></span><span class="avatar avatar--lg" style="--avatar-h:31"><span class="avatar__fallback">SL</span></span><span class="avatar avatar--lg" style="--avatar-h:132"><span class="avatar__fallback">PN</span></span><span class="avatar avatar--lg" style="--avatar-h:312"><span class="avatar__fallback">AC</span></span></div><span class="spec__label">seeded hues — cyrb53(email) % 360 → 277 · 207 · 31 · 132 · 312</span></div>
+</div>
+<div class="sheet-row" style="gap:32px;align-items:flex-end;margin-top:24px">
+<div class="spec"><span class="avatar avatar--sm" style="--avatar-h:207"><span class="avatar__fallback">EP</span><span class="avatar__status avatar__status--online"></span></span><span class="spec__label">status sm 8</span></div>
+<div class="spec"><span class="avatar" style="--avatar-h:207"><span class="avatar__fallback">EP</span><span class="avatar__status avatar__status--online"></span></span><span class="spec__label">online — emerald-500</span></div>
+<div class="spec"><span class="avatar avatar--lg" style="--avatar-h:31"><span class="avatar__fallback">SL</span><span class="avatar__status avatar__status--idle"></span></span><span class="spec__label">idle — amber-500 · 12</span></div>
+<div class="spec"><span class="avatar avatar--xl" style="--avatar-h:132"><span class="avatar__fallback">PN</span><span class="avatar__status avatar__status--offline"></span></span><span class="spec__label">offline — gray-400 · 16</span></div>
+<div class="spec"><div class="avatar-group"><span class="avatar" style="--avatar-h:277"><span class="avatar__fallback">OS</span></span><span class="avatar" style="--avatar-h:207"><span class="avatar__fallback">EP</span></span><span class="avatar" style="--avatar-h:31"><span class="avatar__fallback">SL</span></span><span class="avatar" style="--avatar-h:132"><span class="avatar__fallback">PN</span></span><span class="avatar-group__more">+5</span></div><span class="spec__label">group — −8px overlap, ring-2 background, +N muted</span></div>
+</div>
+<div class="sheet-note">Fallback = initials of the first two words, <b>normal weight</b>. With a seed the fill is <code>oklch(var(--avatar-l) var(--avatar-c) hue)</code> (light 60% / 0.15, dark 55% / 0.13) and text <code>--avatar-fg</code> (white); seed = user id ?? lower-cased email ?? name. Pages set the hue with <code>style="--avatar-h:277"</code>. A 1px <code>--border</code> hairline sits on top with <code>mix-blend-darken</code> (<code>lighten</code> in dark).</div>
+</div>
+<div class="sheet-section">
+<h2>Accordion</h2>
+<div class="accordion" style="max-width:520px">
+<div class="accordion__item"><button class="accordion__trigger">How do I change my workspace URL?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button><div class="accordion__content">Go to <b>Settings → Workspace</b> and edit the subdomain. Old links redirect for 30 days.</div></div>
+<div class="accordion__item"><button class="accordion__trigger">Can I export my tickets?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div>
+<div class="accordion__item"><button class="accordion__trigger">Is there an API rate limit?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div>
+</div>
+<div class="sheet-note">Trigger <code>py-2.5</code>, 14px/500, no x-padding, underline on hover; chevron 16px muted swaps Down → <b>Up</b> when open (no rotation). Content <code>pb-2.5</code>; items separated by <code>border-b</code>.</div>
+</div>
+<div class="sheet-section">
+<h2>Stepper</h2>
+<div class="stepper" style="max-width:760px">
+<div class="step step--done"><span class="step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="step__label">Account</span></div><span class="step-line step-line--done"></span>
+<div class="step step--done"><span class="step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="step__label">Workspace</span></div><span class="step-line step-line--done"></span>
+<div class="step step--active"><span class="step__dot">3</span><span class="step__label">Invite team</span></div><span class="step-line"></span>
+<div class="step step--todo"><span class="step__dot">4</span><span class="step__label">Connect email</span></div>
+</div>
+<div class="stepper stepper--vertical" style="margin-top:28px">
+<div class="step step--done"><span class="step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="step__label">Account</span></div><span class="step-line step-line--v step-line--done"></span>
+<div class="step step--done"><span class="step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="step__label">Workspace</span></div><span class="step-line step-line--v step-line--done"></span>
+<div class="step step--active"><span class="step__dot">3</span><span class="step__label">Invite team</span></div>
+</div>
+<div class="sheet-note">Indicator 28px, 14px/600. Done = <code>bg-primary</code> + 14px check; active = <code>bg-primary</code> + 2px primary ring offset 2; upcoming = <code>bg-muted</code>, <code>foreground/60</code>, 1px border ring. Connector 2px: solid primary after a completed step, dashed <code>--border</code> otherwise. Labels: active 500 foreground, upcoming muted.</div>
+</div>
+<div class="sheet-section">
+<h2>Progress · Spinner · PageLoader · Skeleton</h2>
+<div class="sheet-row sheet-row--top" style="gap:48px">
+<div class="sheet-col" style="gap:20px;width:260px">
+<div class="spec" style="width:100%"><div style="width:100%"><div class="progress-label">64%</div><div class="progress"><div class="progress__bar" style="width:64%"></div></div></div><span class="spec__label">Progress — 4px, --muted track, green fill, label 12px muted end</span></div>
+<div class="spec" style="width:100%"><div class="progress"><div class="progress__bar" style="width:25%"></div></div><span class="spec__label">no label</span></div>
+</div>
+<div class="spec"><div class="sheet-row" style="gap:20px;align-items:center"><svg class="spinner spinner--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><svg class="spinner spinner--lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><svg class="spinner spinner--xl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></div><span class="spec__label">Spinner — Loader2, currentColor · 12 / 16 / 24 / 32</span></div>
+<div class="spec"><div class="sheet-row" style="gap:12px"><button class="btn btn--default btn--loading" disabled><span>Save changes</span><svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></button><button class="btn btn--outline btn--loading" disabled><span>Export</span><svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></button></div><span class="spec__label">Button loading — label hidden, 14px spinner centered</span></div>
+<div class="spec"><span class="page-loader"></span><span class="spec__label">PageLoader — 36px brand arc</span></div>
+</div>
+<div class="sheet-row sheet-row--top" style="gap:24px;margin-top:28px">
+<div class="spec"><div class="skel-list"><div class="skel-row"><div class="skeleton" style="width:32px;height:32px;border-radius:999px"></div><div style="flex:1;display:flex;flex-direction:column;gap:8px"><div class="skeleton" style="height:12px;width:70%"></div><div class="skeleton" style="height:12px;width:45%"></div></div></div><div class="skel-row"><div class="skeleton" style="width:32px;height:32px;border-radius:999px"></div><div style="flex:1;display:flex;flex-direction:column;gap:8px"><div class="skeleton" style="height:12px;width:70%"></div><div class="skeleton" style="height:12px;width:45%"></div></div></div><div class="skel-row"><div class="skeleton" style="width:32px;height:32px;border-radius:999px"></div><div style="flex:1;display:flex;flex-direction:column;gap:8px"><div class="skeleton" style="height:12px;width:70%"></div><div class="skeleton" style="height:12px;width:45%"></div></div></div></div><span class="spec__label">Skeleton — animate-pulse, rounded-md, bg --muted</span></div>
+</div>
+</div>
+<div class="sheet-section">
+<h2>Kbd</h2>
+<div class="sheet-row" style="gap:32px;align-items:flex-end">
+<div class="spec"><span class="kbd">⌘</span><span class="spec__label">20px · min-w 20 · px 4 · radius 6</span></div>
+<div class="spec"><span class="kbd-group"><span class="kbd">⌘</span><span class="kbd">K</span></span><span class="spec__label">KbdGroup — gap 4</span></div>
+<div class="spec"><span class="kbd-group"><span class="kbd">Shift</span><span style="color:var(--muted-foreground);font-size:12px">+</span><span class="kbd">Enter</span></span><span class="spec__label">words</span></div>
+<div class="spec"><span class="kbd">Esc</span><span class="spec__label">Esc</span></div>
+<div class="spec"><span class="tooltip">Close<span class="kbd">Esc</span></span><span class="spec__label">in Tooltip — background/20</span></div>
+</div>
+</div>
+<div class="sheet-section">
+<h2>Empty state</h2>
+<div class="empty empty--bordered" style="max-width:560px">
+<div class="empty__header"><div class="empty__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><h3 class="empty__title">No tickets yet</h3><p class="empty__desc">When customers email support@spinkart.com, their tickets will show up here.</p></div>
+<div class="empty__actions"><button class="btn btn--default has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>New ticket</button><button class="btn btn--outline">Connect email</button></div>
+</div>
+<div class="sheet-note">Root <code>p-6</code>, gap 16, radius 14, dashed only when the consumer adds a border. Icon variant: 32px <code>rounded-lg bg-muted</code> tile, <code>text-foreground</code>, 16px icon, <code>mb-2</code>. Title <b>24px/600</b> tight; description 14px muted. Actions at default size: primary = <code>default</code> (green), secondary = <code>outline</code>.</div>
+</div>
+<div class="sheet-section">
+<h2>Dark mode</h2>
+<div class="dark" style="background:var(--background);color:var(--foreground);border-radius:var(--radius-xl);border:1px solid var(--border);padding:24px">
+<div class="sheet-row" style="gap:20px;align-items:center">
+<span class="avatar avatar--lg" style="--avatar-h:277"><span class="avatar__fallback">OS</span><span class="avatar__status avatar__status--online"></span></span><span class="avatar avatar--lg" style="--avatar-h:207"><span class="avatar__fallback">EP</span><span class="avatar__status avatar__status--idle"></span></span><span class="avatar avatar--lg" style="--avatar-h:31"><span class="avatar__fallback">SL</span></span>
+<div class="avatar-group"><span class="avatar" style="--avatar-h:277"><span class="avatar__fallback">OS</span></span><span class="avatar" style="--avatar-h:207"><span class="avatar__fallback">EP</span></span><span class="avatar" style="--avatar-h:132"><span class="avatar__fallback">PN</span></span><span class="avatar-group__more">+5</span></div>
+<svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><span class="kbd-group"><span class="kbd">⌘</span><span class="kbd">K</span></span>
+<div style="width:200px"><div class="progress"><div class="progress__bar" style="width:64%"></div></div></div>
+</div>
+<div class="stepper" style="max-width:640px;margin-top:24px">
+<div class="step step--done"><span class="step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="step__label">Account</span></div><span class="step-line step-line--done"></span>
+<div class="step step--done"><span class="step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="step__label">Workspace</span></div><span class="step-line step-line--done"></span>
+<div class="step step--active"><span class="step__dot">3</span><span class="step__label">Invite team</span></div><span class="step-line"></span>
+<div class="step step--todo"><span class="step__dot">4</span><span class="step__label">Connect email</span></div>
+</div>
+<div class="sheet-row sheet-row--top" style="gap:24px;margin-top:24px">
+<div style="flex:1;min-width:300px"><div class="accordion" style="max-width:520px">
+<div class="accordion__item"><button class="accordion__trigger">How do I change my workspace URL?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button><div class="accordion__content">Go to <b>Settings → Workspace</b> and edit the subdomain. Old links redirect for 30 days.</div></div>
+<div class="accordion__item"><button class="accordion__trigger">Can I export my tickets?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div>
+<div class="accordion__item"><button class="accordion__trigger">Is there an API rate limit?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div>
+</div></div>
+<div style="flex:1;min-width:300px"><div class="empty empty--bordered" style="max-width:560px">
+<div class="empty__header"><div class="empty__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><h3 class="empty__title">No tickets yet</h3><p class="empty__desc">When customers email support@spinkart.com, their tickets will show up here.</p></div>
+<div class="empty__actions"><button class="btn btn--default has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>New ticket</button><button class="btn btn--outline">Connect email</button></div>
+</div></div>
+</div>
+</div>
+</div>
+</body>
+</html>
