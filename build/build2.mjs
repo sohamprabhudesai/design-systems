@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * V2 builder: src2/ → ds2/. Replaces the style markers __ATOMS__ (theme +
+ * V2 builder: src2/ → ds2/. Replaces the style markers __ATOMS__ (tokens-v2/tokens.css +
  * component CSS with embedded Geist font) and __SHEET__ (spec-sheet chrome).
  * No purging needed — atoms.css is hand-built and small.
  */
@@ -13,7 +13,8 @@ const OUT = join(ROOT, "..", "ds2");
 
 const fontB64 = readFileSync(join(ROOT, "geist-latin.woff2")).toString("base64");
 const fontFace = `@font-face{font-family:"Geist Variable";font-style:normal;font-display:swap;font-weight:100 900;src:url(data:font/woff2;base64,${fontB64}) format("woff2-variations");}`;
-const ATOMS = fontFace + "\n" + readFileSync(join(ROOT, "atoms.css"), "utf8");
+const TOKENS = readFileSync(join(ROOT, "..", "tokens-v2", "tokens.css"), "utf8");
+const ATOMS = [fontFace, TOKENS, readFileSync(join(ROOT, "atoms.css"), "utf8")].join("\n");
 const SHEET = readFileSync(join(ROOT, "sheet2.css"), "utf8");
 
 function* walk(dir) {

@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" name="Buttons" subtitle="7 variants × 4 sizes · icon buttons · destructive-soft · light & dark" -->
+<!-- @dsCard group="Components" name="Buttons" subtitle="10 variants incl. brand, neutral & link-muted · 4 sizes + icon sizes · icon padding · Loader2 loading · group · light & dark" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,65 +8,121 @@
 <style>/*__ATOMS__*/</style>
 <style>/*__SHEET__*/</style>
 <style>
-  .dark-strip { border-radius: var(--radius-xl); padding: 20px; background: oklch(0.145 0 0); }
+  .var-grid { display: grid; grid-template-columns: minmax(200px, auto) repeat(4, max-content); gap: 12px 24px; align-items: center; justify-items: start; }
+  .var-h { font-size: 10.5px; color: var(--muted-foreground); font-family: ui-monospace, "SF Mono", Menlo, monospace; text-transform: uppercase; letter-spacing: .06em; }
+  .var-name { display: flex; flex-direction: column; gap: 2px; font-size: 12px; }
+  .var-name small { font-size: 10.5px; color: var(--muted-foreground); }
+  .dark-panel { background: var(--background); color: var(--foreground); border-radius: var(--radius-xl); padding: 20px; box-shadow: var(--ring-fg10); }
 </style>
 </head>
 <body class="nui-sheet">
   <div class="sheet-header">
     <h1>Buttons</h1>
-    <p><code>Button</code> — variants <code>default · outline · secondary · ghost · destructive · destructive-soft · link</code>;
-    sizes <code>xs 24px · sm 28px · default 32px · lg 36px</code> (+ icon squares). 14px medium, radius 10px (8px for xs/sm).
-    The default button is <b>near-black</b>, not colored — color is reserved for destructive and status.</p>
+    <p><code>Button</code> (atoms 1.1.1) — variants <code>default · brand · neutral · secondary · outline · ghost · destructive · destructive-soft · link · link-muted</code>;
+    sizes <code>xs 24 · sm 28 · default 32 · lg 36</code> plus icon squares. 14px / 500, radius 10px (8px for xs/sm), 1px transparent border, 16px icons.
+    Since #480 <b>default is brand green</b> (<code>--primary: var(--brand)</code>) with white text, in both themes.</p>
   </div>
 
   <div class="sheet-section">
-    <h2>Variants (default size, 32px)</h2>
-    <div class="sheet-row">
-      <div class="spec"><button class="btn btn--default">Save changes</button><span class="spec__label">default — primary CTA</span></div>
-      <div class="spec"><button class="btn btn--outline">Export</button><span class="spec__label">outline — bordered</span></div>
-      <div class="spec"><button class="btn btn--secondary">Duplicate</button><span class="spec__label">secondary — muted fill</span></div>
-      <div class="spec"><button class="btn btn--ghost">Cancel</button><span class="spec__label">ghost — bare</span></div>
-      <div class="spec"><button class="btn btn--destructive">Delete</button><span class="spec__label">destructive</span></div>
-      <div class="spec"><button class="btn btn--destructive-soft">Remove</button><span class="spec__label">destructive-soft — 10% tint</span></div>
-      <div class="spec"><button class="btn btn--link">View details</button><span class="spec__label">link — underline offset 4</span></div>
+    <h2>Variants × states (default size)</h2>
+    
+    <div class="var-grid">
+      <span class="var-h"></span><span class="var-h">rest</span><span class="var-h">hover</span><span class="var-h">focus-visible</span><span class="var-h">disabled</span>
+      <span class="var-name"><code>default</code><small>bg-primary (brand green) · hover /90</small></span><button class="btn btn--default">Save changes</button><button class="btn btn--default hover">Save changes</button><button class="btn btn--default focus">Save changes</button><button class="btn btn--default" disabled>Save changes</button>
+      <span class="var-name"><code>brand</code><small>bg-brand · focus ring brand/40</small></span><button class="btn btn--brand">Upgrade plan</button><button class="btn btn--brand hover">Upgrade plan</button><button class="btn btn--brand focus">Upgrade plan</button><button class="btn btn--brand" disabled>Upgrade plan</button>
+      <span class="var-name"><code>neutral</code><small>bg-neutral-solid (black) · inverts in dark</small></span><button class="btn btn--neutral">Publish</button><button class="btn btn--neutral hover">Publish</button><button class="btn btn--neutral focus">Publish</button><button class="btn btn--neutral" disabled>Publish</button>
+      <span class="var-name"><code>secondary</code><small>bg-secondary · hover /80</small></span><button class="btn btn--secondary">Duplicate</button><button class="btn btn--secondary hover">Duplicate</button><button class="btn btn--secondary focus">Duplicate</button><button class="btn btn--secondary" disabled>Duplicate</button>
+      <span class="var-name"><code>outline</code><small>border + bg-background · hover muted</small></span><button class="btn btn--outline">Export</button><button class="btn btn--outline hover">Export</button><button class="btn btn--outline focus">Export</button><button class="btn btn--outline" disabled>Export</button>
+      <span class="var-name"><code>ghost</code><small>transparent · hover muted</small></span><button class="btn btn--ghost">Cancel</button><button class="btn btn--ghost hover">Cancel</button><button class="btn btn--ghost focus">Cancel</button><button class="btn btn--ghost" disabled>Cancel</button>
+      <span class="var-name"><code>destructive</code><small>bg-destructive · hover /90</small></span><button class="btn btn--destructive">Delete</button><button class="btn btn--destructive hover">Delete</button><button class="btn btn--destructive focus">Delete</button><button class="btn btn--destructive" disabled>Delete</button>
+      <span class="var-name"><code>destructive-soft</code><small>destructive/10 · hover /20</small></span><button class="btn btn--destructive-soft">Remove</button><button class="btn btn--destructive-soft hover">Remove</button><button class="btn btn--destructive-soft focus">Remove</button><button class="btn btn--destructive-soft" disabled>Remove</button>
+      <span class="var-name"><code>link</code><small>--link · underline on hover</small></span><button class="btn btn--link">View details</button><button class="btn btn--link hover">View details</button><button class="btn btn--link focus">View details</button><button class="btn btn--link" disabled>View details</button>
+      <span class="var-name"><code>link-muted</code><small>foreground · underline on hover</small></span><button class="btn btn--link-muted">Learn more</button><button class="btn btn--link-muted hover">Learn more</button><button class="btn btn--link-muted focus">Learn more</button><button class="btn btn--link-muted" disabled>Learn more</button>
     </div>
+    <div class="sheet-note"><b>default</b> (green) is the primary CTA. <b>neutral</b> is the black button for emphasis that should not read as brand, such as a toolbar Publish or a marketing surface already full of green. <b>brand</b> resolves to the same green today but stays brand-colored if <code>--primary</code> is ever re-themed. Use one filled CTA per view; pair it with outline or ghost.</div>
   </div>
 
   <div class="sheet-section">
     <h2>Sizes</h2>
     <div class="sheet-row">
-      <div class="spec"><button class="btn btn--default btn--xs">Extra small · 24</button><span class="spec__label">xs — 12px text, radius 8</span></div>
-      <div class="spec"><button class="btn btn--default btn--sm">Small · 28</button><span class="spec__label">sm — 12.8px text</span></div>
-      <div class="spec"><button class="btn btn--default">Default · 32</button><span class="spec__label">default</span></div>
-      <div class="spec"><button class="btn btn--default btn--lg">Large · 36</button><span class="spec__label">lg</span></div>
+      <div class="spec"><button class="btn btn--default btn--xs">Extra small</button><span class="spec__label">xs · 24 · px 8 · 12px · r 8 · svg 12</span></div>
+      <div class="spec"><button class="btn btn--default btn--sm">Small</button><span class="spec__label">sm · 28 · px 10 · 12.8px · r 8 · svg 14</span></div>
+      <div class="spec"><button class="btn btn--default">Default</button><span class="spec__label">default · 32 · px 10 · 14px · r 10 · svg 16</span></div>
+      <div class="spec"><button class="btn btn--default btn--lg">Large</button><span class="spec__label">lg · 36 · px 10 · 14px · r 10 · svg 16</span></div>
     </div>
+    <div class="sheet-row" style="margin-top:16px">
+      <div class="spec"><button class="btn btn--outline btn--icon btn--xs" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button><span class="spec__label">icon-xs · 24 · svg 12</span></div>
+      <div class="spec"><button class="btn btn--outline btn--icon btn--sm" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button><span class="spec__label">icon-sm · 28 · svg 16</span></div>
+      <div class="spec"><button class="btn btn--outline btn--icon" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button><span class="spec__label">icon · 32 · svg 16</span></div>
+      <div class="spec"><button class="btn btn--outline btn--icon btn--lg" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button><span class="spec__label">icon-lg · 36 · svg 16</span></div>
+      <div class="spec"><button class="btn btn--ghost btn--icon btn--sm" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button><span class="spec__label">ghost icon-sm — Dialog close</span></div>
+      <div class="spec"><button class="btn btn--default btn--icon" aria-label="Add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button><span class="spec__label">default icon</span></div>
+    </div>
+    <div class="sheet-note">Icon-only buttons auto-map size: xs → icon-xs, sm → icon-sm, default → icon, lg → icon-lg. icon-sm keeps a 16px glyph.</div>
   </div>
 
   <div class="sheet-section">
-    <h2>Icons · states</h2>
+    <h2>Icon position &amp; padding</h2>
     <div class="sheet-row">
-      <div class="spec"><button class="btn btn--default"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>New project</button><span class="spec__label">leading icon (16px)</span></div>
-      <div class="spec"><button class="btn btn--outline">Options<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><span class="spec__label">trailing chevron</span></div>
-      <div class="spec"><button class="btn btn--outline btn--icon"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button><span class="spec__label">icon (32×32) — kebab</span></div>
-      <div class="spec"><button class="btn btn--ghost btn--icon btn--sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button><span class="spec__label">icon-sm ghost — close</span></div>
-      <div class="spec"><button class="btn btn--default disabled">Save changes</button><span class="spec__label">disabled — 50%</span></div>
-      <div class="spec"><button class="btn btn--default"><span class="spinner" style="border-color:color-mix(in oklab,var(--primary-foreground) 30%,transparent);border-top-color:var(--primary-foreground)"></span>Saving…</button><span class="spec__label">loading — spinner replaces icon</span></div>
+      <div class="spec"><button class="btn btn--default has-icon-end">Continue<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button><span class="spec__label">right (default) · pe 8</span></div>
+      <div class="spec"><button class="btn btn--default has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>New invoice</button><span class="spec__label">left · ps 8</span></div>
+      <div class="spec"><button class="btn btn--outline btn--xs has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>Export</button><span class="spec__label">xs · icon side 6</span></div>
+      <div class="spec"><button class="btn btn--outline btn--sm has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg>Edit</button><span class="spec__label">sm · icon side 6</span></div>
+      <div class="spec"><button class="btn btn--outline btn--lg has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>Download</button><span class="spec__label">lg · icon side 12</span></div>
+      <div class="spec"><button class="btn btn--outline has-icon-end">Actions<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><span class="spec__label">trailing chevron (Dropdown)</span></div>
+      <div class="spec"><button class="btn btn--destructive-soft has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>Remove</button><span class="spec__label">destructive-soft + icon</span></div>
+      <div class="spec"><a class="btn btn--link" href="#">Open docs<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a><span class="spec__label">link — no padding</span></div>
     </div>
+    <div class="sheet-note">Neeto <code>Button</code> defaults <code>iconPosition="right"</code>. The icon side uses <code>has-icon-start</code> / <code>has-icon-end</code> (atoms <code>has-data-[icon=inline-*]</code>): 8px on default, 12px on lg, 6px on xs/sm; the label side stays 10px (8px on xs). Label and icon are 6px apart.</div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Loading · disabled</h2>
+    <div class="sheet-row">
+      <div class="spec"><button class="btn btn--default btn--loading" disabled><span>Save changes</span><svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></button><span class="spec__label">loading · spinner 14</span></div>
+      <div class="spec"><button class="btn btn--outline btn--loading" disabled><span>Export</span><svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></button><span class="spec__label">outline loading</span></div>
+      <div class="spec"><button class="btn btn--default btn--xs btn--loading" disabled><span>Save</span><svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></button><span class="spec__label">xs · spinner 12</span></div>
+      <div class="spec"><button class="btn btn--neutral btn--lg btn--loading" disabled><span>Publish</span><svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></button><span class="spec__label">lg · spinner 16</span></div>
+      <div class="spec"><button class="btn btn--default" disabled>Save changes</button><span class="spec__label">disabled · 50% · not-allowed</span></div>
+      <div class="spec"><button class="btn btn--outline" disabled>Export</button><span class="spec__label">outline disabled</span></div>
+    </div>
+    <div class="sheet-note">Loading keeps the button width: content goes <code>invisible</code>, a lucide <code>Loader2</code> spins centered over it, and the button is disabled. Spinner 12 (xs) / 14 (sm, default, icon) / 16 (lg, icon-lg).</div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Button group</h2>
+    <div class="sheet-row">
+      <div class="spec"><div class="btn-group" role="group"><button class="btn btn--outline">Day</button><button class="btn btn--outline">Week</button><button class="btn btn--outline">Month</button></div><span class="spec__label">outline segmented</span></div>
+      <div class="spec"><div class="btn-group" role="group"><button class="btn btn--outline btn--icon btn--sm" aria-label="Left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12H3"/><path d="M17 18H3"/><path d="M21 6H3"/></svg></button><button class="btn btn--outline btn--icon btn--sm" aria-label="Center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 12H7"/><path d="M19 18H5"/><path d="M21 6H3"/></svg></button><button class="btn btn--outline btn--icon btn--sm" aria-label="Right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12H9"/><path d="M21 18H7"/><path d="M21 6H3"/></svg></button></div><span class="spec__label">icon-sm group · outer r 10</span></div>
+      <div class="spec"><div class="btn-group" role="group"><button class="btn btn--default">Save</button><button class="btn btn--default btn--icon" aria-label="More save options" style="border-inline-start-color:color-mix(in oklab,var(--primary-foreground) 25%,transparent)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div><span class="spec__label">split button</span></div>
+    </div>
+    <div class="sheet-note">Inner corners square, outer corners <code>rounded-lg</code> (xs/sm included); adjacent buttons overlap 1px so borders collapse.</div>
   </div>
 
   <div class="sheet-section">
     <h2>Dark mode</h2>
-    <div class="dark dark-strip">
-      <div class="sheet-row">
-        <button class="btn btn--default">Save changes</button>
-        <button class="btn btn--outline" style="background:color-mix(in oklab,var(--input) 30%,transparent);border-color:var(--input)">Export</button>
-        <button class="btn btn--secondary">Duplicate</button>
-        <button class="btn btn--ghost">Cancel</button>
-        <button class="btn btn--destructive">Delete</button>
-        <button class="btn btn--destructive-soft">Remove</button>
+    <div class="dark dark-panel">
+      
+    <div class="var-grid">
+      <span class="var-h"></span><span class="var-h">rest</span><span class="var-h">hover</span><span class="var-h">focus-visible</span><span class="var-h">disabled</span>
+      <span class="var-name"><code>default</code></span><button class="btn btn--default">Save changes</button><button class="btn btn--default hover">Save changes</button><button class="btn btn--default focus">Save changes</button><button class="btn btn--default" disabled>Save changes</button>
+      <span class="var-name"><code>brand</code></span><button class="btn btn--brand">Upgrade plan</button><button class="btn btn--brand hover">Upgrade plan</button><button class="btn btn--brand focus">Upgrade plan</button><button class="btn btn--brand" disabled>Upgrade plan</button>
+      <span class="var-name"><code>neutral</code></span><button class="btn btn--neutral">Publish</button><button class="btn btn--neutral hover">Publish</button><button class="btn btn--neutral focus">Publish</button><button class="btn btn--neutral" disabled>Publish</button>
+      <span class="var-name"><code>secondary</code></span><button class="btn btn--secondary">Duplicate</button><button class="btn btn--secondary hover">Duplicate</button><button class="btn btn--secondary focus">Duplicate</button><button class="btn btn--secondary" disabled>Duplicate</button>
+      <span class="var-name"><code>outline</code></span><button class="btn btn--outline">Export</button><button class="btn btn--outline hover">Export</button><button class="btn btn--outline focus">Export</button><button class="btn btn--outline" disabled>Export</button>
+      <span class="var-name"><code>ghost</code></span><button class="btn btn--ghost">Cancel</button><button class="btn btn--ghost hover">Cancel</button><button class="btn btn--ghost focus">Cancel</button><button class="btn btn--ghost" disabled>Cancel</button>
+      <span class="var-name"><code>destructive</code></span><button class="btn btn--destructive">Delete</button><button class="btn btn--destructive hover">Delete</button><button class="btn btn--destructive focus">Delete</button><button class="btn btn--destructive" disabled>Delete</button>
+      <span class="var-name"><code>destructive-soft</code></span><button class="btn btn--destructive-soft">Remove</button><button class="btn btn--destructive-soft hover">Remove</button><button class="btn btn--destructive-soft focus">Remove</button><button class="btn btn--destructive-soft" disabled>Remove</button>
+      <span class="var-name"><code>link</code></span><button class="btn btn--link">View details</button><button class="btn btn--link hover">View details</button><button class="btn btn--link focus">View details</button><button class="btn btn--link" disabled>View details</button>
+      <span class="var-name"><code>link-muted</code></span><button class="btn btn--link-muted">Learn more</button><button class="btn btn--link-muted hover">Learn more</button><button class="btn btn--link-muted focus">Learn more</button><button class="btn btn--link-muted" disabled>Learn more</button>
+    </div>
+      <div class="sheet-row" style="margin-top:20px">
+        <button class="btn btn--default btn--loading" disabled><span>Save changes</span><svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></button>
+        <button class="btn btn--outline has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>Export</button>
+        <div class="btn-group" role="group"><button class="btn btn--outline">Day</button><button class="btn btn--outline">Week</button><button class="btn btn--outline">Month</button></div>
       </div>
     </div>
-    <div class="sheet-note">In dark mode the default button inverts (near-white bg, dark text); outline gets a subtle <code>input/30</code> fill. Pair one default button with ghost/outline neighbors — never two filled CTAs side by side.</div>
+    <div class="sheet-note">Default stays green with white text (brand 0.55 in dark). <b>neutral inverts</b> to near-white with dark text. Outline gets <code>border-input</code> + <code>input/30</code> fill (hover <code>/50</code>); ghost hover is <code>muted/50</code>; destructive-soft is <code>/20</code> (hover <code>/30</code>); link uses the lighter dark <code>--link</code>.</div>
   </div>
 </body>
 </html>

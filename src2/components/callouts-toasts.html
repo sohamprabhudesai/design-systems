@@ -1,44 +1,92 @@
-<!-- @dsCard group="Components" name="Callouts & Toasts" subtitle="Callout 4 soft variants · Sonner light-card toasts with action" -->
+<!-- @dsCard group="Components" name="Callouts &amp; Toasts" subtitle="Callout 4 soft variants + action slot · solid Toastr 4 types with action &amp; close · plain sonner card · bottom-left placement" -->
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>neeto-atoms · Callouts & Toasts</title>
+<title>neeto-atoms · Callouts &amp; Toasts</title>
 <style>/*__ATOMS__*/</style>
 <style>/*__SHEET__*/</style>
+<style>
+  .stack { display: flex; flex-direction: column; gap: 12px; max-width: 560px; }
+  .screen { position: relative; height: 280px; max-width: 760px; border-radius: var(--radius-xl); border: 1px solid var(--border); background: var(--background); overflow: hidden; }
+  .screen__content { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .skel { height: 12px; border-radius: var(--radius-md); background: var(--muted); }
+  .screen__toasts { position: absolute; left: 24px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; }</style>
 </head>
 <body class="nui-sheet">
-  <div class="sheet-header">
-    <h1>Callouts &amp; Toasts</h1>
-    <p><code>Callout</code> — soft status surface (bg + border + foreground tokens), 16px icon, optional semibold title, radius 10px.
-    <code>Sonner</code> — toasts are <b>light cards</b> (background + border + shadow), not solid colors like V1; status shows via a small icon.
-    Bottom-right, 356px wide.</p>
+<div class="sheet-header">
+  <h1>Callouts &amp; Toasts</h1>
+  <p><code>Callout</code> — inline, soft tinted banners (<code>info · warning · danger · success</code>), 8px 10px padding, radius 10, 16px icon spanning title + description; body copy stays <code>--foreground</code>. <code>Toastr</code> — <b>solid</b> colored toasts (<code>bg-*-solid</code>, white text), radius 8, 12px 16px padding, <code>shadow-lg</code>, stacked <b>bottom-left</b>. Error toasts never auto-dismiss.</p>
+</div>
+<div class="sheet-section">
+<h2>Callout — 4 variants</h2>
+<div class="stack">
+<div class="callout callout--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><div class="callout__title">Heads up</div><div class="callout__desc">Replies sent after 6pm are delivered the next business day. <a href="#">Change hours</a></div></div>
+<div class="callout callout--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div class="callout__title">Your trial ends in 3 days</div><div class="callout__desc">Add a payment method to keep your workspace active.</div></div>
+<div class="callout callout--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg><div class="callout__title">Couldn't sync with Stripe</div><div class="callout__desc">The API key was revoked. Reconnect to resume invoicing.</div></div>
+<div class="callout callout--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div class="callout__title">Domain verified</div><div class="callout__desc">Emails from support@spinkart.com are now signed with DKIM.</div></div>
+</div>
+</div>
+<div class="sheet-section">
+<h2>Callout — title only &amp; action slot</h2>
+<div class="stack">
+<div class="callout callout--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><div class="callout__title">Two agents are viewing this ticket.</div></div>
+<div class="callout callout--warning has-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div class="callout__title">SSO is not enforced</div><div class="callout__desc">Members can still sign in with a password.</div><div class="callout__action"><button class="btn btn--outline btn--sm">Enforce</button></div></div>
+</div>
+<div class="sheet-note">Title is 14px/600 in the variant foreground; description 14px <code>--foreground</code>, links underline offset 3. The optional <code>AlertAction</code> sits <code>absolute top-2 end-2</code> and reserves <code>pe-18</code> (72px).</div>
+</div>
+<div class="sheet-section">
+<h2>Toastr — solid, 4 types</h2>
+<div class="sheet-row sheet-row--top" style="gap:32px">
+<div class="spec"><div class="toast-stack">
+<div class="toast toast--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div class="toast__msg">Ticket #4521 was closed.</div><button class="toast__action">Undo</button><button class="toast__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+<div class="toast toast--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><div class="toast__msg">A new version is available.</div><button class="toast__action">Reload</button><button class="toast__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+<div class="toast toast--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div class="toast__msg">You're offline. Changes will sync when you reconnect.</div><button class="toast__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+<div class="toast toast--error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 9-6 6"/><path d="M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z"/><path d="m9 9 6 6"/></svg><div class="toast__msg">Couldn't save the article. <a class="toast__copy" href="#">Copy this error message</a></div><button class="toast__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+</div><span class="spec__label">Toastr.success / info / warning / error — 356px</span></div>
+<div class="sheet-col" style="gap:12px">
+<div class="spec"><div class="toast toast--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div class="toast__msg">Settings saved.</div></div><span class="spec__label">message only</span></div>
+<div class="spec"><div class="toast toast--error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 9-6 6"/><path d="M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z"/><path d="m9 9 6 6"/></svg><div class="toast__msg">Payment failed. Card was declined.</div><button class="toast__action">Retry</button><button class="toast__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><span class="spec__label">action — text button, underline on hover</span></div>
+</div>
+</div>
+<div class="sheet-note">Anatomy: icon 16px (CircleCheck · Info · TriangleAlert · OctagonX) · 12px gap · single message line (<code>flex-1</code>) · optional action (14px/500 text, no button chrome) · X at 70% opacity. Border is the solid color at 30%. There is no separate title / description — one message, plus an optional italic “Copy this error message” link on errors.</div>
+</div>
+<div class="sheet-section">
+<h2>Plain sonner card</h2>
+<div class="sheet-row">
+<div class="spec"><div class="toast toast--plain"><div class="toast__msg"><div class="t-medium">Export started</div><div class="t-muted">We'll email you when the CSV is ready.</div></div><button class="toast__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><span class="spec__label">toast() — --popover bg, --border, radius --radius (10)</span></div>
+</div>
+</div>
+<div class="sheet-section">
+<h2>Placement</h2>
+<div class="screen">
+  <div class="screen__content"><div class="skel"></div><div class="skel" style="width:60%"></div><div class="skel" style="width:75%"></div></div>
+  <div class="screen__toasts">
+    <div class="toast toast--error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 9-6 6"/><path d="M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z"/><path d="m9 9 6 6"/></svg><div class="toast__msg">Couldn't send reply.</div><button class="toast__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+    <div class="toast toast--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div class="toast__msg">Ticket assigned to Eve.</div><button class="toast__action">Undo</button><button class="toast__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
   </div>
-
-  <div class="sheet-section">
-    <h2>Callout</h2>
-    <div class="sheet-col" style="max-width:620px">
-      <div class="callout callout--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11v5"/></svg><div><div class="callout__title">Trial ends in 7 days</div><div class="callout__desc">Upgrade to keep your workflows running without interruption.</div></div></div>
-      <div class="callout callout--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><div><div class="callout__title">Integrations need attention</div><div class="callout__desc">Two of your integrations need re-authentication.</div></div></div>
-      <div class="callout callout--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><div><div class="callout__title">Payment failed</div><div class="callout__desc">Update your billing details to avoid suspension.</div></div></div>
-      <div class="callout callout--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg><div><div class="callout__title">Domain verified</div><div class="callout__desc">Your domain is verified and live.</div></div></div>
-    </div>
-  </div>
-
-  <div class="sheet-section">
-    <h2>Sonner toasts</h2>
-    <div class="sheet-row sheet-row--top" style="gap:20px">
-      <div class="sheet-col" style="gap:12px">
-        <div class="sonner"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success-solid)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg><div><div class="sonner__title">Ticket #4092 resolved</div><div class="sonner__desc">The customer has been notified.</div></div></div>
-        <div class="sonner"><svg viewBox="0 0 24 24" fill="none" stroke="var(--error-solid)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg><div style="flex-grow:1"><div class="sonner__title">Couldn't save changes</div><div class="sonner__desc">Check your connection and try again.</div></div><button class="btn btn--outline btn--xs">Retry</button></div>
-      </div>
-      <div class="sheet-col" style="gap:12px">
-        <div class="sonner"><svg viewBox="0 0 24 24" fill="none" stroke="var(--warning-solid)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><div><div class="sonner__title">Approaching plan limit</div><div class="sonner__desc">92% of monthly responses used.</div></div></div>
-        <div class="sonner"><div style="flex-grow:1"><div class="sonner__title">Event created</div><div class="sonner__desc">Monday, June 29 at 9:00 AM</div></div><button class="btn btn--secondary btn--xs">Undo</button></div>
-      </div>
-    </div>
-    <div class="sheet-note">Use Callout for persistent in-page context; Sonner for transient action feedback. Sonner supports an inline action button (xs size) — prefer "Undo" over confirmation dialogs for reversible actions.</div>
-  </div>
+</div>
+<div class="sheet-note">Toaster is anchored <b>bottom-left</b> (bottom-right in RTL), newest at the bottom. Success / info / warning use sonner's default duration (4s); <b>error toasts use <code>duration: Infinity</code></b> and stay until dismissed.</div>
+</div>
+<div class="sheet-section">
+<h2>Dark mode</h2>
+<div class="dark" style="background:var(--background);color:var(--foreground);border-radius:var(--radius-xl);border:1px solid var(--border);padding:24px">
+<div class="sheet-row sheet-row--top" style="gap:32px">
+<div style="flex:1;min-width:300px"><div class="stack">
+<div class="callout callout--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><div class="callout__title">Heads up</div><div class="callout__desc">Replies sent after 6pm are delivered the next business day. <a href="#">Change hours</a></div></div>
+<div class="callout callout--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div class="callout__title">Your trial ends in 3 days</div><div class="callout__desc">Add a payment method to keep your workspace active.</div></div>
+<div class="callout callout--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg><div class="callout__title">Couldn't sync with Stripe</div><div class="callout__desc">The API key was revoked. Reconnect to resume invoicing.</div></div>
+<div class="callout callout--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div class="callout__title">Domain verified</div><div class="callout__desc">Emails from support@spinkart.com are now signed with DKIM.</div></div>
+</div></div>
+<div class="toast-stack">
+<div class="toast toast--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div class="toast__msg">Ticket #4521 was closed.</div><button class="toast__action">Undo</button><button class="toast__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+<div class="toast toast--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><div class="toast__msg">A new version is available.</div><button class="toast__action">Reload</button><button class="toast__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+<div class="toast toast--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div class="toast__msg">You're offline. Changes will sync when you reconnect.</div><button class="toast__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+<div class="toast toast--error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 9-6 6"/><path d="M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z"/><path d="m9 9 6 6"/></svg><div class="toast__msg">Couldn't save the article. <a class="toast__copy" href="#">Copy this error message</a></div><button class="toast__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>

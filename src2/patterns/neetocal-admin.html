@@ -1,0 +1,224 @@
+<!-- @dsCard group="neetoCal fit check" name="neetoCal · Admin" subtitle="Scheduling links, bookings and availability rebuilt from atoms + molecules v2 only · coverage matrix" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neetoCal fit check · Admin</title>
+<style>/*__ATOMS__*/</style>
+<style>/*__SHEET__*/</style>
+<style>
+  .frame { border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--ring-fg10); height: 760px; display: flex; }
+  .frame .app { width: 100%; height: 100%; }
+  .frame .v2-main { overflow: hidden; }
+  .wordmark { font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: -0.02em; }
+  .wordmark span { color: var(--primary); }
+  .cell-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; }
+  .cell-row { display: flex; align-items: center; gap: 8px; }
+  .muted { color: var(--muted-foreground); }
+  .nowrap { white-space: nowrap; }
+  .two-col { display: flex; gap: 24px; align-items: flex-start; }
+  .overrides { flex: 1; min-width: 0; }
+  .override-item { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .override-item + .override-item { margin-top: 12px; }
+  .matrix td:first-child { font-weight: 500; white-space: nowrap; }
+  .matrix td { vertical-align: top; }
+  /* ---- Proposed DS extension (NOT in atoms 1.1.1): colour swatch for user-data hexes.
+     neetoCal renders these as inline-style divs today (Bookings/List, SlugInput). ---- */
+  .x-swatch { display: inline-block; width: 24px; height: 24px; flex-shrink: 0; border-radius: 4px; box-shadow: inset 0 0 0 1px var(--border); background: var(--swatch); }
+  .x-swatch--sm { width: 12px; height: 12px; border-radius: 999px; }
+</style>
+</head>
+<body class="nui-sheet">
+  <div class="sheet-header">
+    <h1>neetoCal · Admin, rebuilt from the system</h1>
+    <p>neetoCal <code>main</code> (e67112d8fb) is fully on <code>neetoatoms</code> 1.1.1 + <code>neetomolecules/v2</code> 5.9.9 (PR #27053, 0 NeetoUI imports). These are three of its real admin screens, composed only from this system's classes, following the component trees in the app source. Anything not stock is drawn with an <code>x-</code> class and listed under <b>Gaps</b>.</p>
+  </div>
+
+  <!-- ========== 1. Scheduling links ========== -->
+  <div class="sheet-section">
+    <h2>Scheduling links list — Meetings/Dashboard</h2>
+    <div class="frame">
+      <div class="app">
+        <aside class="v2-sidebar">
+          <div class="v2-sidebar__header">
+            <div class="v2-sidebar__logo"><span class="wordmark">neeto<span>Cal</span></span></div>
+            <button class="btn btn--ghost btn--icon btn--sm v2-sidebar__collapse" aria-label="Collapse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg></button>
+          </div>
+          <div class="v2-sidebar__content">
+            <ul class="v2-nav">
+              <li><a class="v2-nav-item expanded"><span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span><span class="v2-nav-item__label">Scheduling links</span><span class="v2-nav-item__trail"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a>
+                <ul class="v2-subnav" style="margin-top:4px">
+                  <li><a class="v2-subnav-item active">Active<span class="count">12</span></a></li>
+                  <li><a class="v2-subnav-item">Disabled<span class="count">3</span></a></li>
+                  <li><a class="v2-subnav-item">All<span class="count">15</span></a></li>
+                </ul>
+              </li>
+              <li><a class="v2-nav-item"><span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12h11"/><path d="M10 18h11"/><path d="M10 6h11"/><path d="M4 10h2"/><path d="M4 6h1v4"/><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg><span class="v2-nav-count">4</span></span><span class="v2-nav-item__label">Bookings</span><span class="v2-nav-item__trail"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a></li>
+              <li><a class="v2-nav-item"><span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="v2-nav-item__label">Host</span><span class="v2-nav-item__trail"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a></li>
+              <li><a class="v2-nav-item"><span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="v2-nav-item__label">Messages</span><span class="v2-nav-item__trail"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a></li>
+              <li><a class="v2-nav-item"><span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></span><span class="v2-nav-item__label">Payments</span><span class="v2-nav-item__trail"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a></li>
+              <li><a class="v2-nav-item"><span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 13a3 3 0 1 0-6 0"/><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><circle cx="12" cy="8" r="2"/></svg></span><span class="v2-nav-item__label">Contacts</span><span class="v2-nav-item__trail"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a></li>
+              <li><a class="v2-nav-item"><span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="7" x="3" y="3" rx="1"/><rect width="9" height="7" x="3" y="14" rx="1"/><rect width="5" height="7" x="16" y="14" rx="1"/></svg></span><span class="v2-nav-item__label">Intro pages</span></a></li>
+              <li><a class="v2-nav-item"><span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg></span><span class="v2-nav-item__label">Packages</span></a></li>
+              <li><a class="v2-nav-item"><span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span><span class="v2-nav-item__label">Reports</span><span class="v2-nav-item__trail"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a></li>
+              <li><a class="v2-nav-item"><span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="v2-nav-item__label">Admin panel</span></a></li>
+            </ul>
+          </div>
+          <div class="v2-fab"><div class="v2-fab__btn"><span class="avatar" style="--avatar-h:207"><span class="avatar__fallback">OS</span></span><span class="v2-fab__help"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span></div></div>
+        </aside>
+        <main class="v2-main">
+          <div class="v2-container">
+            <div class="v2-header">
+              <div class="v2-header__left"><div class="v2-header__title-row"><h1>Scheduling links</h1></div></div>
+              <div class="v2-header__right">
+                <div class="input v2-search" style="width:224px"><span class="input__addon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span><input placeholder="Search scheduling links"></div>
+                <button class="btn btn--default has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>New scheduling link</button>
+              </div>
+            </div>
+            <div class="v2-subheader" style="margin-bottom:16px">
+              <div class="v2-subheader__left"><span class="v2-subheader__count">12 scheduling links</span></div>
+              <div class="v2-subheader__right"><div class="v2-rightblock"><button class="btn btn--ghost btn--icon" aria-label="Columns"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/></svg></button><button class="btn btn--ghost btn--icon" aria-label="Filter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button></div></div>
+            </div>
+            <div class="tbl-wrap">
+              <table class="tbl">
+                <thead><tr><th>Name</th><th>Host</th><th>Duration</th><th>Scheduling link</th><th>Status</th><th>Upcoming</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td><div class="cell-stack"><a class="btn btn--link">Product demo</a><span class="t-body3 muted">One-on-one · Google Meet</span></div></td>
+                      <td><div class="cell-row"><span class="avatar avatar--sm" style="--avatar-h:207"><span class="avatar__fallback">OS</span></span>Oliver Smith</div></td>
+                      <td class="nowrap">30 min</td>
+                      <td><div class="cell-row"><a class="btn btn--link nowrap">spinkart.neetocal.com/demo</a><button class="btn btn--ghost btn--icon btn--xs" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button></div></td>
+                      <td><span class="badge badge--green-subtle">Enabled</span></td>
+                      <td><a class="btn btn--link">8</a></td>
+                      <td><button class="btn btn--ghost btn--icon btn--sm" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></td></tr>
+                  <tr class="hover"><td><div class="cell-stack"><a class="btn btn--link">Customer onboarding</a><span class="t-body3 muted">Round robin · Zoom</span></div></td>
+                      <td><div class="avatar-group"><span class="avatar avatar--sm" style="--avatar-h:31"><span class="avatar__fallback">EJ</span></span><span class="avatar avatar--sm" style="--avatar-h:132"><span class="avatar__fallback">SR</span></span><span class="avatar avatar--sm" style="--avatar-h:312"><span class="avatar__fallback">AK</span></span></div></td>
+                      <td class="nowrap">45 min</td>
+                      <td><div class="cell-row"><a class="btn btn--link nowrap">spinkart.neetocal.com/onboarding</a><button class="btn btn--ghost btn--icon btn--xs" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button></div></td>
+                      <td><span class="badge badge--green-subtle">Enabled</span></td>
+                      <td><a class="btn btn--link">14</a></td>
+                      <td><button class="btn btn--ghost btn--icon btn--sm" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></td></tr>
+                  <tr><td><div class="cell-stack"><a class="btn btn--link">Office hours</a><span class="t-body3 muted">Group · In person</span></div></td>
+                      <td><div class="cell-row"><span class="avatar avatar--sm" style="--avatar-h:277"><span class="avatar__fallback">MN</span></span>Mira Nair</div></td>
+                      <td class="nowrap">60 min</td>
+                      <td><div class="cell-row"><a class="btn btn--link nowrap">spinkart.neetocal.com/office-hours</a><button class="btn btn--ghost btn--icon btn--xs" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button></div></td>
+                      <td><span class="badge badge--red-subtle">Disabled</span></td>
+                      <td class="muted">—</td>
+                      <td><button class="btn btn--ghost btn--icon btn--sm" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></td></tr>
+                  <tr><td><div class="cell-stack"><a class="btn btn--link">Paid consultation</a><span class="t-body3 muted">One-on-one · Phone · ₹1,500</span></div></td>
+                      <td><div class="cell-row"><span class="avatar avatar--sm" style="--avatar-h:207"><span class="avatar__fallback">OS</span></span>Oliver Smith</div></td>
+                      <td class="nowrap">15 / 30 min</td>
+                      <td><div class="cell-row"><a class="btn btn--link nowrap">spinkart.neetocal.com/consult</a><button class="btn btn--ghost btn--icon btn--xs" aria-label="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button></div></td>
+                      <td><span class="badge badge--green-subtle">Enabled</span></td>
+                      <td><a class="btn btn--link">3</a></td>
+                      <td><button class="btn btn--ghost btn--icon btn--sm" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="sheet-note">Everything here is stock: <code>Sidebar</code> (240px, flat list, red count bubble, brand-text active sub-item), <code>FloatingActionMenu</code>, <code>Header</code> (neetoCal widens search to 224px via <code>w-56</code>), <code>SubHeader</code> with a plain-text count and <code>RightBlock</code>, <code>DataTable</code>, link Buttons, subtle Badges, seeded Avatars. <b>Fits.</b></div>
+  </div>
+
+  <!-- ========== 2. Bookings ========== -->
+  <div class="sheet-section">
+    <h2>Bookings list — Bookings/List</h2>
+    <div style="padding:0 8px">
+      <div class="v2-header" style="padding-top:8px"><div class="v2-header__left"><div class="v2-header__title-row"><h1>My bookings</h1></div></div>
+        <div class="v2-header__right"><div class="input v2-search"><span class="input__addon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span><input placeholder="Search"></div></div></div>
+      <div class="tabs-list tabs-list--line tabs-list--lg"><button class="tab-trigger active">Upcoming (12)</button><button class="tab-trigger">Pending (2)</button><button class="tab-trigger">Recurring</button><button class="tab-trigger">Past</button><button class="tab-trigger">Cancelled</button></div>
+      <div class="v2-subheader" style="margin:16px 0">
+        <div class="v2-subheader__left"><span class="v2-subheader__count">12 bookings</span></div>
+        <div class="v2-subheader__right">
+          <div class="btn-group"><button class="btn btn--outline btn--icon" aria-label="Calendar view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></button><button class="btn btn--secondary btn--icon" aria-label="List view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12h11"/><path d="M10 18h11"/><path d="M10 6h11"/><path d="M4 10h2"/><path d="M4 6h1v4"/><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></button></div>
+          <div class="v2-rightblock"><button class="btn btn--ghost btn--icon" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></button><button class="btn btn--ghost btn--icon" aria-label="Columns"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/></svg></button><button class="btn btn--ghost btn--icon" aria-label="Filter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button></div>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th class="sel"><input type="checkbox" class="checkbox"></th><th>Meeting time</th><th>Client</th><th>Scheduling link</th><th>Hosts</th><th>Payment</th></tr></thead>
+          <tbody>
+            <tr class="selected"><td class="sel"><input type="checkbox" class="checkbox" checked></td>
+              <td><div class="cell-row"><span class="x-swatch" style="--swatch:#039BE5"></span><div class="cell-stack"><a class="btn btn--link">Tue, Oct 27</a><span class="t-body3 muted">10:00 – 10:30 AM</span></div></div></td>
+              <td><div class="cell-stack"><span>Priya Raman</span><span class="t-body3 muted">priya@acme.io</span></div></td>
+              <td><a class="btn btn--link">Product demo</a></td>
+              <td><span class="avatar avatar--sm" style="--avatar-h:207"><span class="avatar__fallback">OS</span></span></td>
+              <td><span class="badge badge--secondary">Not required</span></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="checkbox"></td>
+              <td><div class="cell-row"><span class="x-swatch" style="--swatch:#33B679"></span><div class="cell-stack"><a class="btn btn--link">Tue, Oct 27</a><span class="t-body3 muted">2:00 – 2:45 PM</span></div></div></td>
+              <td><div class="cell-stack"><span>Daniel Okafor</span><span class="t-body3 muted">dan@northwind.com</span></div></td>
+              <td><a class="btn btn--link">Customer onboarding</a></td>
+              <td><div class="avatar-group"><span class="avatar avatar--sm" style="--avatar-h:31"><span class="avatar__fallback">EJ</span></span><span class="avatar avatar--sm" style="--avatar-h:132"><span class="avatar__fallback">SR</span></span></div></td>
+              <td><span class="badge badge--secondary">Not required</span></td></tr>
+            <tr><td class="sel"><input type="checkbox" class="checkbox"></td>
+              <td><div class="cell-row"><span class="x-swatch" style="--swatch:#8E24AA"></span><div class="cell-stack"><a class="btn btn--link">Wed, Oct 28</a><span class="t-body3 muted">11:15 – 11:45 AM</span></div></div></td>
+              <td><div class="cell-stack"><span>Lena Fischer</span><span class="t-body3 muted">lena@fischer.de</span></div></td>
+              <td><a class="btn btn--link">Paid consultation</a></td>
+              <td><span class="avatar avatar--sm" style="--avatar-h:207"><span class="avatar__fallback">OS</span></span></td>
+              <td><span class="badge badge--green-subtle">Paid</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="sheet-note">Stock: line <code>Tabs size="lg"</code>, molecules <code>ButtonGroup</code>, <code>RightBlock</code>, selectable <code>DataTable</code> (green checkboxes, <code>row-selected</code>). <b>Gap:</b> the meeting colour is user data (one of 11 Google Calendar hexes) and atoms has no swatch, so neetoCal hand-rolls <code>div.size-6.rounded</code> with an inline background. Drawn here as the proposed <code>x-swatch</code>.</div>
+  </div>
+
+  <!-- ========== 3. Availability ========== -->
+  <div class="sheet-section">
+    <h2>Availability editor — Host/Availabilities/Show</h2>
+    <div style="padding:0 8px">
+      <div class="v2-header" style="padding-top:8px;padding-bottom:16px">
+        <div class="v2-header__left">
+          <nav class="crumbs"><a>Availability</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="current">Working hours</span></nav>
+          <div class="v2-header__title-row"><h1>Working hours</h1><button class="btn btn--ghost btn--icon" aria-label="Rename"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg></button></div>
+        </div>
+      </div>
+      <div class="tabs-list tabs-list--line tabs-list--lg" style="margin-bottom:24px"><button class="tab-trigger active">Working hours</button><button class="tab-trigger">Calendar view</button></div>
+      <div class="two-col">
+        <div class="v2-schedule" style="margin:0;max-width:640px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+            <span class="t-h6 t-medium">Asia/Kolkata · 10:42 AM</span>
+            <button class="btn btn--default">Change availability</button>
+          </div>
+          <div class="v2-schedule__day"><span class="t-h6" style="width:25%">Monday</span><span class="t-h6">09:00</span><span class="muted">–</span><span class="t-h6">17:00</span></div>
+          <div class="v2-schedule__day"><span class="t-h6" style="width:25%">Tuesday</span><span class="t-h6">09:00</span><span class="muted">–</span><span class="t-h6">13:00</span><span style="width:16px"></span><span class="t-h6">14:00</span><span class="muted">–</span><span class="t-h6">18:00</span></div>
+          <div class="v2-schedule__day"><span class="t-h6" style="width:25%">Wednesday</span><span class="t-h6">09:00</span><span class="muted">–</span><span class="t-h6">17:00</span></div>
+          <div class="v2-schedule__day"><span class="t-h6" style="width:25%">Saturday</span><span class="muted">Unavailable</span></div>
+        </div>
+        <div class="overrides">
+          <div class="cell-row" style="margin-bottom:4px"><span class="t-h5">Date overrides</span><span class="help-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span></div>
+          <p class="t-body2 muted" style="margin:0 0 8px">Add dates when your availability changes from your weekly hours.</p>
+          <a class="btn btn--link has-icon-start" style="margin-bottom:16px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>Add</a>
+          <div class="t-h6 muted" style="margin:8px 0 16px">2026</div>
+          <div class="override-item"><div class="cell-row" style="justify-content:space-between"><span class="t-body2 t-semibold">Fri, Nov 13</span><button class="btn btn--ghost btn--icon btn--sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></div><span class="t-body3 t-medium muted">Unavailable all day</span></div>
+          <div class="override-item"><div class="cell-row" style="justify-content:space-between"><span class="t-body2 t-semibold">Mon, Nov 23</span><button class="btn btn--ghost btn--icon btn--sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></div><div class="cell-row"><span style="width:80px">10:00</span><span class="muted">–</span><span>14:00</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="sheet-note">Stock: Header with breadcrumbs, line <code>Tabs</code>, molecules <code>Schedule</code> (read mode), HelpPopover, link Button. <b>Gaps</b> on the other tab and in the override pane: the "Calendar view" tab is a FullCalendar month grid reskinned by 447 lines of <code>full-calendar.css</code>, and the override pane's multi-date picker is a hand-built table because atoms <code>Calendar</code> has no multi-select mode.</div>
+  </div>
+
+  <!-- ========== 4. Coverage ========== -->
+  <div class="sheet-section">
+    <h2>Coverage — neetoCal admin vs this system</h2>
+    <table class="tbl matrix">
+      <thead><tr><th>neetoCal surface</th><th>Built from</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>App shell</td><td>v2 Sidebar · FloatingActionMenu (+ theme switcher) · Container · Header · SubHeader</td><td><span class="badge badge--green-subtle">Fits</span></td></tr>
+        <tr><td>All list pages</td><td>DataTable · Badge · Avatar · link Button · MoreDropdown · CopyToClipboardButton · neetofilters v2 Bar</td><td><span class="badge badge--green-subtle">Fits</span></td></tr>
+        <tr><td>Forms, settings, integrations</td><td>formik Form/ActionBlock · Input · Select · RadioGroup · Switch · CardLayout · Settings · ToggleFeatureCard · Dialog · Alert · Sheet</td><td><span class="badge badge--green-subtle">Fits</span></td></tr>
+        <tr><td>Meeting builder</td><td>NavigationHeader (+ lg Tabs) · CardLayout · ColorPicker (11-colour palette) · neetoeditor v2</td><td><span class="badge badge--green-subtle">Fits</span></td></tr>
+        <tr><td>Meeting / outcome colours</td><td>ColorPicker picks; display is inline divs; outcomes go through StatusDropdown via a colour-name map</td><td><span class="badge badge--amber-subtle">Gap: swatch</span></td></tr>
+        <tr><td>Bookings calendar · availability calendar</td><td>v2 CalendarView (FullCalendar) + 608 lines of app CSS; event chips coloured by raw hex</td><td><span class="badge badge--amber-subtle">Gap: calendar skin</span></td></tr>
+        <tr><td>Date overrides</td><td>hand-built multi-date table grid</td><td><span class="badge badge--amber-subtle">Gap: multi-date Calendar</span></td></tr>
+        <tr><td>Booking activity</td><td>custom Timeline + 356 lines of CSS</td><td><span class="badge badge--amber-subtle">Gap: Timeline</span></td></tr>
+        <tr><td>Durations, limits</td><td>custom InputNumber stepper</td><td><span class="badge badge--amber-subtle">Gap: NumberInput</span></td></tr>
+        <tr><td>Inline links in sentences</td><td><code>Button variant="link"</code> + <code>!inline !h-auto !p-0</code> ×28</td><td><span class="badge badge--amber-subtle">Gap: inline link</span></td></tr>
+        <tr><td>Reports</td><td>raw recharts with hard-coded <code>#3CAD7E</code></td><td><span class="badge badge--amber-subtle">Should use --chart-*</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

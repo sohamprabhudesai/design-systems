@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" name="Badges" subtitle="6 shadcn variants + 8-color system with subtle pairs · 3 sizes · pill & rounded" -->
+<!-- @dsCard group="Components" name="Badges" subtitle="6 semantic variants (default = brand green) + 8 colors × solid/subtle · sm/default/lg · pill & rounded · 6px indicator · #427 dismiss · light & dark" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,65 +7,134 @@
 <title>neeto-atoms · Badges</title>
 <style>/*__ATOMS__*/</style>
 <style>/*__SHEET__*/</style>
+<style>
+  .modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 20px; }
+  .mode-panel { background: var(--background); color: var(--foreground); border-radius: var(--radius-xl); padding: 16px 20px 20px; box-shadow: var(--ring-fg10); }
+  .panel-h { margin: 0 0 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--muted-foreground); }
+  .sub-h { margin: 14px 0 8px; font-size: 10.5px; color: var(--muted-foreground); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .sheet-row .sheet-row { gap: 8px; }
+  .mode-panel .sheet-row { gap: 8px; }
+</style>
 </head>
 <body class="nui-sheet">
   <div class="sheet-header">
     <h1>Badges</h1>
-    <p><code>Badge</code> — 20px pill, 12px medium text. Semantic variants (<code>default · secondary · destructive · outline · ghost · link</code>)
-    plus a <b>color system</b>: gray, blue, purple, amber, red, pink, green, teal — each with a <code>-subtle</code> pair (50-tint bg, 700 text).
-    Sizes <code>sm 16 · default 20 · lg 24</code>; shapes <code>pill</code> (default) and <code>rounded</code> (4px). Optional leading icon/dot and dismiss ×.</p>
+    <p><code>Badge</code> (atoms 1.1.1) — 20px pill, 8px x-padding, 12px / 500, 4px gap, 12px icons. Semantic variants
+    <code>default · secondary · destructive · outline · ghost · link</code> plus a Tailwind <b>color system</b>
+    (gray, blue, purple, amber, red, pink, green, teal), each solid or <code>-subtle</code>. Since #480 <b>default is brand green</b>
+    and <code>link</code> is green text (<code>text-primary</code>), not the blue <code>--link</code>.</p>
   </div>
 
   <div class="sheet-section">
     <h2>Semantic variants</h2>
     <div class="sheet-row">
-      <span class="badge badge--default">Default</span>
-      <span class="badge badge--secondary">Secondary</span>
-      <span class="badge badge--destructive">Destructive</span>
-      <span class="badge badge--outline">Outline</span>
-      <span class="badge badge--ghost">Ghost</span>
+      <div class="spec"><span class="badge badge--default">Default</span><span class="spec__label">bg-primary — brand green</span></div>
+      <div class="spec"><span class="badge badge--secondary">Secondary</span><span class="spec__label">bg-secondary</span></div>
+      <div class="spec"><span class="badge badge--destructive">Destructive</span><span class="spec__label">destructive/10 (dark /20)</span></div>
+      <div class="spec"><span class="badge badge--outline">Outline</span><span class="spec__label">border-border</span></div>
+      <div class="spec"><span class="badge badge--ghost">Ghost</span><span class="spec__label">hover muted</span></div>
+      <div class="spec"><span class="badge badge--link">Link</span><span class="spec__label">text-primary · hover underline</span></div>
+      <div class="spec"><span class="badge badge--ghost hover">Ghost</span><span class="spec__label">ghost · hover</span></div>
     </div>
   </div>
 
   <div class="sheet-section">
-    <h2>Color system — solid</h2>
+    <h2>Color system — solid &amp; subtle</h2>
     <div class="sheet-row">
-      <span class="badge badge--gray">Gray</span>
-      <span class="badge badge--blue">Blue</span>
-      <span class="badge badge--purple">Purple</span>
-      <span class="badge badge--amber">Amber</span>
-      <span class="badge badge--red">Red</span>
-      <span class="badge badge--pink">Pink</span>
-      <span class="badge badge--green">Green</span>
-      <span class="badge badge--teal">Teal</span>
+      <div class="spec spec--center"><span class="badge badge--gray">Gray</span><span class="badge badge--gray-subtle">Draft</span><span class="spec__label">gray</span></div>
+      <div class="spec spec--center"><span class="badge badge--blue">Blue</span><span class="badge badge--blue-subtle">Open</span><span class="spec__label">blue</span></div>
+      <div class="spec spec--center"><span class="badge badge--purple">Purple</span><span class="badge badge--purple-subtle">In review</span><span class="spec__label">purple</span></div>
+      <div class="spec spec--center"><span class="badge badge--amber">Amber</span><span class="badge badge--amber-subtle">Waiting</span><span class="spec__label">amber</span></div>
+      <div class="spec spec--center"><span class="badge badge--red">Red</span><span class="badge badge--red-subtle">Urgent</span><span class="spec__label">red</span></div>
+      <div class="spec spec--center"><span class="badge badge--pink">Pink</span><span class="badge badge--pink-subtle">Design</span><span class="spec__label">pink</span></div>
+      <div class="spec spec--center"><span class="badge badge--green">Green</span><span class="badge badge--green-subtle">Resolved</span><span class="spec__label">green</span></div>
+      <div class="spec spec--center"><span class="badge badge--teal">Teal</span><span class="badge badge--teal-subtle">Beta</span><span class="spec__label">teal</span></div>
+    </div>
+    <div class="sheet-note">Solid = 600 fill with white text (amber 400 / amber-950 text, purple 700, gray 200 / 800 text). Subtle = 50 tint + 700 text; in dark, <code>950/50</code> + 300 text. Prefer <b>subtle</b> for statuses in tables and lists, solid for counts and emphasis.</div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Sizes · shapes · icons</h2>
+    <div class="sheet-row">
+      <div class="spec"><span class="badge badge--green-subtle badge--sm">Small</span><span class="spec__label">sm · 16 · px 6 · 10.4px · svg 10</span></div>
+      <div class="spec"><span class="badge badge--green-subtle">Default</span><span class="spec__label">default · 20 · px 8 · 12px · svg 12</span></div>
+      <div class="spec"><span class="badge badge--green-subtle badge--lg">Large</span><span class="spec__label">lg · 24 · px 12 · 14px · svg 16</span></div>
+      <div class="spec"><span class="badge badge--blue-subtle badge--rounded">Rounded</span><span class="spec__label">shape=rounded · 4px</span></div>
+      <div class="spec"><span class="badge badge--green-subtle badge--sm has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>Paid</span><span class="spec__label">sm + icon · ps 4</span></div>
+      <div class="spec"><span class="badge badge--green-subtle has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>Paid</span><span class="spec__label">icon left (default) · ps 6</span></div>
+      <div class="spec"><span class="badge badge--amber-subtle badge--lg has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Pending</span><span class="spec__label">lg + icon · ps 8</span></div>
+      <div class="spec"><span class="badge badge--outline">Changelog<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span><span class="spec__label">icon right</span></div>
+      <div class="spec"><span class="badge badge--default">128</span><span class="spec__label">count — green</span></div>
     </div>
   </div>
 
   <div class="sheet-section">
-    <h2>Color system — subtle (status labels)</h2>
+    <h2>Indicator dot</h2>
     <div class="sheet-row">
-      <span class="badge badge--gray-subtle">Draft</span>
-      <span class="badge badge--blue-subtle">Open</span>
-      <span class="badge badge--purple-subtle">In review</span>
-      <span class="badge badge--amber-subtle">Waiting</span>
-      <span class="badge badge--red-subtle">Urgent</span>
-      <span class="badge badge--pink-subtle">Design</span>
-      <span class="badge badge--green-subtle">Resolved</span>
-      <span class="badge badge--teal-subtle">Beta</span>
+      <div class="spec"><span class="badge badge--outline has-icon-start"><span class="badge__dot badge__dot--default"></span>Live</span><span class="spec__label">default · bg-primary</span></div>
+      <div class="spec"><span class="badge badge--secondary has-icon-start"><span class="badge__dot badge__dot--secondary"></span>Offline</span><span class="spec__label">secondary · muted-foreground</span></div>
+      <div class="spec"><span class="badge badge--destructive has-icon-start"><span class="badge__dot badge__dot--destructive"></span>Failed</span><span class="spec__label">destructive</span></div>
+      <div class="spec"><span class="badge badge--gray-subtle has-icon-start"><span class="badge__dot badge__dot--gray"></span>Draft</span><span class="spec__label">gray-400</span></div>
+      <div class="spec"><span class="badge badge--blue-subtle has-icon-start"><span class="badge__dot badge__dot--blue"></span>Open</span><span class="spec__label">blue-600</span></div>
+      <div class="spec"><span class="badge badge--purple-subtle has-icon-start"><span class="badge__dot badge__dot--purple"></span>In review</span><span class="spec__label">purple-700</span></div>
+      <div class="spec"><span class="badge badge--amber-subtle has-icon-start"><span class="badge__dot badge__dot--amber"></span>Waiting</span><span class="spec__label">amber-400</span></div>
+      <div class="spec"><span class="badge badge--red-subtle has-icon-start"><span class="badge__dot badge__dot--red"></span>Urgent</span><span class="spec__label">red-600</span></div>
+      <div class="spec"><span class="badge badge--pink-subtle has-icon-start"><span class="badge__dot badge__dot--pink"></span>Design</span><span class="spec__label">pink-600</span></div>
+      <div class="spec"><span class="badge badge--green-subtle has-icon-start"><span class="badge__dot badge__dot--green"></span>Resolved</span><span class="spec__label">green-600</span></div>
+      <div class="spec"><span class="badge badge--teal-subtle has-icon-start"><span class="badge__dot badge__dot--teal"></span>Beta</span><span class="spec__label">teal-600</span></div>
     </div>
-    <div class="sheet-note">Prefer <b>subtle</b> colors for statuses in tables and lists; solid colors for counts and emphasis. This replaces V1's Tag component.</div>
+    <div class="sheet-note"><code>indicator</code> renders a <b>6px</b> dot (<code>size-1.5 rounded-full</code>) in the fixed indicator palette, not the text color.</div>
   </div>
 
   <div class="sheet-section">
-    <h2>Sizes · shapes · adornments</h2>
+    <h2>Dismiss (#427)</h2>
     <div class="sheet-row">
-      <div class="spec"><span class="badge badge--green-subtle badge--sm">sm 16</span><span class="spec__label">size="sm"</span></div>
-      <div class="spec"><span class="badge badge--green-subtle">default 20</span><span class="spec__label">default</span></div>
-      <div class="spec"><span class="badge badge--green-subtle badge--lg">lg 24</span><span class="spec__label">size="lg"</span></div>
-      <div class="spec"><span class="badge badge--blue-subtle badge--rounded">rounded</span><span class="spec__label">shape="rounded" — 4px</span></div>
-      <div class="spec"><span class="badge badge--outline"><span style="width:8px;height:8px;border-radius:999px;background:var(--success-solid);display:inline-block"></span>Active</span><span class="spec__label">status dot</span></div>
-      <div class="spec"><span class="badge badge--gray">billing<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span class="spec__label">dismissible</span></div>
-      <div class="spec"><span class="badge badge--default">128</span><span class="spec__label">count</span></div>
+      <div class="spec"><span class="badge badge--gray-subtle badge--sm has-dismiss">billing<button class="badge__dismiss" aria-label="Remove billing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span><span class="spec__label">sm · button 12 · X 8 · pe 2</span></div>
+      <div class="spec"><span class="badge badge--gray-subtle has-dismiss">billing<button class="badge__dismiss" aria-label="Remove billing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span><span class="spec__label">default · button 14 · X 10 · pe 4</span></div>
+      <div class="spec"><span class="badge badge--gray-subtle badge--lg has-dismiss">billing<button class="badge__dismiss" aria-label="Remove billing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span><span class="spec__label">lg · button 18 · X 12 · pe 4</span></div>
+      <div class="spec"><span class="badge badge--gray-subtle has-dismiss">billing<button class="badge__dismiss hover" aria-label="Remove billing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span><span class="spec__label">hover · currentColor/20 circle</span></div>
+      <div class="spec"><span class="badge badge--blue has-dismiss">urgent<button class="badge__dismiss" aria-label="Remove urgent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span><span class="spec__label">solid · rest</span></div>
+      <div class="spec"><span class="badge badge--blue has-dismiss">urgent<button class="badge__dismiss hover" aria-label="Remove urgent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span><span class="spec__label">solid · hover</span></div>
+      <div class="spec"><span class="badge badge--gray-subtle disabled">billing</span><span class="spec__label">disabled · 50%, dismiss hidden</span></div>
+    </div>
+    <div class="sheet-note">The dismiss button is <b>transparent at rest</b> with the X at <code>currentColor/50</code>; hover adds a <code>currentColor/20</code> round fill and the X goes full color. It inherits the badge color, so it works on every variant without extra tokens.</div>
+  </div>
+
+  <div class="sheet-section">
+    <h2>Light &amp; dark</h2>
+    <div class="modes">
+      <div class="mode-panel">
+    <h3 class="panel-h">Light</h3>
+    <div class="sub-h">Semantic</div>
+    <div class="sheet-row"><span class="badge badge--default">Default</span><span class="badge badge--secondary">Secondary</span><span class="badge badge--destructive">Destructive</span><span class="badge badge--outline">Outline</span><span class="badge badge--ghost">Ghost</span><span class="badge badge--link">Link</span></div>
+    <div class="sub-h">Color — solid</div>
+    <div class="sheet-row"><span class="badge badge--gray">Gray</span><span class="badge badge--blue">Blue</span><span class="badge badge--purple">Purple</span><span class="badge badge--amber">Amber</span><span class="badge badge--red">Red</span><span class="badge badge--pink">Pink</span><span class="badge badge--green">Green</span><span class="badge badge--teal">Teal</span></div>
+    <div class="sub-h">Color — subtle</div>
+    <div class="sheet-row"><span class="badge badge--gray-subtle">Draft</span><span class="badge badge--blue-subtle">Open</span><span class="badge badge--purple-subtle">In review</span><span class="badge badge--amber-subtle">Waiting</span><span class="badge badge--red-subtle">Urgent</span><span class="badge badge--pink-subtle">Design</span><span class="badge badge--green-subtle">Resolved</span><span class="badge badge--teal-subtle">Beta</span></div>
+    <div class="sub-h">Indicator · dismiss</div>
+    <div class="sheet-row">
+      <span class="badge badge--blue-subtle has-icon-start"><span class="badge__dot badge__dot--blue"></span>Open</span><span class="badge badge--purple-subtle has-icon-start"><span class="badge__dot badge__dot--purple"></span>In review</span><span class="badge badge--amber-subtle has-icon-start"><span class="badge__dot badge__dot--amber"></span>Waiting</span><span class="badge badge--red-subtle has-icon-start"><span class="badge__dot badge__dot--red"></span>Urgent</span><span class="badge badge--pink-subtle has-icon-start"><span class="badge__dot badge__dot--pink"></span>Design</span><span class="badge badge--green-subtle has-icon-start"><span class="badge__dot badge__dot--green"></span>Resolved</span>
+      <span class="badge badge--secondary has-icon-start"><span class="badge__dot badge__dot--secondary"></span>Offline</span>
+      <span class="badge badge--gray-subtle has-dismiss">billing<button class="badge__dismiss" aria-label="Remove billing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span>
+      <span class="badge badge--blue-subtle has-dismiss">frontend<button class="badge__dismiss" aria-label="Remove frontend"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span>
+      <span class="badge badge--blue has-dismiss">urgent<button class="badge__dismiss hover" aria-label="Remove urgent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span>
+    </div></div>
+      <div class="mode-panel dark">
+    <h3 class="panel-h">Dark · .dark</h3>
+    <div class="sub-h">Semantic</div>
+    <div class="sheet-row"><span class="badge badge--default">Default</span><span class="badge badge--secondary">Secondary</span><span class="badge badge--destructive">Destructive</span><span class="badge badge--outline">Outline</span><span class="badge badge--ghost">Ghost</span><span class="badge badge--link">Link</span></div>
+    <div class="sub-h">Color — solid</div>
+    <div class="sheet-row"><span class="badge badge--gray">Gray</span><span class="badge badge--blue">Blue</span><span class="badge badge--purple">Purple</span><span class="badge badge--amber">Amber</span><span class="badge badge--red">Red</span><span class="badge badge--pink">Pink</span><span class="badge badge--green">Green</span><span class="badge badge--teal">Teal</span></div>
+    <div class="sub-h">Color — subtle</div>
+    <div class="sheet-row"><span class="badge badge--gray-subtle">Draft</span><span class="badge badge--blue-subtle">Open</span><span class="badge badge--purple-subtle">In review</span><span class="badge badge--amber-subtle">Waiting</span><span class="badge badge--red-subtle">Urgent</span><span class="badge badge--pink-subtle">Design</span><span class="badge badge--green-subtle">Resolved</span><span class="badge badge--teal-subtle">Beta</span></div>
+    <div class="sub-h">Indicator · dismiss</div>
+    <div class="sheet-row">
+      <span class="badge badge--blue-subtle has-icon-start"><span class="badge__dot badge__dot--blue"></span>Open</span><span class="badge badge--purple-subtle has-icon-start"><span class="badge__dot badge__dot--purple"></span>In review</span><span class="badge badge--amber-subtle has-icon-start"><span class="badge__dot badge__dot--amber"></span>Waiting</span><span class="badge badge--red-subtle has-icon-start"><span class="badge__dot badge__dot--red"></span>Urgent</span><span class="badge badge--pink-subtle has-icon-start"><span class="badge__dot badge__dot--pink"></span>Design</span><span class="badge badge--green-subtle has-icon-start"><span class="badge__dot badge__dot--green"></span>Resolved</span>
+      <span class="badge badge--secondary has-icon-start"><span class="badge__dot badge__dot--secondary"></span>Offline</span>
+      <span class="badge badge--gray-subtle has-dismiss">billing<button class="badge__dismiss" aria-label="Remove billing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span>
+      <span class="badge badge--blue-subtle has-dismiss">frontend<button class="badge__dismiss" aria-label="Remove frontend"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span>
+      <span class="badge badge--blue has-dismiss">urgent<button class="badge__dismiss hover" aria-label="Remove urgent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></span>
+    </div></div>
     </div>
   </div>
 </body>

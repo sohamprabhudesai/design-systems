@@ -1,4 +1,4 @@
-<!-- @dsCard group="Patterns" name="App Shell (v2)" subtitle="256px sidebar with labels · pt-10 header · toolbar · DataTable" -->
+<!-- @dsCard group="Patterns" name="App Shell (v2)" subtitle="240px flat sidebar · FAB profile tab · 32px Header + Search · SubHeader count · DataTable" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,71 +9,252 @@
 <style>/*__SHEET__*/</style>
 <style>
   .nui-sheet { background: var(--muted); }
-  .shell { display: flex; height: 660px; border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--border); background: var(--background); box-shadow: 0 1px 2px 0 rgb(0 0 0 / .05); }
-  .main { flex-grow: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; padding: 0 40px; }
-  .av { width: 24px; height: 24px; border-radius: 999px; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; }
+  .frame { position: relative; border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; background: var(--background); box-shadow: var(--shadow-xs); }
+  .frame .app { min-height: 760px; }
+  .cell-user { display: flex; align-items: center; gap: 8px; }
+  .cell-link { color: var(--foreground); text-decoration: none; font-weight: 500; }
+  .cell-link:hover { text-decoration: underline; }
+  .tbl td.num, .tbl th.num { text-align: end; font-variant-numeric: tabular-nums; }
+  .tbl td.kebab, .tbl th.kebab { width: 1%; padding-inline: 4px 8px; }
+  .anno { margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px 24px; max-width: none; }
+  .anno ul { margin: 0; padding-inline-start: 18px; }
+  .anno li { margin: 2px 0; }
+  .anno h3 { font-size: 12.5px; font-weight: 600; margin: 0 0 4px; }
 </style>
 </head>
 <body class="nui-sheet">
   <div class="sheet-header">
     <h1>App Shell (v2)</h1>
-    <p>The neeto-molecules v2 frame: a <b>256px labeled sidebar</b> on the <code>sidebar</code> tokens (product title, nav items with icons,
-    counts and a destructive notification badge) · <code>Container</code> with 40px horizontal padding · <code>Header</code> (pt-40 pb-24, 24px/600 title,
-    actions right) · <code>SubHeader</code> toolbar (search + filters left, view options right) · content on plain background.</p>
+    <p>A neeto-desk-style list page built from <code>@bigbinary/neeto-molecules/v2</code> 5.9.9 on neeto-atoms 1.1.1:
+    <code>Sidebar</code> + <code>FloatingActionMenu</code> + <code>Container</code> → <code>Header</code> (with <code>searchProps</code>,
+    <code>titleHelpPopoverProps</code>, <code>renderDropdown</code>) → <code>SubHeader</code> (<code>SubHeader.RightBlock</code>) → atoms <code>DataTable</code>.
+    The dark variant uses identical markup under <code>.dark</code>.</p>
   </div>
 
-  <div class="shell">
-    <aside class="v2-sidebar">
-      <div class="v2-sidebar__title">neetoDesk</div>
-      <div class="v2-nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.5-6.9A2 2 0 0016.7 4H7.3a2 2 0 00-1.8 1.1z"/></svg>Tickets<span class="v2-count">128</span></div>
-      <div class="v2-nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Customers</div>
-      <div class="v2-nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Automations<span class="v2-nav-badge" style="position:static;margin-left:auto">3</span></div>
-      <div class="v2-nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>Reports</div>
-      <div style="flex-grow:1"></div>
-      <div class="v2-nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M4.2 4.2l2.8 2.8m10 10l2.8 2.8M1 12h4m14 0h4M4.2 19.8l2.8-2.8m10-10l2.8-2.8"/></svg>Settings</div>
-      <div class="v2-nav-item"><span class="av" style="background:oklch(60% 0.15 20);width:20px;height:20px">OS</span>Oliver Smith</div>
-    </aside>
+  <div class="frame">
+    <div class="app">
+      <aside class="v2-sidebar" aria-label="Main navigation">
+        <div class="v2-sidebar__header">
+          <a class="v2-sidebar__logo" href="#"><svg viewBox="0 0 118 28" height="28" role="img" aria-label="neetoDesk"><text x="0" y="21" font-family="Geist Variable, ui-sans-serif, system-ui" font-size="22" letter-spacing="-0.4" fill="currentColor"><tspan font-weight="700">neeto</tspan><tspan font-weight="400">Desk</tspan></text></svg></a>
+          <button class="btn btn--ghost btn--icon btn--sm v2-sidebar__collapse" aria-label="Collapse sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg></button>
+        </div>
+        <nav class="v2-sidebar__content">
+          <ul class="v2-nav">
+          <li><a class="v2-nav-item" href="#">
+            <span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+            <span class="v2-nav-item__label">Finder</span>
+          </a></li>
+          <li><a class="v2-nav-item" href="#">
+            <span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg><span class="v2-nav-count">12</span></span>
+            <span class="v2-nav-item__label">Tickets</span>
+            <span class="v2-nav-item__trail"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span>
+          </a></li>
+          <li><a class="v2-nav-item active expanded" href="#">
+            <span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <span class="v2-nav-item__label">Customers</span>
+            <span class="v2-nav-item__trail"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span>
+          </a>
+            <ul class="v2-subnav">
+              <li><a class="v2-subnav-item active" href="#"><span class="v2-nav-item__label">All customers</span><span class="count">248</span></a></li>
+              <li><a class="v2-subnav-item" href="#"><span class="v2-nav-item__label">Active</span><span class="count">231</span></a></li>
+              <li><a class="v2-subnav-item" href="#"><span class="v2-nav-item__label">Blocked</span><span class="count">17</span></a></li>
+            </ul>
+          </li>
+          <li><a class="v2-nav-item" href="#">
+            <span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span>
+            <span class="v2-nav-item__label">Companies</span>
+          </a></li>
+          <li><a class="v2-nav-item hover" href="#">
+            <span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span>
+            <span class="v2-nav-item__label">Reports</span>
+          </a></li>
+          <li><a class="v2-nav-item" href="#">
+            <span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <span class="v2-nav-item__label">Admin panel</span>
+          </a></li>
+          <li><a class="v2-nav-item" href="#">
+            <span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg></span>
+            <span class="v2-nav-item__label">My preferences</span>
+          </a></li>
+          <li><a class="v2-nav-item" href="#">
+            <span class="v2-nav-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></span>
+            <span class="v2-nav-item__label">More</span>
+          </a></li>
+          </ul>
+        </nav>
+      </aside>
 
-    <div class="main">
-      <header class="v2-header">
-        <div>
-          <h1>Tickets</h1>
-          <p style="margin:4px 0 0;font-size:14px;color:var(--muted-foreground)">Manage conversations across inbox, chat and portal.</p>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center;flex-shrink:0">
-          <button class="btn btn--outline">Import</button>
-          <button class="btn btn--default"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>New ticket</button>
-        </div>
-      </header>
-
-      <div class="v2-subheader">
-        <div style="position:relative;width:240px">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--muted-foreground)" stroke-width="2" stroke-linecap="round" style="position:absolute;left:10px;top:8px;width:15px;height:15px"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-          <input class="input" style="padding-left:32px" placeholder="Search tickets…">
-        </div>
-        <button class="btn btn--outline btn--sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>Filter</button>
-        <span class="badge badge--secondary badge--rounded">Status: Open<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
-        <div style="margin-left:auto;display:flex;gap:6px;align-items:center">
-          <div class="tabs-list" style="height:28px">
-            <button class="tab-trigger active" style="font-size:12.8px">List</button>
-            <button class="tab-trigger" style="font-size:12.8px">Board</button>
-          </div>
-        </div>
+      <div class="v2-fab">
+        <button class="v2-fab__btn" aria-label="Open profile and help menu">
+          <span class="avatar" style="--avatar-h:20"><span class="avatar__fallback">OS</span></span>
+          <span class="v2-fab__help"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>
+        </button>
       </div>
 
-      <table class="tbl">
-        <thead><tr><th style="width:36px"><input type="checkbox" class="checkbox"></th><th>Subject</th><th>Status</th><th>Assignee</th><th style="text-align:right">Updated</th></tr></thead>
-        <tbody>
-          <tr><td><input type="checkbox" class="checkbox"></td><td>Cannot export invoices</td><td><span class="badge badge--red-subtle">Urgent</span></td><td><div style="display:flex;align-items:center;gap:8px"><span class="av" style="background:oklch(60% 0.15 130)">EB</span>Eve Barnes</div></td><td style="text-align:right;color:var(--muted-foreground)">2h ago</td></tr>
-          <tr class="selected"><td><input type="checkbox" class="checkbox" checked></td><td>Webhook retries not firing</td><td><span class="badge badge--amber-subtle">Waiting</span></td><td><div style="display:flex;align-items:center;gap:8px"><span class="av" style="background:oklch(60% 0.15 250)">SK</span>Sam Kim</div></td><td style="text-align:right;color:var(--muted-foreground)">Yesterday</td></tr>
-          <tr><td><input type="checkbox" class="checkbox"></td><td>Add SSO for Okta</td><td><span class="badge badge--blue-subtle">Open</span></td><td style="color:var(--muted-foreground)">Unassigned</td><td style="text-align:right;color:var(--muted-foreground)">2d ago</td></tr>
-          <tr><td><input type="checkbox" class="checkbox"></td><td>Billing address not saved</td><td><span class="badge badge--green-subtle">Resolved</span></td><td><div style="display:flex;align-items:center;gap:8px"><span class="av" style="background:oklch(60% 0.15 130)">EB</span>Eve Barnes</div></td><td style="text-align:right;color:var(--muted-foreground)">Jun 28</td></tr>
-          <tr><td><input type="checkbox" class="checkbox"></td><td>Dark mode for customer portal</td><td><span class="badge badge--blue-subtle">Open</span></td><td><div style="display:flex;align-items:center;gap:8px"><span class="av" style="background:oklch(60% 0.15 310)">MR</span>Maya Rao</div></td><td style="text-align:right;color:var(--muted-foreground)">Jun 27</td></tr>
-        </tbody>
-      </table>
+      <main class="v2-main">
+        <div class="v2-container">
+          <header class="v2-header">
+            <div class="v2-header__left">
+              <div class="v2-header__title-row">
+                <h1>Customers<span class="help-icon" title="HelpPopover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span></h1>
+                <button class="btn btn--ghost btn--icon" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+              </div>
+            </div>
+            <div class="v2-header__right">
+              <label class="input v2-search"><span class="input__addon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span><input type="search" placeholder="Search customers"></label>
+              <button class="btn btn--default has-icon-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>Add customer</button>
+            </div>
+          </header>
+
+          <div class="v2-subheader">
+            <div class="v2-subheader__left"><span class="v2-subheader__count">248 Customers</span></div>
+            <div class="v2-subheader__right">
+              <div class="v2-rightblock">
+                <button class="btn btn--ghost btn--icon" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></button>
+                <button class="btn btn--ghost btn--icon" aria-label="Columns"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/></svg></button>
+                <button class="btn btn--ghost btn--icon" aria-label="Filter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr>
+                <th class="sel"><input type="checkbox" class="checkbox" aria-label="Select all"></th>
+                <th>Name<svg class="sort" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></th><th>Email</th><th>Company</th><th>Status</th><th class="num">Tickets</th><th>Created at</th><th class="kebab"></th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="sel"><input type="checkbox" class="checkbox" aria-label="Select Oliver Smith"></td>
+                <td><div class="cell-user"><span class="avatar avatar--sm" style="--avatar-h:20"><span class="avatar__fallback">OS</span></span><a href="#" class="cell-link">Oliver Smith</a></div></td>
+                <td>oliver@acme.io</td>
+                <td>Acme Inc.</td>
+                <td><span class="badge badge--green-subtle">Active</span></td>
+                <td class="num">14</td>
+                <td class="t-muted">Oct 21, 2026</td>
+                <td class="kebab"><button class="btn btn--ghost btn--icon btn--sm" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+              <tr>
+                <td class="sel"><input type="checkbox" class="checkbox" aria-label="Select Eve Barnes"></td>
+                <td><div class="cell-user"><span class="avatar avatar--sm" style="--avatar-h:130"><span class="avatar__fallback">EB</span></span><a href="#" class="cell-link">Eve Barnes</a></div></td>
+                <td>eve.barnes@globex.com</td>
+                <td>Globex</td>
+                <td><span class="badge badge--green-subtle">Active</span></td>
+                <td class="num">9</td>
+                <td class="t-muted">Oct 18, 2026</td>
+                <td class="kebab"><button class="btn btn--ghost btn--icon btn--sm" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+              <tr>
+                <td class="sel"><input type="checkbox" class="checkbox" aria-label="Select Sam Kim"></td>
+                <td><div class="cell-user"><span class="avatar avatar--sm" style="--avatar-h:250"><span class="avatar__fallback">SK</span></span><a href="#" class="cell-link">Sam Kim</a></div></td>
+                <td>sam@initech.co</td>
+                <td>Initech</td>
+                <td><span class="badge badge--red-subtle">Blocked</span></td>
+                <td class="num">2</td>
+                <td class="t-muted">Oct 12, 2026</td>
+                <td class="kebab"><button class="btn btn--ghost btn--icon btn--sm" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+              <tr class="hover">
+                <td class="sel"><input type="checkbox" class="checkbox" aria-label="Select Maya Rao"></td>
+                <td><div class="cell-user"><span class="avatar avatar--sm" style="--avatar-h:310"><span class="avatar__fallback">MR</span></span><a href="#" class="cell-link">Maya Rao</a></div></td>
+                <td>maya.rao@umbrella.com</td>
+                <td>Umbrella Corp</td>
+                <td><span class="badge badge--green-subtle">Active</span></td>
+                <td class="num">27</td>
+                <td class="t-muted">Oct 09, 2026</td>
+                <td class="kebab"><button class="btn btn--ghost btn--icon btn--sm" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+              <tr>
+                <td class="sel"><input type="checkbox" class="checkbox" aria-label="Select Jon Doe"></td>
+                <td><div class="cell-user"><span class="avatar avatar--sm" style="--avatar-h:60"><span class="avatar__fallback">JD</span></span><a href="#" class="cell-link">Jon Doe</a></div></td>
+                <td>jon@hooli.xyz</td>
+                <td>Hooli</td>
+                <td><span class="badge badge--amber-subtle">Unverified</span></td>
+                <td class="num">0</td>
+                <td class="t-muted">Oct 02, 2026</td>
+                <td class="kebab"><button class="btn btn--ghost btn--icon btn--sm" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+              <tr>
+                <td class="sel"><input type="checkbox" class="checkbox" aria-label="Select Priya Nair"></td>
+                <td><div class="cell-user"><span class="avatar avatar--sm" style="--avatar-h:190"><span class="avatar__fallback">PN</span></span><a href="#" class="cell-link">Priya Nair</a></div></td>
+                <td>priya@stark.dev</td>
+                <td>Stark Industries</td>
+                <td><span class="badge badge--green-subtle">Active</span></td>
+                <td class="num">5</td>
+                <td class="t-muted">Sep 28, 2026</td>
+                <td class="kebab"><button class="btn btn--ghost btn--icon btn--sm" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+              <tr>
+                <td class="sel"><input type="checkbox" class="checkbox" aria-label="Select Lucas Meyer"></td>
+                <td><div class="cell-user"><span class="avatar avatar--sm" style="--avatar-h:280"><span class="avatar__fallback">LM</span></span><a href="#" class="cell-link">Lucas Meyer</a></div></td>
+                <td>lucas.m@wayne.co</td>
+                <td>Wayne Enterprises</td>
+                <td><span class="badge badge--green-subtle">Active</span></td>
+                <td class="num">11</td>
+                <td class="t-muted">Sep 22, 2026</td>
+                <td class="kebab"><button class="btn btn--ghost btn--icon btn--sm" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+              <tr>
+                <td class="sel"><input type="checkbox" class="checkbox" aria-label="Select Ana Torres"></td>
+                <td><div class="cell-user"><span class="avatar avatar--sm" style="--avatar-h:345"><span class="avatar__fallback">AT</span></span><a href="#" class="cell-link">Ana Torres</a></div></td>
+                <td>ana@soylent.io</td>
+                <td>Soylent</td>
+                <td><span class="badge badge--red-subtle">Blocked</span></td>
+                <td class="num">1</td>
+                <td class="t-muted">Sep 15, 2026</td>
+                <td class="kebab"><button class="btn btn--ghost btn--icon btn--sm" aria-label="More actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tbl-footer">
+            <nav class="pagination" aria-label="Pagination">
+              <button class="btn btn--ghost has-icon-start disabled"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>Previous</button>
+              <button class="btn btn--outline btn--icon" aria-current="page">1</button>
+              <button class="btn btn--ghost btn--icon">2</button>
+              <button class="btn btn--ghost btn--icon">3</button>
+              <span class="ellipsis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></span>
+              <button class="btn btn--ghost btn--icon">31</button>
+              <button class="btn btn--ghost has-icon-end">Next<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+            </nav>
+          </div>
+        </div>
+      </main>
     </div>
   </div>
 
-  <div class="sheet-note" style="margin-top:16px">Compared with V1: the sidebar is wider with text labels (not a 64px icon rail), the header is taller with a description line, statuses are subtle badges (not outlined tags), and the whole frame runs on semantic tokens so it works in dark mode unchanged.</div>
+  <div class="sheet-note anno">
+    <div><h3>Sidebar (v2/Sidebar)</h3><ul>
+      <li><b>240px</b> (15rem), resizable 200–320px; bg <code>--sidebar</code> #f7f7f7, <code>border-e</code></li>
+      <li>Header <code>px-4 py-3</code>: 28px typeface logo, 28px ghost <code>PanelLeft</code> at end-2.5 / top-7</li>
+      <li>Flat list, group <code>p-2</code>, <b>8px</b> gap, no section labels, no profile row</li>
+      <li>Item <b>36px</b>, p-2, 12px icon gap, 8px radius, 16px icon @ stroke 1.8</li>
+      <li>Active: white chip + shadow-sm (foreground/10), <code>--brand-text</code> label + icon, 500</li>
+      <li>Hover (Reports): <code>--sidebar-accent</code> #ebebeb</li>
+      <li>Count = red 16px bubble on the icon (-6px/-6px); sub-item counts right-aligned 12px at 70%</li>
+      <li>Sub-menu: 1px guide <code>mx-3.5 border-s ps-[13px]</code>, 28px rows, active = brand text, no bg</li>
+    </ul></div>
+    <div><h3>FloatingActionMenu</h3><ul>
+      <li>Tab on the left screen edge, <b>16px from bottom</b>, over the sidebar</li>
+      <li><code>bg-primary</code> pill, <code>rounded-e-2xl</code>, p-1, 6px gap: 26px avatar + 26px help circle</li>
+      <li>Opens a 256px menu to the right: profile, product switcher, help, theme</li>
+    </ul>
+    <h3 style="margin-top:10px">Container</h3><ul>
+      <li><code>px-10</code> (40px; 20px below md), no top padding (Header owns it)</li>
+    </ul></div>
+    <div><h3>Header (v2/Header)</h3><ul>
+      <li><b>40px top / 24px bottom</b>; breadcrumbs (when present) 16px above title</li>
+      <li>Title <b>32px / 600</b>, leading-tight, tracking-tight; no subtitle</li>
+      <li>HelpPopover 16px <code>CircleHelp</code> (ms-2) + MoreDropdown ghost 32px</li>
+      <li>Right: Search <b>202px</b> (h-8) + actions, <b>12px</b> gap; primary = brand green</li>
+    </ul></div>
+    <div><h3>SubHeader + DataTable</h3><ul>
+      <li>SubHeader <b>mb-20px</b>, gap-4; left = app count “248 Customers” <b>16px/600</b></li>
+      <li>RightBlock: ghost 32px Download / Columns3 / Filter, 8px gap, 1px <code>border-s</code> + ps-2 dividers</li>
+      <li>Applied filter chips go in neetofilters <code>Bar</code> below (mb-4) — none here</li>
+      <li>Table head 44px on <code>--muted</code>, cells 10/12px, row hover = <code>--muted</code></li>
+      <li>Pagination right-aligned <code>pt-4</code>: active page = outline, others ghost</li>
+    </ul></div>
+  </div>
 </body>
 </html>

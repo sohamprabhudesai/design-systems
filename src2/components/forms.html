@@ -1,94 +1,154 @@
-<!-- @dsCard group="Components" name="Forms & Selection" subtitle="Input, Textarea, Select, Checkbox, Radio, Switch, Slider — all states" -->
+<!-- @dsCard group="Components" name="Forms &amp; Selection" subtitle="Input 3 sizes + inline addons · Field anatomy · Textarea 80px · Select & chips · green Checkbox/Radio/Switch · Slider · light &amp; dark" -->
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>neeto-atoms · Forms & Selection</title>
+<title>neeto-atoms · Forms &amp; Selection</title>
 <style>/*__ATOMS__*/</style>
 <style>/*__SHEET__*/</style>
 <style>
-  .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 22px 28px; max-width: 860px; }
-  .demo-select { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 32px; width: 100%; border-radius: var(--radius-lg); border: 1px solid var(--input); padding: 0 10px; font-size: 14px; background: transparent; }
-  .demo-select .ph { color: var(--muted-foreground); }
-  .demo-select svg { width: 16px; height: 16px; color: var(--muted-foreground); flex-shrink: 0; }
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px 28px; max-width: 880px; }
 </style>
 </head>
 <body class="nui-sheet">
-  <div class="sheet-header">
-    <h1>Forms &amp; Selection</h1>
-    <p>Field anatomy: <b>Label</b> (14px medium) · 8px · <b>control</b> (h-32, radius 10, border <code>--input</code>, transparent bg) · 8px ·
-    <b>description</b> (12.8px muted) or <b>error</b> (destructive). Focus adds ring-color border + 3px 50% ring. Invalid uses
-    <code>aria-invalid</code> styling automatically. Checked state for all controls is <b>primary</b> (near-black).</p>
-  </div>
-
-  <div class="sheet-section">
-    <h2>Text fields</h2>
-    <div class="form-grid">
-      <div class="field"><label>Name</label><input class="input" placeholder="Enter project name"><p class="field-description">Shown on the customer portal.</p></div>
-      <div class="field"><label>Name</label><input class="input focus" value="Customer portal"><p class="field-description">Focused.</p></div>
-      <div class="field"><label>Email</label><input class="input invalid" value="oliver@example"><p class="field-error">Enter a valid email address.</p></div>
-      <div class="field"><label>Workspace</label><input class="input" value="spinkart.neeto.com" disabled><p class="field-description">Disabled — 50% + input/50 fill.</p></div>
-      <div class="field"><label>Bio</label><textarea class="input" rows="3">Building neetoDesk.</textarea></div>
-      <div class="field"><label>Website</label>
-        <div style="display:flex">
-          <span style="display:flex;align-items:center;padding:0 10px;border:1px solid var(--input);border-right:0;border-radius:var(--radius-lg) 0 0 var(--radius-lg);background:var(--muted);font-size:14px;color:var(--muted-foreground)">https://</span>
-          <input class="input" style="border-radius:0 var(--radius-lg) var(--radius-lg) 0" value="spinkart.com">
-        </div>
-        <p class="field-description">InputGroup — boxed add-on.</p>
-      </div>
+<div class="sheet-header">
+  <h1>Forms &amp; Selection</h1>
+  <p>Every <code>Input</code> renders an <b>InputGroup</b>: one bordered box (radius 10, <code>--input</code> border, transparent / dark <code>input/30</code>) with prefix &amp; suffix as inline muted text. Sizes 28 / 32 / 40. Focus = <code>--ring</code> border + 3px <code>ring/50</code>; invalid = destructive + <code>ring destructive/20</code>. Placeholders use <code>--placeholder</code>. Checked state for every control is <b>primary — the brand green</b>.</p>
+</div>
+<div class="sheet-section">
+<h2>Input — sizes (InputGroup wrapper)</h2>
+<div class="form-grid">
+<div class="spec" style="width:100%"><div class="input input--sm"><span class="input__addon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span><input placeholder="Search tickets"></div><span class="spec__label">small — 28px · 12px text · px 8 · icon 14</span></div>
+<div class="spec" style="width:100%"><div class="input"><span class="input__addon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span><input placeholder="Search tickets"></div><span class="spec__label">medium (default) — 32px · 14px · px 10 · icon 16</span></div>
+<div class="spec" style="width:100%"><div class="input input--lg"><span class="input__addon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span><input placeholder="Search tickets"></div><span class="spec__label">large — 40px · 14px · icon 20</span></div>
+</div>
+</div>
+<div class="sheet-section">
+<h2>Input — states & inline addons</h2>
+<div class="form-grid">
+<div class="spec" style="width:100%"><input class="input" placeholder="Enter project name"><span class="spec__label">rest — border --input, placeholder --placeholder</span></div>
+<div class="spec" style="width:100%"><input class="input focus" value="Customer portal"><span class="spec__label">focus — border --ring + 3px ring/50</span></div>
+<div class="spec" style="width:100%"><input class="input invalid" value="oliver@example"><span class="spec__label">invalid — destructive + ring destructive/20</span></div>
+<div class="spec" style="width:100%"><input class="input disabled" value="spinkart.neeto.com" disabled><span class="spec__label">disabled — input/50 fill, 50% opacity</span></div>
+<div class="spec" style="width:100%"><div class="input"><span class="input__addon">https://</span><input value="spinkart"><span class="input__addon">.neeto.com</span></div><span class="spec__label">prefix + suffix — inline muted text, no box</span></div>
+<div class="spec" style="width:100%"><div class="input"><span class="input__addon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><input placeholder="you@company.com"></div><span class="spec__label">icon prefix</span></div>
+<div class="spec" style="width:100%"><div class="input focus"><span class="input__addon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span><input placeholder="Search"><span class="input__addon"><span class="kbd">⌘K</span></span></div><span class="spec__label">search — ring wraps the whole group</span></div>
+<div class="spec" style="width:100%"><div class="input input--naked"><input value="Untitled form"></div><span class="spec__label">nakedInput — no border, no ring, px 0</span></div>
+</div>
+</div>
+<div class="sheet-section">
+<h2>Field anatomy</h2>
+<div class="form-grid">
+<div class="field">
+  <div class="field__label-row"><label>Subject <span class="req">*</span><span class="help-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span></label><span class="field__counter">18/80</span></div>
+  <div class="field__content"><input class="input" value="Refund for order #4521"><p class="field-description">Visible to the customer in every reply.</p></div>
+</div>
+<div class="field" data-invalid="true">
+  <div class="field__label-row"><label>Email <span class="req">*</span></label></div>
+  <div class="field__content"><input class="input invalid" value="oliver@example"><p class="field-error">Enter a valid email address.</p><p class="field-description">We'll send the invite here.</p></div>
+</div>
+<div class="field disabled">
+  <div class="field__label-row"><label>Workspace URL</label></div>
+  <div class="field__content"><input class="input disabled" value="spinkart.neeto.com" disabled><p class="field-description">Contact support to change it.</p></div>
+</div>
+</div>
+<div class="sheet-note"><b>Label</b> 14px/500 leading-snug, gap 8 to <code>*</code> (destructive) and HelpIcon (16px CircleHelp, muted → foreground on hover). Counter <code>text-xs tabular-nums</code> on the right (destructive when over). Label → control <b>8px</b>; control → error / description <b>2px</b>. Error and description are both <b>14px</b>; order is control, error, description.</div>
+</div>
+<div class="sheet-section">
+<h2>Textarea</h2>
+<div class="form-grid">
+<div class="field"><div class="field__label-row"><label>Reply</label><span class="field__counter">0/500</span></div>
+<div class="field__content"><textarea class="input" placeholder="Write a reply…"></textarea><p class="field-description">medium (default) — min-height 80px, 3 rows, px 10 py 8.</p></div></div>
+<div class="field"><div class="field__label-row"><label>Internal note</label></div>
+<div class="field__content"><textarea class="input focus">Customer confirmed the replacement shipped on Monday.</textarea><p class="field-description">Focused.</p></div></div>
+<div class="field" data-invalid="true"><div class="field__label-row"><label>Reason <span class="req">*</span></label></div>
+<div class="field__content"><textarea class="input invalid"></textarea><p class="field-error">Reason is required.</p></div></div>
+</div>
+</div>
+<div class="sheet-section">
+<h2>Select (Base UI Combobox)</h2>
+<div class="form-grid" style="align-items:start">
+<div class="field"><label>Assignee</label><div class="select"><span class="select__placeholder">Select an assignee</span><span class="select__icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+<p class="field-description" style="margin-top:-6px">placeholder — single ChevronDown 16px</p></div>
+<div class="field"><label>Priority</label>
+  <div class="select focus"><span class="select__value">High</span><span class="select__icons"><svg class="clear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+  <div class="select-popup">
+    <div class="input select-popup__search"><span class="input__addon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span><input placeholder="Search"></div>
+    <div class="select-popup__list">
+      <div class="select-group-label">Priority</div>
+      <div class="select-item">Low</div>
+      <div class="select-item highlighted">Medium</div>
+      <div class="select-item">High<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="check"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <div class="select-item disabled">Urgent</div>
+      <div class="select-sep"></div>
+      <div class="select-item select-item--create"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>Create “Critical”</div>
     </div>
   </div>
-
-  <div class="sheet-section">
-    <h2>Select &amp; Combobox</h2>
-    <div class="form-grid" style="align-items:start">
-      <div class="field"><label>Assignee</label>
-        <div class="demo-select"><span class="ph">Select an assignee</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9l5-5 5 5M7 15l5 5 5-5"/></svg></div>
-      </div>
-      <div class="field"><label>Priority</label>
-        <div class="demo-select focus input" style="display:flex;height:32px;padding:0 10px;align-items:center;justify-content:space-between">High<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;color:var(--muted-foreground)"><path d="M7 9l5-5 5 5M7 15l5 5 5-5"/></svg></div>
-        <div class="popover menu" style="width:100%">
-          <div class="menu__item">Low</div>
-          <div class="menu__item hover">Medium</div>
-          <div class="menu__item" style="justify-content:space-between">High <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;color:var(--foreground)"><path d="M20 6L9 17l-5-5"/></svg></div>
-          <div class="menu__item">Urgent</div>
-        </div>
-      </div>
-      <div class="field"><label>Tags (multi)</label>
-        <div class="demo-select" style="height:auto;min-height:32px;padding:4px 10px 4px 4px;justify-content:flex-start;flex-wrap:wrap">
-          <span class="badge badge--secondary badge--rounded">billing<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
-          <span class="badge badge--secondary badge--rounded">bug<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:auto"><path d="M7 9l5-5 5 5M7 15l5 5 5-5"/></svg>
-        </div>
-        <p class="field-description">Multi values render as rounded secondary badges.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="sheet-section">
-    <h2>Checkbox · Radio · Switch · Slider</h2>
-    <div class="sheet-row sheet-row--top" style="gap:56px">
-      <div class="sheet-col" style="gap:10px">
-        <label class="ctl-row"><input type="checkbox" class="checkbox"> Unchecked</label>
-        <label class="ctl-row"><input type="checkbox" class="checkbox" checked> Checked</label>
-        <label class="ctl-row" style="opacity:.6"><input type="checkbox" class="checkbox" checked disabled> Disabled</label>
-      </div>
-      <div class="sheet-col" style="gap:10px">
-        <label class="ctl-row"><input type="radio" name="r" class="radio" checked> Pro — $9/user</label>
-        <label class="ctl-row"><input type="radio" name="r" class="radio"> Free</label>
-        <label class="ctl-row" style="opacity:.6"><input type="radio" name="r" class="radio" disabled> Enterprise</label>
-      </div>
-      <div class="sheet-col" style="gap:10px">
-        <span class="ctl-row"><span class="switch--sm switch"></span> sm 24×14</span>
-        <span class="ctl-row"><span class="switch checked"></span> default 32×18</span>
-        <span class="ctl-row"><span class="switch--lg switch checked"></span> lg 44×24</span>
-      </div>
-      <div class="sheet-col" style="gap:18px;min-width:200px">
-        <div class="spec" style="width:100%"><div class="slider" style="width:100%"><div class="slider__range" style="width:60%"></div><div class="slider__thumb" style="left:60%"></div></div><span class="spec__label">Slider — 60</span></div>
-        <div class="spec" style="width:100%"><div class="progress" style="width:100%"><div class="progress__bar" style="width:75%"></div></div><span class="spec__label">Progress — 75%</span></div>
-      </div>
-    </div>
-  </div>
+</div>
+<div class="field"><label>Tags</label>
+  <div class="select has-chips"><span class="chip">billing<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span><span class="chip">bug<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span><span class="chip">refund<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span><span class="select__icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+  <div class="field__content"><p class="field-description" style="margin-top:-6px">multi — chips 21px, radius 6, bg --muted, 12px/500, X at 50%</p></div>
+</div>
+<div class="field" data-invalid="true"><label>Team <span class="req">*</span></label>
+  <div class="field__content"><div class="select invalid"><span class="select__placeholder">Select a team</span><span class="select__icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div><p class="field-error">Team is required.</p></div>
+</div>
+</div>
+<div class="sheet-note">Popup = anchor width, radius 10, <code>shadow-lg</code> + 1px <code>foreground/10</code> ring (no border), list <code>p-1</code>. Items 28px (<code>py-1 ps-1.5 pe-8</code>, radius 8), highlighted <code>--accent</code>, selected check 16px at <code>end-2</code>. In-popup search sits on <code>input/30</code>. The “Create” option is <code>text-primary</code> (green).</div>
+</div>
+<div class="sheet-section">
+<h2>Checkbox · Radio · Switch</h2>
+<div class="sheet-row sheet-row--top" style="gap:56px">
+<div class="sheet-col" style="gap:12px">
+  <label class="ctl-row"><input type="checkbox" class="checkbox"> Unchecked</label>
+  <label class="ctl-row"><input type="checkbox" class="checkbox" checked> Checked</label>
+  <label class="ctl-row"><input type="checkbox" class="checkbox focus" checked> Focus</label>
+  <label class="ctl-row"><input type="checkbox" class="checkbox invalid"> Invalid</label>
+  <label class="ctl-row"><input type="checkbox" class="checkbox" checked disabled> <span style="opacity:.5">Disabled</span></label>
+  <span class="spec__label" style="font-size:10.5px;color:var(--muted-foreground);font-family:ui-monospace,monospace">16px · radius 4 · border neutral-400 · check 14px white</span>
+</div>
+<div class="sheet-col" style="gap:12px">
+  <label class="ctl-row ctl-row--top"><input type="radio" name="plan" class="radio" checked><span style="display:flex;flex-direction:column;gap:2px">Pro<span class="ctl-help">$9 per user / month</span></span></label>
+  <label class="ctl-row ctl-row--top"><input type="radio" name="plan" class="radio"><span style="display:flex;flex-direction:column;gap:2px">Free<span class="ctl-help">Up to 3 agents</span></span></label>
+  <label class="ctl-row"><input type="radio" name="plan" class="radio" disabled> <span style="opacity:.5">Enterprise</span></label>
+  <span class="spec__label" style="font-size:10.5px;color:var(--muted-foreground);font-family:ui-monospace,monospace">checked = solid green + 8px --background dot</span>
+</div>
+<div class="sheet-col" style="gap:12px">
+  <span class="ctl-row"><span class="switch switch--sm"><span class="switch__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></span> <span class="switch switch--sm checked"><span class="switch__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></span> sm 24×14 · thumb 12</span>
+  <span class="ctl-row"><span class="switch "><span class="switch__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></span> <span class="switch  checked"><span class="switch__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></span> default 32×18.4 · thumb 16</span>
+  <span class="ctl-row"><span class="switch switch--lg"><span class="switch__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></span> <span class="switch switch--lg checked"><span class="switch__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></span> lg 44×24 · thumb 20</span>
+  <span class="ctl-row ctl-row--top"><span class="switch  checked"><span class="switch__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></span><span style="display:flex;flex-direction:column;gap:2px">Email notifications<span class="ctl-help">Send a digest every morning.</span></span></span>
+  <span class="ctl-row"><span class="switch disabled checked"><span class="switch__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></span> <span style="opacity:.5">Disabled</span></span>
+</div>
+</div>
+<div class="sheet-note">All checked states are <b>primary = brand green</b> with white glyphs, in both themes. Unchecked checkbox / radio borders use Tailwind <code>neutral-400</code> (<code>neutral-500</code> in dark) — darker than <code>--input</code>. The switch thumb has no shadow; when checked it carries a stroke-4 check in <code>text-primary</code> (8 / 10 / 12px).</div>
+</div>
+<div class="sheet-section">
+<h2>Slider</h2>
+<div class="sheet-row" style="gap:48px">
+<div class="spec" style="padding-top:6px"><div class="slider" style="width:220px"><div class="slider__range" style="width:60%"></div><div class="slider__thumb" style="left:60%"></div></div><span class="spec__label">value 60 — track 4px --muted, range --primary</span></div>
+<div class="spec" style="padding-top:6px"><div class="slider" style="width:220px"><div class="slider__range" style="width:40%"></div><div class="slider__thumb focus" style="left:40%"></div></div><span class="spec__label">hover / focus — ring-3 ring/50</span></div>
+<div class="spec" style="padding-top:6px"><div class="slider" style="width:220px"><div class="slider__range" style="left:20%;width:55%"></div><div class="slider__thumb" style="left:20%"></div><div class="slider__thumb" style="left:75%"></div></div><span class="spec__label">range — thumbs 12px, border --ring, white</span></div>
+</div>
+</div>
+<div class="sheet-section">
+<h2>Dark mode</h2>
+<div class="dark" style="background:var(--background);color:var(--foreground);border-radius:var(--radius-xl);border:1px solid var(--border);padding:24px">
+<div class="form-grid">
+  <div class="field"><label>Name <span class="req">*</span><span class="help-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span></label><div class="field__content"><input class="input" placeholder="Enter project name"><p class="field-description">Fill is <code>input/30</code>.</p></div></div>
+  <div class="field" data-invalid="true"><label>Email</label><div class="field__content"><input class="input invalid" value="oliver@example"><p class="field-error">Enter a valid email address.</p></div></div>
+  <div class="field"><label>Tags</label><div class="select has-chips"><span class="chip">billing<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span><span class="chip">bug<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span><span class="select__icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div></div>
+</div>
+<div class="sheet-row" style="gap:32px;margin-top:20px">
+  <label class="ctl-row"><input type="checkbox" class="checkbox"> Off</label>
+  <label class="ctl-row"><input type="checkbox" class="checkbox" checked> On</label>
+  <label class="ctl-row"><input type="radio" class="radio" name="dr"> Free</label>
+  <label class="ctl-row"><input type="radio" class="radio" name="dr" checked> Pro</label>
+  <span class="ctl-row"><span class="switch "><span class="switch__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></span> <span class="switch  checked"><span class="switch__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></span></span>
+  <div class="slider" style="width:160px"><div class="slider__range" style="width:60%"></div><div class="slider__thumb" style="left:60%"></div></div>
+</div>
+</div>
+<div class="sheet-note">Dark: checked fills stay green (no grey outline, #463); unchecked track <code>input/80</code>, unchecked thumb <code>--foreground</code>, checked thumb <code>--primary-foreground</code>.</div>
+</div>
 </body>
 </html>
